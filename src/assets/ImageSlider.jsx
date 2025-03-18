@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import catdark from "C:/Users/nateb/MaAdoptKan/src/assets/catdark.png";
+import catdark from "../assets/images/catdark.png";
+import cat1 from "../assets/images/cat1.jpg";
+import cat2 from "../assets/images/cat2.jpg";
+import dog1 from "../assets/images/dog1.jpg";
+import dog2 from "../assets/images/dog2.jpg";
+import dog3 from "../assets/images/dog3.jpg";
+import dog4 from "../assets/images/dog4.jpg";
 
 function ImageSlider() {
   const sliderRef = useRef(null);
@@ -32,22 +38,24 @@ function ImageSlider() {
     sliderRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
+  const images = [cat1, dog1, cat2, dog2, dog3, dog4];
+
   return (
     <div
       ref={sliderRef}
-      className="slider flex flex-nowrap overflow-hidden m-6 "
+      className="slider flex flex-nowrap overflow-hidden m-6"
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
       style={{ cursor: isDown.current ? "grabbing" : "grab" }}
     >
-      {Array.from({ length: 5 }, (_, index) => (
+      {images.map((img, index) => (
         <img
           key={index}
-          src={catdark}
+          src={img}
           alt={`Image ${index + 1}`}
-          className="m-2 rounded-[10px]"
+          className="m-2 rounded-[8px] max-h-[300px]"
         />
       ))}
     </div>
