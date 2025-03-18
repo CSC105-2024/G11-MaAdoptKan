@@ -8,11 +8,11 @@ export default function Navbar() {
         <NavLink to="/" end>
           Home
         </NavLink>
+        <NavLink to="/pets">Pets</NavLink>
         <NavLink to="/donation">Donation</NavLink>
         <NavLink to="/aboutus">AboutUs</NavLink>
         
       </nav>
-      <h1>Welcome to the Home Page!</h1>
       <Outlet />
     </>
   );
