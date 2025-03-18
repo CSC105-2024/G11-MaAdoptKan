@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ImageSlider from "C:/Users/nateb/MaAdoptKan/src/assets/ImageSlider";
+import ImageSlider from "../assets/ImageSlider";
 
 const AboutUs = () => {
   useEffect(() => {
