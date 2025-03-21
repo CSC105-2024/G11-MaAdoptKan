@@ -82,7 +82,7 @@ const AboutUs = () => {
 
                 <div className="flex items-center space-x-1">
                   <img
-                    src="/src/assets/images/fourstar.png"
+                    src="/images/fourstar.png"
                     alt="Star Rating"
                     className="h-5 w-auto object-contain"
                   />
@@ -100,7 +100,7 @@ const AboutUs = () => {
                 <div className="flex gap-4 py-1">
                   <div className="">
                     <img
-                      src="/src/assets/images/Sophie.jpg"
+                      src="/images/Sophie.jpg"
                       alt="Profile"
                       className="w-10 h-10 rounded-full object-cover"
                     />
@@ -123,7 +123,7 @@ const AboutUs = () => {
                 </div>
                 <div className="flex items-center space-x-1">
                   <img
-                    src="/src/assets/images/fourstar.png"
+                    src="/images/fourstar.png"
                     alt="Star Rating"
                     className="h-5 w-auto object-contain"
                   />
@@ -139,7 +139,7 @@ const AboutUs = () => {
                 <div className="flex gap-4 py-1">
                   <div className="">
                     <img
-                      src="/src/assets/images/Somjai.jpg"
+                      src="/images/Somjai.jpg"
                       alt="Profile"
                       className="w-10 h-10 rounded-full object-cover"
                     />
@@ -162,7 +162,7 @@ const AboutUs = () => {
                 </div>
                 <div className="flex items-center space-x-1">
                   <img
-                    src="/src/assets/images/fivestar.png"
+                    src="/images/fivestar.png"
                     alt="Star Rating"
                     className="h-5 w-auto object-contain"
                   />
@@ -178,7 +178,7 @@ const AboutUs = () => {
                 <div className="flex gap-4 py-1">
                   <div className="">
                     <img
-                      src="/src/assets/images/John.jpg"
+                      src="/images/John.jpg"
                       alt="Profile"
                       className="w-10 h-10 rounded-full object-cover"
                     />
