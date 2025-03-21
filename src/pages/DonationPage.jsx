@@ -24,7 +24,7 @@ function DonationPage() {
                     <div className="box2 w-[500px] h-[60vh] m-[20px] overflow-hidden bg-[#f9f9f9] rounded-[8px] shadow p-[20px]">
                         <h1 className="text-header">QR Code for Donation</h1>
                         <img
-                            src="/path/to/your/qrcode.png"
+                            src="public/images/QRDonate.jpg"
                             alt="QR Code for Donation"
                             className="w-44 h-44 mb-3"
                         />

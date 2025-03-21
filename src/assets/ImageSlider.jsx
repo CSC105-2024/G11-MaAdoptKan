@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import catdark from "../assets/images/catdark.png";
-import cat1 from "../assets/images/cat1.jpg";
-import cat2 from "../assets/images/cat2.jpg";
-import dog1 from "../assets/images/dog1.jpg";
-import dog2 from "../assets/images/dog2.jpg";
-import dog3 from "../assets/images/dog3.jpg";
-import dog4 from "../assets/images/dog4.jpg";
+import React, { useRef } from "react";
+import cat1 from "../../public/images/cat1.jpg";
+import cat2 from "../../public/images/cat2.jpg";
+import dog1 from "../../public/images/dog1.jpg";
+import dog2 from "../../public/images/dog2.jpg";
+import dog3 from "../../public/images/dog3.jpg";
+import dog4 from "../../public/images/dog4.jpg";
 
 function ImageSlider() {
   const sliderRef = useRef(null);
