@@ -1,9 +1,13 @@
 import  React from 'react';
 import './DonationPage.css';
+import Navbar from "../assets/Navbar.jsx";
 
 function DonationPage() {
     return (
         <>
+            <div>
+                <Navbar />
+            </div>
             <div className="min-h-screen flex justify-center items-center">
                 <div className="two-boxes-container flex ">
                     <div className="box1 w-[500px] h-[60vh] m-[20px] overflow-hidden bg-white rounded-[8px] shadow p-[20px]">
