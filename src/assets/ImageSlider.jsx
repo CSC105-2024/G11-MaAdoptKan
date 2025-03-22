@@ -42,7 +42,7 @@ function ImageSlider() {
   return (
     <div
       ref={sliderRef}
-      className="slider flex flex-nowrap overflow-hidden m-6"
+      className="slider flex flex-nowrap overflow-hidden m-4 md:m-6"
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
@@ -54,7 +54,7 @@ function ImageSlider() {
           key={index}
           src={img}
           alt={`Image ${index + 1}`}
-          className="m-2 rounded-[8px] max-h-[300px]"
+          className="m-2 rounded-[8px] max-h-[150px] md:max-h-[300px] object-cover"
         />
       ))}
     </div>
