@@ -45,3 +45,20 @@ body {
     linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
     linear-gradient(#F0F0F0, #E97A28);
 }
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.custom-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media (min-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .custom-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
