@@ -11,12 +11,10 @@ export default function Navbar() {
       <div className="">
         <div className="flex justify-center max-w-[1280px] p-4 mx-auto">
           <nav className="flex justify-between items-center w-full md:w-[1000px]">
-            {/* Logo */}
             <div className="flex items-center gap-2">
               <Logo />
             </div>
 
-            {/* Desktop Menu */}
             <div className="hidden md:flex gap-8 text-[18px]">
               <NavLink
                 to="/"
