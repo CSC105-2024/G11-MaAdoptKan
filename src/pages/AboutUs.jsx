@@ -13,7 +13,7 @@ const AboutUs = () => {
       <div>
         <Navbar />
       </div>
-      <div className="flex flex-col items-center w-full max-w-[1280px] text-center mt-8 g-24">
+      <div className="flex flex-col items-center w-full max-w-screen text-center mt-8 g-24">
         {/* slide bar */}
         <div>
           <ImageSlider />
