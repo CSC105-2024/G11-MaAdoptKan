@@ -18,17 +18,59 @@ export default function Navbar() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-8 text-[18px]">
-              <NavLink to="/" end>Home</NavLink>
-              <NavLink to="/pets">Pets</NavLink>
-              <NavLink to="/donation">Donation</NavLink>
-              <NavLink to="/aboutus">About Us</NavLink>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  isActive
+                    ? "border-b-2 border-primaryO text-primaryO font-semibold pb-1"
+                    : "hover:text-primaryO hover:border-b-2 hover:border-primaryO pb-1"
+                }
+              >
+                Home
+              </NavLink>
+
+              <NavLink
+                to="/pets"
+                className={({ isActive }) =>
+                  isActive
+                    ? "border-b-2 border-primaryO text-primaryO font-semibold pb-1"
+                    : "hover:text-primaryO hover:border-b-2 hover:border-primaryO pb-1"
+                }
+              >
+                Pets
+              </NavLink>
+
+              <NavLink
+                to="/donation"
+                className={({ isActive }) =>
+                  isActive
+                    ? "border-b-2 border-primaryO text-primaryO font-semibold pb-1"
+                    : "hover:text-primaryO hover:border-b-2 hover:border-primaryO pb-1"
+                }
+              >
+                Donation
+              </NavLink>
+
+              <NavLink
+                to="/aboutus"
+                className={({ isActive }) =>
+                  isActive
+                    ? "border-b-2 border-primaryO text-primaryO font-semibold pb-1"
+                    : "hover:text-primaryO hover:border-b-2 hover:border-primaryO pb-1"
+                }
+              >
+                About Us
+              </NavLink>
             </div>
 
             {/* Sign Up Button (Desktop) */}
             <div className="hidden md:block">
-              <button className="px-6 py-1 h-[32px] w-[110px] bg-primaryO text-white rounded-[8px]
+              <button
+                className="px-6 py-1 h-[32px] w-[110px] bg-primaryO text-white rounded-[8px]
                 hover:bg-white hover:text-primaryO hover:border hover:border-primaryO
-                flex justify-center items-center">
+                flex justify-center items-center"
+              >
                 Sign Up
               </button>
             </div>
@@ -47,13 +89,56 @@ export default function Navbar() {
 
         {/* Mobile Menu Dropdown */}
         {isOpen && (
-          <div className="md:hidden px-6 py-4 space-y-4 text-[18px]">
-            <NavLink to="/" end onClick={() => setIsOpen(false)}>Home</NavLink>
-            <NavLink to="/pets" onClick={() => setIsOpen(false)}>Pets</NavLink>
-            <NavLink to="/donation" onClick={() => setIsOpen(false)}>Donation</NavLink>
-            <NavLink to="/aboutus" onClick={() => setIsOpen(false)}>About Us</NavLink>
-            <button className="block w-full px-6 py-2 mt-2 bg-primaryO text-white rounded-[8px]
-              hover:bg-white hover:text-primaryO hover:border hover:border-primaryO">
+          <div className="md:hidden absolute top-[70px] right-4 left-4 bg-white shadow-lg rounded-xl px-6 py-6 z-50 transition-all duration-300 space-y-4 text-[18px] flex flex-col items-start">
+            <NavLink
+              to="/"
+              end
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primaryO font-semibold w-full"
+                  : "hover:text-primaryO w-full"
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/pets"
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primaryO font-semibold w-full"
+                  : "hover:text-primaryO w-full"
+              }
+            >
+              Pets
+            </NavLink>
+            <NavLink
+              to="/donation"
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primaryO font-semibold w-full"
+                  : "hover:text-primaryO w-full"
+              }
+            >
+              Donation
+            </NavLink>
+            <NavLink
+              to="/aboutus"
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primaryO font-semibold w-full"
+                  : "hover:text-primaryO w-full"
+              }
+            >
+              About Us
+            </NavLink>
+            <button
+              className="w-full px-6 py-2 mt-4 bg-primaryO text-white rounded-[8px]
+      hover:bg-white hover:text-primaryO hover:border hover:border-primaryO transition-all duration-200"
+            >
               Sign Up
             </button>
           </div>
