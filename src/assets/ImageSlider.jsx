@@ -12,6 +12,7 @@ function ImageSlider() {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
+  // Mouse events
   const handleMouseDown = (e) => {
     isDown.current = true;
     sliderRef.current.classList.add("active");
@@ -33,7 +34,25 @@ function ImageSlider() {
     if (!isDown.current) return;
     e.preventDefault();
     const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX.current) * 3; // Multiply to adjust scrolling speed
+    const walk = (x - startX.current) * 3;
+    sliderRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  // Touch events
+  const handleTouchStart = (e) => {
+    isDown.current = true;
+    startX.current = e.touches[0].pageX - sliderRef.current.offsetLeft;
+    scrollLeft.current = sliderRef.current.scrollLeft;
+  };
+
+  const handleTouchEnd = () => {
+    isDown.current = false;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDown.current) return;
+    const x = e.touches[0].pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX.current) * 3;
     sliderRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
@@ -42,11 +61,14 @@ function ImageSlider() {
   return (
     <div
       ref={sliderRef}
-      className="slider flex flex-nowrap overflow-hidden m-4 md:m-6"
+      className="slider flex flex-nowrap overflow-x-auto m-4 md:m-6 custom-scrollbar"
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onTouchMove={handleTouchMove}
       style={{ cursor: isDown.current ? "grabbing" : "grab" }}
     >
       {images.map((img, index) => (
