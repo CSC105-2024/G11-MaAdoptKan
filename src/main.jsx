@@ -6,6 +6,7 @@ import Home from './pages/HomePage'
 import AboutUs from './pages/AboutUs';
 import DonationPage from './pages/DonationPage';
 import Pets from './pages/PetPage';
+import SignUpPage from "./pages/SignUpPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/donation", // Home route
     element: <DonationPage />, // Render the App component
+  },
+  {
+    path: "/signup", // Home route
+    element: <SignUpPage />, // Render the App component
   },
 ]);
 

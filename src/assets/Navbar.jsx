@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import {Link, NavLink, Outlet} from "react-router-dom";
 import Logo from "./Logo";
 import { Menu, X } from "lucide-react";
 
@@ -68,8 +68,9 @@ export default function Navbar() {
                 className="px-6 py-1 h-[32px] w-[110px] bg-primaryO text-white rounded-[8px]
                 hover:bg-white hover:text-primaryO hover:border hover:border-primaryO
                 flex justify-center items-center"
+
               >
-                Sign Up
+                  <Link to="/signup">Sign Up</Link>
               </button>
             </div>
 
