@@ -152,7 +152,7 @@ export default function PetPage() {
                     <FloatLabel>
                       <Calendar
                         className="border-1 rounded-[8px] w-full px-2 
-                        shadow-lg border-1 border-gray-200"
+                        shadow-lg  border-gray-200"
                         inputId="birth_date"
                         value={date}
                         onChange={(e) => setDate(e.value)}
