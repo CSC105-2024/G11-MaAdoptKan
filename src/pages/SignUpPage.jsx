@@ -1,106 +1,118 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import TabSwitcher from "../pages/TabSwitcher";
+import Pawpic from "../../public/images/Pawpic.png";
 
+//Create a Zod schema
+const signUpSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    firstName: z.string().min(1, "First name is required"),
+    surname: z.string().min(1, "Surname is required"),
+    tel: z
+        .string()
+        .regex(/^[0-9]{9,15}$/, "Phone number must be 10 digit from 0-9"),
+});
 
 const SignUpPage = () => {
+    // Use react-hook-form with Zod
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: zodResolver(signUpSchema),
+    });
 
+    const onSubmit = (data) => {
+        console.log("Sign Up Success:", data);
+        // TODO: send data to backend or Firebase
+    };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#F1F0F0] bg-orange-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-
-                <div className="text-center mb-8">
-                    <div className="text-5xl text-primaryO mb-2">
-                        <span className="font-bold">Logo na</span>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 to-gray-200 px-4">
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 md:p-10">
+                {/* Logo */}
+                <div className="flex items-center justify-center space-x-2 mb-6">
+                    <div className="text-3xl">
+                        <img src={Pawpic} alt="Paw Logo" className="w-8 h-8" />
                     </div>
-                    <h2 className="text-2xl font-semibold text-[#E97A28]">Ma Adopt Kan</h2>
+                    <h1 className="text-2xl md:text-3xl font-semibold text-primaryO">Ma Adopt Kan</h1>
                 </div>
 
+                {/* Tabs */}
+                <TabSwitcher />
 
-                <form className="space-y-6">
-
+                {/* Form */}
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
+                    {/* Email */}
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-                            Email
-                        </label>
+                        <label className="text-sm font-semibold">Email</label>
                         <input
+                            {...register("email")}
                             type="email"
-                            id="email"
-                            name="email"
                             placeholder="maadopt@gmail.com"
-                            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E97A28] focus:outline-none"
-                            required
+                            className="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 text-orange-600 bg-white shadow focus:outline-none focus:ring-2 focus:ring-orange-400"
                         />
+                        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
                     </div>
 
-
+                    {/* Password */}
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-600">
-                            Password
-                        </label>
+                        <label className="text-sm font-semibold">Password</label>
                         <input
+                            {...register("password")}
                             type="password"
-                            id="password"
-                            name="password"
-                            placeholder="**********"
-                            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E97A28] focus:outline-none"
-                            required
+                            placeholder="***********"
+                            className="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 text-orange-600 bg-white shadow focus:outline-none focus:ring-2 focus:ring-orange-400"
                         />
+                        {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
                     </div>
 
+                    {/* First Name */}
                     <div>
-                        <label htmlFor="first-name" className="block text-sm font-medium text-gray-600">
-                            First Name
-                        </label>
+                        <label className="text-sm font-semibold">First Name</label>
                         <input
+                            {...register("firstName")}
                             type="text"
-                            id="first-name"
-                            name="first-name"
                             placeholder="Mitsuki"
-                            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E97A28] focus:outline-none"
-                            required
+                            className="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 text-orange-600 bg-white shadow focus:outline-none focus:ring-2 focus:ring-orange-400"
                         />
+                        {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>}
                     </div>
 
+                    {/* Surname */}
                     <div>
-                        <label htmlFor="surname" className="block text-sm font-medium text-gray-600">
-                            Surname
-                        </label>
+                        <label className="text-sm font-semibold">Surname</label>
                         <input
+                            {...register("surname")}
                             type="text"
-                            id="surname"
-                            name="surname"
                             placeholder="Tanaiwa"
-                            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E97A28] focus:outline-none"
-                            required
+                            className="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 text-orange-600 bg-white shadow focus:outline-none focus:ring-2 focus:ring-orange-400"
                         />
+                        {errors.surname && <p className="text-red-500 text-sm mt-1">{errors.surname.message}</p>}
                     </div>
 
+                    {/* Tel */}
                     <div>
-                        <label htmlFor="telephone" className="block text-sm font-medium text-gray-600">
-                            Tel.
-                        </label>
+                        <label className="text-sm font-semibold">Tel.</label>
                         <input
+                            {...register("tel")}
                             type="tel"
-                            id="telephone"
-                            name="telephone"
                             placeholder="029927685"
-                            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#E97A28] focus:outline-none"
-                            required
+                            className="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 text-orange-600 bg-white shadow focus:outline-none focus:ring-2 focus:ring-orange-400"
                         />
+                        {errors.tel && <p className="text-red-500 text-sm mt-1">{errors.tel.message}</p>}
                     </div>
 
-                    <div className="mb-6 text-center">
-                        <button
-                            type="submit"
-                            className="w-full py-2 px-4 bg-[#E97A28] text-white font-semibold rounded-lg  focus:outline-none focus:ring-2 focus:ring-[#E97A28] transition"
-                        >
-                            Sign Up
-                        </button>
-                    </div>
-
-                    <div className="text-center">
-
-                    </div>
+                    {/* Submit */}
+                    <button
+                        type="submit"
+                        className="w-full mt-4 bg-primaryO hover:bg-orange-600 transition text-white font-semibold py-3 rounded-md text-lg shadow"
+                    >
+                        Sign Up
+                    </button>
                 </form>
             </div>
         </div>
