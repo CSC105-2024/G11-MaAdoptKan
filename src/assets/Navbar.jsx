@@ -65,7 +65,7 @@ export default function Navbar() {
             {/* Sign Up Button (Desktop) */}
             <div className="hidden md:block">
               <button
-                className="px-6 py-1 h-[32px] w-[110px] bg-primaryO text-white rounded-[8px]
+                className="px-6 py-1 h-[32px] min-w-[110px] bg-primaryO text-white rounded-[8px]
                 hover:bg-white hover:text-primaryO hover:border hover:border-primaryO
                 flex justify-center items-center"
               >
