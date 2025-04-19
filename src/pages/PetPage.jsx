@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import Navbar from "../assets/Navbar";
 import CreatePetForm from "../popup/CreatePetForm";
+import EditPetForm from "../popup/EditPetForm";
 
 export default function PetPage() {
   const [buttonPopup, setButtonPopup] = useState(false);
+  // for edit popup
+  const [editPopup, setEditPopup] = useState(false);
+  const [selectedPet, setSelectedPet] = useState(null);
+  const mockPetData = {
+    name: "Milo",
+    phone: "0812345678",
+    address: "Bangkok",
+    type: "dog",
+    gender: "male",
+    color: "brown",
+    date: new Date("2022-01-01"),
+    ageYear: "2",
+    ageMonth: "3",
+    breed: "Shiba",
+    vaccine: ["Rabies", "Parvo", "", ""],
+  };
 
   return (
     <>
@@ -12,9 +29,21 @@ export default function PetPage() {
         <div>This is Pet Page!</div>
         <br />
         <button onClick={() => setButtonPopup(true)}>Create</button>
+        <button
+          onClick={() => {
+            setSelectedPet(mockPetData);
+            setEditPopup(true);
+          }}
+        >
+          Edit
+        </button>
 
-        {/* เรียก CreatePetForm ที่รวม popup มาให้แล้ว */}
         <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
+        <EditPetForm
+          trigger={editPopup}
+          setTrigger={setEditPopup}
+          petData={selectedPet}
+        />
       </div>
     </>
   );
