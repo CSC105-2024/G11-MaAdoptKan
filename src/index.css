@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 @import 'tailwindcss';
+@import "primereact/resources/themes/lara-light-blue/theme.css";
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
 
 
 @tailwind utilities;
@@ -61,4 +64,24 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+.p-calendar-custom .p-button {
+  background-color: theme("colors.primaryO") !important;
+  border-color: theme("colors.primaryO") !important;
+  color: white !important;
+}
+
+.custom-radio-orange .p-radiobutton-box {
+  background-color: #FFD1AF !important;
+  border: 2px solid #FFD1AF !important;
+}
+
+.custom-radio-orange .p-radiobutton-box.p-highlight {
+  background-color: #FFD1AF !important;
+  border-color: #f97316 !important;
+}
+
+.custom-radio-orange .p-radiobutton-icon {
+  background-color: theme("colors.primaryO")!important;
 }
