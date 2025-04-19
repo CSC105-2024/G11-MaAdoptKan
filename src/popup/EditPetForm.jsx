@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RadioButton } from "primereact/radiobutton";
 import { Calendar } from "primereact/calendar";
 import { z } from "zod";
@@ -18,7 +18,7 @@ const petFormSchema = z.object({
   vaccine: z.array(z.string()).optional(),
 });
 
-export default function CreatePetForm({ trigger, setTrigger }) {
+export default function EditPetForm({ trigger, setTrigger, petData }) {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -36,6 +36,17 @@ export default function CreatePetForm({ trigger, setTrigger }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (petData) {
+      setFormData({
+        ...formData,
+        ...petData,
+        vaccine: petData.vaccine?.length ? petData.vaccine : ["", "", "", ""],
+        date: petData.date ? new Date(petData.date) : null,
+      });
+    }
+  }, [petData]);
+
   const handleInputChange = (key, value) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
@@ -46,7 +57,7 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     setFormData((prev) => ({ ...prev, vaccine: updated }));
   };
 
-  const handleUpload = () => {
+  const handleUpdate = () => {
     const result = petFormSchema.safeParse(formData);
     if (!result.success) {
       const firstError =
@@ -56,21 +67,18 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     } else {
       setError("");
       setSuccess(true);
-      setTimeout(() => setTrigger(false), 1500); // ปิด popup หลังสำเร็จ
+      // ส่งข้อมูลไปอัพเดตหลังบ้านได้ที่นี่
+      setTimeout(() => setTrigger(false), 1500);
     }
   };
 
   if (!trigger) return null;
 
   return (
-    <div class="Popup" className="fixed">
-      <div
-        className="popup-inner rrelative p-[32px] w-[1280px] h-[800px] 
-        bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col"
-      >
+    <div className="fixed">
+      <div className="popup-inner relative p-[32px] w-[1280px] h-[800px] bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col">
         <div className="flex-grow overflow-auto">
-          <h1 className="flex text-header ml-[26px]">Create post</h1>
-
+          <h1 className="flex text-header ml-[26px]">Edit post</h1>
           <div className="grid-cols-3 gap-[52px] flex justify-center">
             {/* 1st col */}
             <div className="min-w-[320px] my-4">
@@ -255,6 +263,8 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               </div>
             </div>
           </div>
+
+          {/* Buttons */}
           <div className="flex justify-end gap-4 mt-auto pt-4 mr-[26px]">
             <button
               onClick={() => setTrigger(false)}
@@ -263,12 +273,13 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               Cancel
             </button>
             <button
-              onClick={handleUpload}
+              onClick={handleUpdate}
               className="bg-primaryO text-white px-6 py-2 rounded-[8px] hover:text-primaryO hover:bg-white hover:border-1 hover:border-primaryO"
             >
-              Upload
+              Save
             </button>
           </div>
+
           {/* Success / Error Message */}
           {error && (
             <div className="text-red-500 border border-red-300 rounded p-2 mt-2">
@@ -277,7 +288,7 @@ export default function CreatePetForm({ trigger, setTrigger }) {
           )}
           {success && (
             <div className="text-green-600 border border-green-400 p-2 rounded-lg mt-2">
-              ✅ Create succeed
+              ✅ Update succeed
             </div>
           )}
         </div>
