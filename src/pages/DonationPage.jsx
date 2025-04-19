@@ -12,7 +12,7 @@ function DonationPage() {
                 <div className="two-boxes-container flex flex-col md:flex-row items-center justify-center gap-4">
                     <div className="box1 sm:w-[355px] md:w-[500px] sm:h-[510px] md:h-[450px] m-[20px] overflow-hidden bg-white rounded-[8px] shadow p-[20px]">
                         <h1 className="text-header">Food & Supplies</h1><br/>
-                        <p className="font-medium">Name</p>
+                        <p className="font-medium"> Name</p>
                         <p className="font-medium text-[#E97A28] flex items-center">
                             <img src="public/images/logo-orange.png" alt="logo" className="w-6 h-6 mr-2"/>
                             Ma Adopt Kan
