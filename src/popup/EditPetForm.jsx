@@ -76,7 +76,8 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
 
   return (
     <div className="fixed">
-      <div className="popup-inner relative p-[32px] w-[1280px] h-[800px] bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col">
+      <div className="popup-inner relative p-[32px] w-[1280px] h-[750px]  
+      bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col">
         <div className="flex-grow overflow-auto">
           <h1 className="flex text-header ml-[26px]">Edit post</h1>
           <div className="grid-cols-3 gap-[52px] flex justify-center">
