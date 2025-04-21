@@ -513,7 +513,33 @@ export default function CreatePetForm({ trigger, setTrigger }) {
         className="popup-inner relative p-[32px] max-w-screen-2xl w-[95%] max-h-screen  h-[80%]
   bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col mx-auto"
       >
-        <h1 className="flex text-header mb-6">Create post</h1>
+        <div className="flex justify-between mb-6">
+          <h1 className="flex items-center text-header">Create post</h1>
+          <button
+            type="button"
+            onClick={() => setTrigger(false)}
+            class="bg-white rounded-md flex 
+        items-center text-gray-400 md:hidden"
+          >
+            <span class="sr-only">Close menu</span>
+            <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
         {isMobile ? <MobileForm /> : <DesktopForm />}
         {error && <div className="text-red-500 mt-4">⚠️ {error}</div>}
         {success && (
