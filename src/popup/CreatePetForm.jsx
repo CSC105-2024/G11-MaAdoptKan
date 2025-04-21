@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RadioButton } from "primereact/radiobutton";
 import { Calendar } from "primereact/calendar";
 import { z } from "zod";
@@ -33,8 +33,17 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     vaccine: ["", "", "", ""],
   });
 
+  const [step, setStep] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleInputChange = (key, value) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -56,231 +65,414 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     } else {
       setError("");
       setSuccess(true);
-      setTimeout(() => setTrigger(false), 1500); // ปิด popup หลังสำเร็จ
+      setTimeout(() => setTrigger(false), 1500);
     }
   };
 
   if (!trigger) return null;
 
-  return (
-    <div class="Popup" className="fixed">
-      <div
-        className="popup-inner rrelative p-[32px] w-[1280px] h-[800px] 
-        bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col"
-      >
-        <div className="flex-grow overflow-auto">
-          <h1 className="flex text-header ml-[26px]">Create post</h1>
+  const StepIndicator = () => (
+    <div className="flex justify-center gap-2 mb-4">
+      {[1, 2, 3].map((n) => (
+        <span
+          key={n}
+          className={`px-3 py-1 rounded-full text-sm font-medium ${
+            step === n ? "bg-primaryO text-white" : "bg-gray-200 text-gray-500"
+          }`}
+        >
+          {n}
+        </span>
+      ))}
+    </div>
+  );
 
-          <div className="grid-cols-3 gap-[52px] flex justify-center">
-            {/* 1st col */}
-            <div className="min-w-[320px] my-4">
-              {/* Picture */}
-              <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-regular font-medium">Picture</p>
-                  <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
-                    Upload
-                  </button>
-                </div>
-                <img
-                  src=""
-                  alt=""
-                  className="w-[320px] h-[320px] rounded-[8px]"
-                />
+  const MobileForm = () => (
+    <div className="flex flex-col flex-1 w-full min-w-full gap-4 px-4">
+      <StepIndicator />
+      <div className="w-full min-w-full flex flex-col gap-4 px-4">
+        {step === 1 && (
+          <>
+            <div className="w-full">
+              <div className="flex w-full justify-between mb-2">
+                <p className="flex items-center font-medium">Picture</p>
+                <button className="mt-2 border border-primaryO px-4 py-1 rounded 
+                text-primaryO hover:bg-primaryO hover:text-white">
+                  Upload
+                </button>
               </div>
-
-              {/* Type */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Type</p>
-                <div className="flex gap-4">
-                  {["cat", "dog"].map((val) => (
-                    <div key={val} className="flex align-items-center">
-                      <RadioButton
-                        inputId={val}
-                        name="type"
-                        value={val}
-                        className="custom-radio-orange"
-                        onChange={(e) => handleInputChange("type", e.value)}
-                        checked={formData.type === val}
-                      />
-                      <label htmlFor={val} className="ml-2 capitalize">
-                        {val}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Color */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Color</p>
-                <input
-                  type="text"
-                  value={formData.color}
-                  onChange={(e) => handleInputChange("color", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
+              <div className="w-full h-[280px] bg-gray-100 rounded-lg"></div>
             </div>
-
-            {/* 2nd col */}
-            <div className="min-w-[370px] my-4">
-              {/* Name */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Name</p>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-
-              {/* Gender */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Gender</p>
-                <div className="flex gap-4">
-                  {["male", "female"].map((val) => (
-                    <div key={val} className="flex align-items-center">
-                      <RadioButton
-                        inputId={val}
-                        name="gender"
-                        value={val}
-                        className="custom-radio-orange"
-                        onChange={(e) => handleInputChange("gender", e.value)}
-                        checked={formData.gender === val}
-                      />
-                      <label htmlFor={val} className="ml-2 capitalize">
-                        {val}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* DateOfBirth */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">
-                  Date of birth
-                </p>
-                <Calendar
-                  className="p-calendar-custom flex justify-start h-[24px] w-full"
-                  inputId="birth_date"
-                  value={formData.date}
-                  onChange={(e) => handleInputChange("date", e.value)}
-                  showIcon
-                />
-              </div>
-
-              {/* Age */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Age</p>
-                <div className="flex gap-[10px] max-w-[370px]">
-                  <input
-                    type="number"
-                    value={formData.ageYear}
-                    onChange={(e) =>
-                      handleInputChange("ageYear", e.target.value)
-                    }
-                    className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                  />
-                  <label>Years</label>
-                  <input
-                    type="number"
-                    value={formData.ageMonth}
-                    onChange={(e) =>
-                      handleInputChange("ageMonth", e.target.value)
-                    }
-                    className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                  />
-                  <label>Months</label>
-                </div>
-              </div>
-
-              {/* Breed */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Breed</p>
-                <input
-                  type="text"
-                  value={formData.breed}
-                  onChange={(e) => handleInputChange("breed", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-            </div>
-
-            {/* 3rd col */}
-            <div className="min-w-[370px] my-4">
-              {/* Phone Number */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">
-                  Phone Number
-                </p>
-                <input
-                  type="text"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-
-              {/* Address */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Address</p>
-                <input
-                  type="text"
-                  value={formData.address}
-                  onChange={(e) => handleInputChange("address", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-
-              {/* Vaccine Record */}
-              <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-regular font-medium">Vaccine Record</p>
-                  <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
-                    Upload
-                  </button>
-                </div>
-                {formData.vaccine.map((val, i) => (
-                  <input
-                    key={i}
-                    value={val}
-                    onChange={(e) => handleVaccineChange(i, e.target.value)}
-                    type="text"
-                    className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                  />
+            <div>
+              <p className="flex text-regular font-medium">Type</p>
+              <div className="flex gap-4">
+                {["cat", "dog"].map((val) => (
+                  <div key={val} className="flex items-center">
+                    <RadioButton
+                      inputId={val}
+                      name="type"
+                      value={val}
+                      className="custom-radio-orange"
+                      onChange={(e) => handleInputChange("type", e.value)}
+                      checked={formData.type === val}
+                    />
+                    <label htmlFor={val} className="ml-2 capitalize">
+                      {val}
+                    </label>
+                  </div>
                 ))}
               </div>
             </div>
-          </div>
-          <div className="flex justify-end gap-4 mt-auto pt-4 mr-[26px]">
+            <div>
+              <p className="flex text-regular font-medium">Name</p>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => handleInputChange("name", e.target.value)}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            <div>
+              <p className="flex text-regular font-medium">Gender</p>
+              <div className="flex gap-4">
+                {["male", "female"].map((val) => (
+                  <div key={val} className="flex items-center">
+                    <RadioButton
+                      inputId={val}
+                      name="gender"
+                      value={val}
+                      className="custom-radio-orange"
+                      onChange={(e) => handleInputChange("gender", e.value)}
+                      checked={formData.gender === val}
+                    />
+                    <label htmlFor={val} className="ml-2 capitalize">
+                      {val}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {step === 2 && (
+          <>
+            <div>
+              <p className="flex text-regular font-medium">Date of Birth</p>
+              <Calendar
+                value={formData.date}
+                onChange={(e) => handleInputChange("date", e.value)}
+                showIcon
+                className="p-calendar-custom flex justify-start w-full"
+              />
+            </div>
+            <div>
+              <p className="flex text-regular font-medium">Age</p>
+              <div className="flex gap-2">
+                <input
+                  type="number"
+                  value={formData.ageYear}
+                  onChange={(e) => handleInputChange("ageYear", e.target.value)}
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2"
+                />
+                <span className="flex items-center">Years</span>
+                <input
+                  type="number"
+                  value={formData.ageMonth}
+                  onChange={(e) =>
+                    handleInputChange("ageMonth", e.target.value)
+                  }
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2"
+                />
+                <span className="flex items-center">Months</span>
+              </div>
+            </div>
+            <div>
+              <p className="flex text-regular font-medium">Breed</p>
+              <input
+                type="text"
+                value={formData.breed}
+                onChange={(e) => handleInputChange("breed", e.target.value)}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+          </>
+        )}
+
+        {step === 3 && (
+          <>
+            <div>
+              <p className="flex text-regular font-medium">Phone Number</p>
+              <input
+                type="text"
+                value={formData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            <div>
+              <p className="flex text-regular font-medium">Address</p>
+              <input
+                type="text"
+                value={formData.address}
+                onChange={(e) => handleInputChange("address", e.target.value)}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2"
+              />
+            </div>
+            <div>
+            <div className="flex w-full justify-between mb-2">
+                <p className="flex items-center font-medium">Vaccine Reccord</p>
+                <button className="mt-2 border border-primaryO px-4 py-1 rounded text-primaryO hover:bg-primaryO hover:text-white">
+                  Upload
+                </button>
+              </div>
+              {formData.vaccine.map((val, i) => (
+                <input
+                  key={i}
+                  value={val}
+                  onChange={(e) => handleVaccineChange(i, e.target.value)}
+                  type="text"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 mb-2"
+                />
+              ))}
+            </div>
+          </>
+        )}
+
+        <div className="flex justify-between mt-4">
+          {step > 1 && (
             <button
-              onClick={() => setTrigger(false)}
-              className="bg-white border border-primaryO text-primaryO px-6 py-2 rounded-[8px] hover:bg-primaryO hover:text-white"
+              onClick={() => setStep(step - 1)}
+              className="text-primaryO border border-primaryO px-4 py-2 rounded hover:bg-primaryO hover:text-white"
             >
-              Cancel
+              Back
             </button>
+          )}
+          {step < 3 ? (
+            <button
+              onClick={() => setStep(step + 1)}
+              className="bg-primaryO text-white px-4 py-2 rounded hover:text-primaryO hover:bg-white hover:border border-primaryO"
+            >
+              Next
+            </button>
+          ) : (
             <button
               onClick={handleUpload}
-              className="bg-primaryO text-white px-6 py-2 rounded-[8px] hover:text-primaryO hover:bg-white hover:border-1 hover:border-primaryO"
+              className="bg-primaryO text-white px-6 py-2 rounded hover:text-primaryO hover:bg-white hover:border border-primaryO"
             >
               Upload
             </button>
-          </div>
-          {/* Success / Error Message */}
-          {error && (
-            <div className="text-red-500 border border-red-300 rounded p-2 mt-2">
-              ⚠️ {error}
-            </div>
-          )}
-          {success && (
-            <div className="text-green-600 border border-green-400 p-2 rounded-lg mt-2">
-              ✅ Create succeed
-            </div>
           )}
         </div>
+      </div>
+    </div>
+  );
+
+  const DesktopForm = () => (
+    <div className="flex-grow overflow-auto">
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+          gap-x-12 gap-y-8 justify-items-center"
+      >
+        {/* 1st col */}
+        <div className="w-full max-w-[400px] min-w-[300px]">
+          {/* Picture */}
+          <div className="mb-4">
+            <div className="flex justify-between items-center mb-2">
+              <p className="text-regular font-medium">Picture</p>
+              <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
+                Upload
+              </button>
+            </div>
+            <img src="" alt="" className="w-[320px] h-[320px] rounded-[8px]" />
+          </div>
+
+          {/* Type */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Type</p>
+            <div className="flex gap-4">
+              {["cat", "dog"].map((val) => (
+                <div key={val} className="flex align-items-center">
+                  <RadioButton
+                    inputId={val}
+                    name="type"
+                    value={val}
+                    className="custom-radio-orange"
+                    onChange={(e) => handleInputChange("type", e.value)}
+                    checked={formData.type === val}
+                  />
+                  <label htmlFor={val} className="ml-2 capitalize">
+                    {val}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Color */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Color</p>
+            <input
+              type="text"
+              value={formData.color}
+              onChange={(e) => handleInputChange("color", e.target.value)}
+              className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+            />
+          </div>
+        </div>
+
+        {/* 2nd col */}
+        <div className="w-full max-w-[400px] min-w-[300px]">
+          {/* Name */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Name</p>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+            />
+          </div>
+
+          {/* Gender */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Gender</p>
+            <div className="flex gap-4">
+              {["male", "female"].map((val) => (
+                <div key={val} className="flex align-items-center">
+                  <RadioButton
+                    inputId={val}
+                    name="gender"
+                    value={val}
+                    className="custom-radio-orange"
+                    onChange={(e) => handleInputChange("gender", e.value)}
+                    checked={formData.gender === val}
+                  />
+                  <label htmlFor={val} className="ml-2 capitalize">
+                    {val}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DateOfBirth */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Date of birth</p>
+            <Calendar
+              className="p-calendar-custom flex justify-start h-[24px] w-full"
+              inputId="birth_date"
+              value={formData.date}
+              onChange={(e) => handleInputChange("date", e.value)}
+              showIcon
+            />
+          </div>
+
+          {/* Age */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Age</p>
+            <div className="flex gap-[10px] max-w-[370px]">
+              <input
+                type="number"
+                value={formData.ageYear}
+                onChange={(e) => handleInputChange("ageYear", e.target.value)}
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+              <label>Years</label>
+              <input
+                type="number"
+                value={formData.ageMonth}
+                onChange={(e) => handleInputChange("ageMonth", e.target.value)}
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+              <label>Months</label>
+            </div>
+          </div>
+
+          {/* Breed */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Breed</p>
+            <input
+              type="text"
+              value={formData.breed}
+              onChange={(e) => handleInputChange("breed", e.target.value)}
+              className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+            />
+          </div>
+        </div>
+
+        {/* 3rd col */}
+        <div className="w-full max-w-[400px] min-w-[300px]">
+          {/* Phone Number */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Phone Number</p>
+            <input
+              type="text"
+              value={formData.phone}
+              onChange={(e) => handleInputChange("phone", e.target.value)}
+              className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+            />
+          </div>
+
+          {/* Address */}
+          <div className="mb-4">
+            <p className="text-regular flex mb-2 font-medium">Address</p>
+            <input
+              type="text"
+              value={formData.address}
+              onChange={(e) => handleInputChange("address", e.target.value)}
+              className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+            />
+          </div>
+
+          {/* Vaccine Record */}
+          <div className="mb-4">
+            <div className="flex justify-between items-center mb-2">
+              <p className="text-regular font-medium">Vaccine Record</p>
+              <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
+                Upload
+              </button>
+            </div>
+            {formData.vaccine.map((val, i) => (
+              <input
+                key={i}
+                value={val}
+                onChange={(e) => handleVaccineChange(i, e.target.value)}
+                type="text"
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-end gap-4 mt-8">
+        <button
+          onClick={() => setTrigger(false)}
+          className="bg-white border border-primaryO text-primaryO px-6 py-2 rounded-[8px] hover:bg-primaryO hover:text-white"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleUpload}
+          className="bg-primaryO text-white px-6 py-2 rounded-[8px] hover:text-primaryO hover:bg-white hover:border-1 hover:border-primaryO"
+        >
+          Upload
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="fixed min-w-full">
+      <div
+        className="popup-inner relative p-[32px] max-w-screen-2xl w-[95%] max-h-screen  h-[80%]
+  bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col mx-auto"
+      >
+        <h1 className="flex text-header mb-6">Create post</h1>
+        {isMobile ? <MobileForm /> : <DesktopForm />}
+        {error && <div className="text-red-500 mt-4">⚠️ {error}</div>}
+        {success && (
+          <div className="text-green-600 mt-4">✅ Create succeed</div>
+        )}
       </div>
     </div>
   );

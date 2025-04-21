@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import Navbar from "../assets/Navbar";
 import CreatePetForm from "../popup/CreatePetForm";
 import EditPetForm from "../popup/EditPetForm";
+import PetInformation from "../popup/PetInformation";
 
 export default function PetPage() {
   const [buttonPopup, setButtonPopup] = useState(false);
   // for edit popup
   const [editPopup, setEditPopup] = useState(false);
+  const [infoPopup, setInfoPopup] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
+  
   const mockPetData = {
     name: "Milo",
     phone: "0812345678",
@@ -37,12 +40,27 @@ export default function PetPage() {
         >
           Edit
         </button>
+        <button
+          onClick={() => {
+            setSelectedPet(mockPetData);
+            setInfoPopup(true);
+          }}
+        >
+          View Info
+        </button>
+
+        
 
         <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
         <EditPetForm
           trigger={editPopup}
           setTrigger={setEditPopup}
           petData={selectedPet}
+        />
+        <PetInformation
+          trigger={infoPopup}
+          setTrigger={setInfoPopup}
+          pet={selectedPet}
         />
       </div>
     </>
