@@ -6,11 +6,12 @@ import PetInformation from "../popup/PetInformation";
 
 export default function PetPage() {
   const [buttonPopup, setButtonPopup] = useState(false);
-  // for edit popup
+
+  // for edit popup Can move
   const [editPopup, setEditPopup] = useState(false);
   const [infoPopup, setInfoPopup] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
-  
+
   const mockPetData = {
     name: "Milo",
     phone: "0812345678",
@@ -32,6 +33,10 @@ export default function PetPage() {
         <div>This is Pet Page!</div>
         <br />
         <button onClick={() => setButtonPopup(true)}>Create</button>
+        <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
+
+
+        {/* Can move */}
         <button
           onClick={() => {
             setSelectedPet(mockPetData);
@@ -49,9 +54,6 @@ export default function PetPage() {
           View Info
         </button>
 
-        
-
-        <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
         <EditPetForm
           trigger={editPopup}
           setTrigger={setEditPopup}
