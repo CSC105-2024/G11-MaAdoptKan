@@ -139,7 +139,7 @@ export default function Navbar() {
               className="w-full px-6 py-2 mt-4 bg-primaryO text-white rounded-[8px]
       hover:bg-white hover:text-primaryO hover:border hover:border-primaryO transition-all duration-200"
             >
-              Sign Up
+              <Link to="/signup">Sign Up</Link>
             </button>
           </div>
         )}

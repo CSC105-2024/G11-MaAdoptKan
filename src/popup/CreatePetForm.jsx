@@ -95,10 +95,19 @@ export default function CreatePetForm({ trigger, setTrigger }) {
             <div className="w-full">
               <div className="flex w-full justify-between mb-2">
                 <p className="flex items-center font-medium">Picture</p>
-                <button className="mt-2 border border-primaryO px-4 py-1 rounded 
-                text-primaryO hover:bg-primaryO hover:text-white">
+                <input
+                  type="file"
+                  id="upload-photo-1"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => console.log("File 1:", e.target.files[0])}
+                />
+                <label
+                  htmlFor="upload-photo-1"
+                  className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
+                >
                   Upload
-                </button>
+                </label>
               </div>
               <div className="w-full h-[280px] bg-gray-100 rounded-lg"></div>
             </div>
@@ -219,11 +228,21 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               />
             </div>
             <div>
-            <div className="flex w-full justify-between mb-2">
+              <div className="flex w-full justify-between mb-2">
                 <p className="flex items-center font-medium">Vaccine Reccord</p>
-                <button className="mt-2 border border-primaryO px-4 py-1 rounded text-primaryO hover:bg-primaryO hover:text-white">
+                <input
+                  type="file"
+                  id="upload-photo-2"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => console.log("File 2:", e.target.files[0])}
+                />
+                <label
+                  htmlFor="upload-photo-2"
+                  className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
+                >
                   Upload
-                </button>
+                </label>
               </div>
               {formData.vaccine.map((val, i) => (
                 <input
@@ -279,11 +298,25 @@ export default function CreatePetForm({ trigger, setTrigger }) {
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
               <p className="text-regular font-medium">Picture</p>
-              <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
+              <input
+                type="file"
+                id="upload-photo-1"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => console.log("File 1:", e.target.files[0])}
+              />
+              <label
+                htmlFor="upload-photo-1"
+                className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
+              >
                 Upload
-              </button>
+              </label>
+
+              {/* <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
+                Upload
+              </button> */}
             </div>
-            <img src="" alt="" className="w-[320px] h-[320px] rounded-[8px]" />
+            <img src="" alt="" className="w-full h-[320px] rounded-[8px]" />
           </div>
 
           {/* Type */}
@@ -428,9 +461,22 @@ export default function CreatePetForm({ trigger, setTrigger }) {
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
               <p className="text-regular font-medium">Vaccine Record</p>
-              <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
+              <input
+                type="file"
+                id="upload-photo-2"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => console.log("File 2:", e.target.files[0])}
+              />
+              <label
+                htmlFor="upload-photo-2"
+                className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
+              >
                 Upload
-              </button>
+              </label>
+              {/* <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
+                Upload
+              </button> */}
             </div>
             {formData.vaccine.map((val, i) => (
               <input
