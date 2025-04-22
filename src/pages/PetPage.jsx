@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 import Navbar from "../assets/Navbar";
 import CreatePetForm from "../popup/CreatePetForm";
-import EditPetForm from "../popup/EditPetForm";
-import PetInformation from "../popup/PetInformation";
+// import EditPetForm from "../popup/EditPetForm";
+// import PetInformation from "../popup/PetInformation";
 
 export default function PetPage() {
   const [buttonPopup, setButtonPopup] = useState(false);
 
-  // for edit popup Can move
-  const [editPopup, setEditPopup] = useState(false);
-  const [infoPopup, setInfoPopup] = useState(false);
-  const [selectedPet, setSelectedPet] = useState(null);
+  // // for edit popup Can move
+  // const [editPopup, setEditPopup] = useState(false);
+  // const [infoPopup, setInfoPopup] = useState(false);
+  // const [selectedPet, setSelectedPet] = useState(null);
 
-  const mockPetData = {
-    name: "Milo",
-    phone: "0812345678",
-    address: "Bangkok",
-    type: "dog",
-    gender: "male",
-    color: "brown",
-    date: new Date("2022-01-01"),
-    ageYear: "2",
-    ageMonth: "3",
-    breed: "Shiba",
-    vaccine: ["Rabies", "Parvo", "", ""],
-  };
+  // const mockPetData = {
+  //   name: "Milo",
+  //   phone: "0812345678",
+  //   address: "Bangkok",
+  //   type: "dog",
+  //   gender: "male",
+  //   color: "brown",
+  //   date: new Date("2022-01-01"),
+  //   ageYear: "2",
+  //   ageMonth: "3",
+  //   breed: "Shiba",
+  //   vaccine: ["Rabies", "Parvo", "", ""],
+  // };
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function PetPage() {
         <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
 
 
-        {/* Can move */}
+        {/* Can move
         <button
           onClick={() => {
             setSelectedPet(mockPetData);
@@ -63,7 +63,7 @@ export default function PetPage() {
           trigger={infoPopup}
           setTrigger={setInfoPopup}
           pet={selectedPet}
-        />
+        /> */}
       </div>
     </>
   );
