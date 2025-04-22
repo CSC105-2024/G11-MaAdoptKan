@@ -135,7 +135,7 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               <p className="flex text-regular font-medium">Name</p>
               <input
                 type="text"
-                value={formData.name ?? ""}
+                value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2"
               />
