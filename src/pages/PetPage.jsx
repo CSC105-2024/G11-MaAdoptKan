@@ -12,20 +12,55 @@ export default function PetPage() {
     const [requestPopup, setRequestPopup] = useState(false);
     const [selectedPet, setSelectedPet] = useState(null);
     const [filter, setFilter] = useState("All");
+    const [currentPage, setCurrentPage] = useState(1);
+    const petsPerPage = 20;
 
     const pets = [
         { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
         { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
-        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png", type: "cat" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
         { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
-        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png", type: "cat" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
         { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
-        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png", type: "cat" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
         { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" , type: "cat" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png", type: "dog" },
+        // (more pet entries... repeated or new)
     ];
 
-    const filteredPets =
-        filter === "All" ? pets : pets.filter((pet) => pet.type === filter);
+    const filteredPets = filter === "All" ? pets : pets.filter((pet) => pet.type === filter);
+    const totalPages = Math.ceil(filteredPets.length / petsPerPage);
+    const startIndex = (currentPage - 1) * petsPerPage;
+    const currentPets = filteredPets.slice(startIndex, startIndex + petsPerPage);
+
+    const handlePrev = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+
+    const handleNext = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    };
 
     return (
         <>
@@ -39,7 +74,10 @@ export default function PetPage() {
                                 className={`transition-all duration-500 capitalize ${
                                     filter === type ? 'text-[#E97A28] text-2xl' : 'text-gray-400 text-xl'
                                 }`}
-                                onClick={() => setFilter(type)}
+                                onClick={() => {
+                                    setFilter(type);
+                                    setCurrentPage(1);
+                                }}
                             >
                                 {type === 'All' ? 'All' : type.charAt(0).toUpperCase() + type.slice(1) + 's'}
                             </button>
@@ -52,11 +90,12 @@ export default function PetPage() {
                     >
                         + Create
                     </button>
-
                 </div>
+
                 <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 w-full">
-                    {filteredPets.map((pet, index) => (
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6 p-6 w-full">
+                    {currentPets.map((pet, index) => (
                         <div key={index} className="bg-white rounded-xl shadow p-4">
                             <img src={pet.image} alt={pet.name} className="rounded-md w-full h-32 object-cover" />
                             <div className="text-left mt-2">
@@ -68,19 +107,50 @@ export default function PetPage() {
                                         className="w-[25px] h-[25px] object-cover rounded-lg flex items-center"
                                     />
                                     <div className="flex items-center">{pet.breed}</div>
-
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
+
+                <div className="flex items-center space-x-2 mb-8">
+                    <button
+                        onClick={handlePrev}
+                        disabled={currentPage === 1}
+                        className={`px-4 py-2 rounded border ${
+                            currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-[#E97A28] border-[#E97A28]'
+                        }`}
+                    >
+                        Prev
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                            key={i + 1}
+                            onClick={() => setCurrentPage(i + 1)}
+                            className={`px-4 py-2 border rounded ${
+                                currentPage === i + 1 ? 'bg-[#E97A28] text-white' : 'bg-white text-[#E97A28] border-[#E97A28]'
+                            }`}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+
+                    <button
+                        onClick={handleNext}
+                        disabled={currentPage === totalPages}
+                        className={`px-4 py-2 rounded border ${
+                            currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-[#E97A28] border-[#E97A28]'
+                        }`}
+                    >
+                        Next
+                    </button>
+                </div>
             </div>
 
-            <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
             <EditPetForm trigger={editPopup} setTrigger={setEditPopup} />
             <PetInformation trigger={infoPopup} setTrigger={setInfoPopup} />
             <RequestForm trigger={requestPopup} setTrigger={setRequestPopup} />
         </>
     );
 }
-
