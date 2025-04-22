@@ -26,6 +26,7 @@ const LoginPage = () => {
 
     const onSubmit = (data) => {
         console.log("✅ Login Success:", data);
+        localStorage.setItem("isLoggedIn", "true"); 
         setLoginSuccess(true);
         setTimeout(() => {
             navigate("/");
