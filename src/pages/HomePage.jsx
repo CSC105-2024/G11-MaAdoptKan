@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 
 export default function HomePage() {
     const pets = [
-        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "🐱" },
-        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "🐶" },
-        { name: "Jaki", age: "2 Yearsold", breed: "Jack Russell", image: "./images/Jaki.png", icon: "🐶" },
-        { name: "Tojin", age: "2 Yearsold", breed: "Scottish Fold", image: "./images/Tojin.png", icon: "🐱" },
-        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "🐱" },
-        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "🐶" },
-        { name: "Jaki", age: "2 Yearsold", breed: "Jack Russell", image: "./images/Jaki.png", icon: "🐶" },
-        { name: "Tojin", age: "2 Yearsold", breed: "Scottish Fold", image: "./images/Tojin.png", icon: "🐱" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png" },
+        { name: "Jaki", age: "2 Yearsold", breed: "Jack Russell", image: "./images/Jaki.png", icon: "./images/dogorangeicon.png" },
+        { name: "Tojin", age: "2 Yearsold", breed: "Scottish Fold", image: "./images/Tojin.png", icon: "./images/catorangeicon.png" },
+        { name: "Maki", age: "2 Yearsold", breed: "Himalayan", image: "./images/Maki.png", icon: "./images/catorangeicon.png" },
+        { name: "Yuma", age: "2 Yearsold", breed: "Labrador Retriever", image: "./images/Yuma.png", icon: "./images/dogorangeicon.png" },
+        { name: "Jaki", age: "2 Yearsold", breed: "Jack Russell", image: "./images/Jaki.png", icon: "./images/dogorangeicon.png" },
+        { name: "Tojin", age: "2 Yearsold", breed: "Scottish Fold", image: "./images/Tojin.png", icon: "./images/catorangeicon.png" },
     ];
 
     return (
@@ -28,8 +28,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-                    <h1 className="text-4xl font-bold">We provide <span className="text-orange-400 font-sue">500,000,000</span> shelters to abandoned animals</h1>
-                    <p className="text-xl mt-4">Search for your favorite pets</p>
+                    <h1 className="text-5xl font-bold">We provide <span className="text-[#E97A28] font-sue">500,000,000</span> shelters to abandoned animals</h1>
                     <div className="hidden sm:block w-full max-w-md shadow-md">
                         <div className=" flex items-center mt-4 bg-white rounded-[6px] px-4 py-2 ">
                             <input
@@ -37,7 +36,7 @@ export default function HomePage() {
                                 placeholder="Search for your favorite pets"
                                 className="flex-grow outline-none text-black px-2"
                             />
-                            <Search className="text-orange-500" />
+                            <Search className="text-[#E97A28]" />
                         </div>
                     </div>
 
@@ -47,7 +46,7 @@ export default function HomePage() {
             {/* Recommended Pets Section */}
             <div className="max-w-[1440px] mx-auto px-4 py-10">
                 <div className="block sm:hidden w-full max-w-md shadow-md mb-5">
-                <div className="flex items-center mt-4 bg-white rounded-[6px] px-4 py-2 ">
+                <div className="flex items-center bg-white rounded-[6px] px-4 py-2 ">
                     <input
                         type="text"
                         placeholder="Search for your favorite pets"
@@ -62,7 +61,7 @@ export default function HomePage() {
                     </h2>
                     <Link
                         to="/pets"
-                        className="px-4 py-2 text-sm sm:text-base text-orange-500 font-medium border-1 border-orange-500 bg-orange-50 rounded-lg transition hover:bg-orange-100 whitespace-nowrap"
+                        className="px-4 py-2 text-sm sm:text-base text-[#E97A28] font-medium border-1 border-[#E97A28] bg-orange-50 rounded-lg transition hover:bg-orange-100 whitespace-nowrap"
                     >
                         See more
                     </Link>
@@ -106,8 +105,11 @@ export default function HomePage() {
                             <h3 className="text-lg font-semibold">{pet.name}</h3>
                             <p className="text-sm text-gray-500">{pet.age}</p>
                             <div className="flex items-center gap-2 mt-1 text-sm text-gray-700">
-                                <span>{pet.icon}</span>
-                                <span>{pet.breed}</span>
+                                <img
+                                    src={pet.icon}
+                                    className="w-[25px] h-[25px] object-cover rounded-lg flex items-center"
+                                />
+                                <span className="flex items-center">{pet.breed}</span>
                             </div>
                         </div>
                     ))}
