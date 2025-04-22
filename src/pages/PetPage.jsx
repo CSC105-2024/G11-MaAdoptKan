@@ -3,13 +3,13 @@ import Navbar from "../assets/Navbar";
 import CreatePetForm from "../popup/CreatePetForm";
 import EditPetForm from "../popup/EditPetForm";
 import PetInformation from "../popup/PetInformation";
+import RequestForm from "../popup/RequestForm"; // Ensure this is correctly imported
 
 export default function PetPage() {
   const [buttonPopup, setButtonPopup] = useState(false);
-
-  // for edit popup Can move
   const [editPopup, setEditPopup] = useState(false);
   const [infoPopup, setInfoPopup] = useState(false);
+  const [requestPopup, setRequestPopup] = useState(false); // Define state for requestPopup
   const [selectedPet, setSelectedPet] = useState(null);
 
   const mockPetData = {
@@ -27,44 +27,51 @@ export default function PetPage() {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="flex flex-col items-center w-full max-w-[1440px] mx-auto text-center mt-8 g-24 min-h-screen">
-        <div>This is Pet Page!</div>
-        <br />
-        <button onClick={() => setButtonPopup(true)}>Create</button>
-        <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
+      <>
+        <Navbar />
+        <div className="flex flex-col items-center w-full max-w-[1440px] mx-auto text-center mt-8 g-24 min-h-screen">
+          <div>This is Pet Page!</div>
+          <br />
+          <button onClick={() => setButtonPopup(true)}>Create</button>
+          <CreatePetForm trigger={buttonPopup} setTrigger={setButtonPopup} />
 
+          <button
+              onClick={() => {
+                setSelectedPet(mockPetData);
+                setEditPopup(true);
+              }}
+          >
+            Edit
+          </button>
+          <button
+              onClick={() => {
+                setSelectedPet(mockPetData);
+                setInfoPopup(true);
+              }}
+          >
+            View Info
+          </button>
 
-        {/* Can move */}
-        <button
-          onClick={() => {
-            setSelectedPet(mockPetData);
-            setEditPopup(true);
-          }}
-        >
-          Edit
-        </button>
-        <button
-          onClick={() => {
-            setSelectedPet(mockPetData);
-            setInfoPopup(true);
-          }}
-        >
-          View Info
-        </button>
-
-        <EditPetForm
-          trigger={editPopup}
-          setTrigger={setEditPopup}
-          petData={selectedPet}
-        />
-        <PetInformation
-          trigger={infoPopup}
-          setTrigger={setInfoPopup}
-          pet={selectedPet}
-        />
-      </div>
-    </>
+          <EditPetForm
+              trigger={editPopup}
+              setTrigger={setEditPopup}
+              petData={selectedPet}
+              openRequestForm={() => {
+                setEditPopup(false);
+                setRequestPopup(true);
+              }}
+          />
+          <PetInformation
+              trigger={infoPopup}
+              setTrigger={setInfoPopup}
+              pet={selectedPet}
+          />
+          <RequestForm
+              trigger={requestPopup}
+              setTrigger={setRequestPopup}
+              petData={selectedPet}
+          />
+        </div>
+      </>
   );
 }
