@@ -11,7 +11,7 @@ const petFormSchema = z.object({
   type: z.enum(["cat", "dog"], "Type is required"),
   gender: z.enum(["male", "female"], "Gender is required"),
   color: z.string().optional(),
-  date: z.date().optional(),
+  date: z.date().nullable().optional(),
   ageYear: z.string().optional(),
   ageMonth: z.string().optional(),
   breed: z.string().optional(),
@@ -135,7 +135,7 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               <p className="flex text-regular font-medium">Name</p>
               <input
                 type="text"
-                value={formData.name}
+                value={formData.name ?? ""}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2"
               />
