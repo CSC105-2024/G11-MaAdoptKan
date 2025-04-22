@@ -2,42 +2,54 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
+
 import Home from './pages/HomePage'
 import AboutUs from './pages/AboutUs';
 import DonationPage from './pages/DonationPage';
 import Pets from './pages/PetPage';
 import SignUpPage from "./pages/SignUpPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx"; // ✅ add this
 
 const router = createBrowserRouter([
   {
-    path: "/", // Home route
-    element: <Home />, // Render the App component
+    path: "/",
+    element: <Home />,
   },
   {
-    path: "/pets", // Home route
-    element: <Pets />, // Render the App component
+    path: "/home", // ✅ optional alias
+    element: <Home />,
   },
   {
-    path: "/aboutus", // Home route
-    element: <AboutUs />, // Render the App component
+    path: "/pets",
+    element: <Pets />,
   },
   {
-    path: "/donation", // Home route
-    element: <DonationPage />, // Render the App component
+    path: "/aboutus",
+    element: <AboutUs />,
   },
   {
-    path: "/signup", // Home route
-    element: <SignUpPage />, // Render the App component
+    path: "/donation",
+    element: <DonationPage />,
   },
   {
-    path:"/login",//Home route
-    element:<LoginPage />,
+    path: "/signup",
+    element: <SignUpPage />,
   },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
+  },
+
+  
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <RouterProvider router={router} /> {/* Provide the router to the app */}
-  </StrictMode>
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
 );
