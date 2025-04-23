@@ -3,6 +3,8 @@ import { RadioButton } from "primereact/radiobutton";
 import { Calendar } from "primereact/calendar";
 import { z } from "zod";
 
+console.log("✅ Form mounted or updated");
+
 // Zod Schema
 const petFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -11,7 +13,7 @@ const petFormSchema = z.object({
   type: z.enum(["cat", "dog"], "Type is required"),
   gender: z.enum(["male", "female"], "Gender is required"),
   color: z.string().optional(),
-  date: z.date().optional(),
+  date: z.date().nullable().optional(),
   ageYear: z.string().optional(),
   ageMonth: z.string().optional(),
   breed: z.string().optional(),
@@ -68,8 +70,6 @@ export default function CreatePetForm({ trigger, setTrigger }) {
       setTimeout(() => setTrigger(false), 1500);
     }
   };
-
-  if (!trigger) return null;
 
   const StepIndicator = () => (
     <div className="flex justify-center gap-2 mb-4">
@@ -316,7 +316,17 @@ export default function CreatePetForm({ trigger, setTrigger }) {
                 Upload
               </button> */}
             </div>
-            <img src="" alt="" className="w-full h-[320px] rounded-[8px]" />
+            {formData.image ? (
+              <img
+                src={formData.image}
+                alt="preview"
+                className="w-full h-[320px] rounded-[8px]"
+              />
+            ) : (
+              <div className="w-full h-[320px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                No image uploaded
+              </div>
+            )}
           </div>
 
           {/* Type */}
@@ -508,7 +518,9 @@ export default function CreatePetForm({ trigger, setTrigger }) {
   );
 
   return (
-    <div className="fixed min-w-full">
+    <div className={`fixed min-w-full transition-all duration-300 ${
+      trigger ? "opacity-100 z-50" : "opacity-0 pointer-events-none -z-10"
+    }`}>
       <div
         className="popup-inner relative p-[32px] max-w-screen-2xl w-[95%] max-h-screen  h-[80%]
   bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col mx-auto"

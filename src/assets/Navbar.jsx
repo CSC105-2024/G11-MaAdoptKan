@@ -8,7 +8,6 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
     setIsLoggedIn(loggedIn === "true");
@@ -17,13 +16,13 @@ export default function Navbar() {
   return (
     <>
       <div className="">
-        <div className="flex justify-center max-w-[1280px] p-4 mx-auto">
-          <nav className="flex justify-between items-center w-full md:w-[1000px]">
+        <div className="flex justify-center max-w-screen p-4 mx-auto">
+          <nav className="flex justify-between items-center w-full md:w-full px-[16px]">
             <div className="flex items-center gap-2">
               <Logo />
             </div>
 
-            <div className="hidden md:flex gap-8 text-[18px]">
+            <div className="hidden md:flex gap-16 text-[18px]">
               <NavLink
                 to="/"
                 end
@@ -71,39 +70,43 @@ export default function Navbar() {
             </div>
 
             {/* Sign Up Button (Desktop) */}
-            {/* <div className="hidden md:block">
-              <button
-                className="px-6 py-1 h-[32px] min-w-[110px] bg-primaryO text-white rounded-[8px]
-                hover:bg-white hover:text-primaryO hover:border hover:border-primaryO
-                flex justify-center items-center"
-              >
-                <Link to="/signup">Sign Up</Link>
-              </button>
-            </div> */}
-            <div className="hidden md:block">
+            <div className="hidden md:block relative">
               {isLoggedIn ? (
-                <div className="relative group">
-                  <button className="flex items-center gap-2 px-4 py-2 bg-primaryO text-white rounded-[8px]">
-                    <span>👤</span>
+                <>
+                  <button
+                    className="flex items-center gap-2 px-2 py-2  
+                    text-white rounded-full border-1 border-primaryO"
+                    onClick={() => setIsProfileOpen((prev) => !prev)}
+                  >
+                    <img
+                      src="public\images\ProfileIcon.png"
+                      alt=""
+                      className="w-[25px] h-[25px]"
+                    />
                   </button>
-                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-md rounded-md hidden group-hover:block z-50">
-                    <Link
-                      to="/profile"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Your Profile
-                    </Link>
-                    <button
-                      onClick={() => {
-                        localStorage.removeItem("isLoggedIn");
-                        setIsLoggedIn(false);
-                      }}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                </div>
+
+                  {isProfileOpen && (
+                    <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-md rounded-md z-50">
+                      <Link
+                        to="/profile"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                        onClick={() => setIsProfileOpen(false)}
+                      >
+                        Your Profile
+                      </Link>
+                      <button
+                        onClick={() => {
+                          localStorage.removeItem("isLoggedIn");
+                          setIsLoggedIn(false);
+                          setIsProfileOpen(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </>
               ) : (
                 <button
                   className="px-6 py-1 h-[32px] min-w-[110px] bg-primaryO text-white rounded-[8px]
@@ -119,8 +122,59 @@ export default function Navbar() {
               <button onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
-              <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center text-sm">
-                👤
+              <div className="relative">
+                <button
+                  className="flex items-center gap-2 px-1 py-1  
+                    text-white rounded-full border-1 border-primaryO"
+                  onClick={() => setIsProfileOpen((prev) => !prev)}
+                >
+                  <img
+                    src="public\images\ProfileIcon.png"
+                    alt=""
+                    className="w-[20px] h-[20x]"
+                  />
+                </button>
+
+                {isProfileOpen && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-md rounded-md z-50">
+                    {!isLoggedIn ? (
+                      <Link
+                        to="/signup"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                        onClick={() => {
+                          setIsProfileOpen(false);
+                          setIsOpen(false);
+                        }}
+                      >
+                        Sign Up
+                      </Link>
+                    ) : (
+                      <>
+                        <Link
+                          to="/profile"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                          onClick={() => {
+                            setIsProfileOpen(false);
+                            setIsOpen(false);
+                          }}
+                        >
+                          Your Profile
+                        </Link>
+                        <button
+                          onClick={() => {
+                            localStorage.removeItem("isLoggedIn");
+                            setIsLoggedIn(false);
+                            setIsProfileOpen(false);
+                            setIsOpen(false);
+                          }}
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                        >
+                          Logout
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </nav>
@@ -178,12 +232,6 @@ export default function Navbar() {
             >
               About Us
             </NavLink>
-            <button
-              className="w-full px-6 py-2 mt-4 bg-primaryO text-white rounded-[8px]
-      hover:bg-white hover:text-primaryO hover:border hover:border-primaryO transition-all duration-200"
-            >
-              <Link to="/signup">Sign Up</Link>
-            </button>
           </div>
         )}
       </div>
