@@ -54,7 +54,8 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
         date: petData.date ? new Date(petData.date) : null,
       });
     }
-  }, [formData, petData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [petData]);
 
   const handleInputChange = (key, value) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -100,7 +101,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
 
   if (!trigger) return null;
 
-  const MobileForm = () => (
+  const MobileForm = (
     <div className="flex flex-col flex-1 w-full min-w-full gap-4 px-4">
       <StepIndicator />
       <div className="w-full min-w-full flex flex-col gap-4 px-4">
@@ -316,8 +317,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
     </div>
   );
 
-  const DesktopForm = () => {
-    return (
+  const DesktopForm = (
       <>
         <div className="flex-grow overflow-auto">
           <div
@@ -547,7 +547,6 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
         </div>
       </>
     );
-  };
 
   return (
     <div className="fixed min-w-full">
@@ -581,7 +580,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
             </svg>
           </button>
         </div>
-        {isMobile ? <MobileForm /> : <DesktopForm />}
+        {isMobile ? MobileForm : DesktopForm}
         {error && <div className="text-red-500 mt-4">⚠️ {error}</div>}
         {success && (
           <div className="text-green-600 mt-4">✅ Update succeed</div>
