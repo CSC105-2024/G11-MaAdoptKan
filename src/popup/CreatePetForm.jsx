@@ -41,7 +41,11 @@ export default function CreatePetForm({ trigger, setTrigger }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      window.requestAnimationFrame(() => {
+        setIsMobile(window.innerWidth < 768);
+      });
+    };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -86,7 +90,7 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     </div>
   );
 
-  const MobileForm = () => (
+  const MobileForm = (
     <div className="flex flex-col flex-1 w-full min-w-full gap-4 px-4">
       <StepIndicator />
       <div className="w-full min-w-full flex flex-col gap-4 px-4">
@@ -286,7 +290,7 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     </div>
   );
 
-  const DesktopForm = () => (
+  const DesktopForm = (
     <div className="flex-grow overflow-auto">
       <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
@@ -530,12 +534,12 @@ export default function CreatePetForm({ trigger, setTrigger }) {
           <button
             type="button"
             onClick={() => setTrigger(false)}
-            class="bg-white rounded-md flex 
+            className="bg-white rounded-md flex 
         items-center text-gray-400 md:hidden"
           >
-            <span class="sr-only">Close menu</span>
+            <span className="sr-only">Close menu</span>
             <svg
-              class="h-6 w-6"
+              className="h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -543,16 +547,16 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               aria-hidden="true"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           </button>
         </div>
 
-        {isMobile ? <MobileForm /> : <DesktopForm />}
+        {isMobile ? MobileForm : DesktopForm}
         {error && <div className="text-red-500 mt-4">⚠️ {error}</div>}
         {success && (
           <div className="text-green-600 mt-4">✅ Create succeed</div>
