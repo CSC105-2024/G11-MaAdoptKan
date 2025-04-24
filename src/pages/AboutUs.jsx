@@ -35,7 +35,7 @@ const AboutUs = () => {
       </div>
 
       {/* Can move */}
-      {/* <button
+      <button
         onClick={() => {
           setSelectedPet(mockPetData);
           setEditPopup(true);
@@ -61,7 +61,7 @@ const AboutUs = () => {
         trigger={infoPopup}
         setTrigger={setInfoPopup}
         pet={selectedPet}
-      /> */}
+      />
 
       <div className="flex flex-col items-center w-full max-w-screen text-center mt-8 g-24">
         {/* slide bar */}
