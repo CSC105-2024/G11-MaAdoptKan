@@ -557,9 +557,9 @@ export default function CreatePetForm({ trigger, setTrigger }) {
         </div>
 
         {isMobile ? MobileForm : DesktopForm}
-        {error && <div className="text-red-500 mt-4">⚠️ {error}</div>}
+        {error && <div className="flex justify-center text-red-500 mt-4">⚠️ {error}</div>}
         {success && (
-          <div className="text-green-600 mt-4">✅ Create succeed</div>
+          <div className="flex justify-center text-green-600 mt-4">✅ Create succeed</div>
         )}
       </div>
     </div>
