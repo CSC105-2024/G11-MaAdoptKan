@@ -120,7 +120,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
 
   const DesktopInfo = () => (
     <>
-      <div className="flex-grow overflow-auto">
+      <div className="flex-grow overflow-auto z-999">
         <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
           gap-x-12 gap-y-8 justify-items-center"
@@ -246,7 +246,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
   );
 
   return (
-    <div className="fixed min-w-full">
+    <div className="fixed min-w-full z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div
         className="popup-inner relative p-[32px] max-w-screen-2xl w-[95%] max-h-screen h-[80%]
         bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col mx-auto "
