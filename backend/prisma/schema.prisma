@@ -13,3 +13,21 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+enum Type{
+  cat
+  dog
+}
+
+enum Gender{
+  male
+  female
+}
+
+model Pet {
+  id Int @id @default(autoincrement())
+  name String
+  type Type
+  gender Gender
+  
+}
