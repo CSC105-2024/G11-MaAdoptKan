@@ -14,20 +14,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Type{
+enum Type {
   cat
   dog
 }
 
-enum Gender{
+enum Gender {
   male
   female
 }
 
+model User {
+  id        Int    @id @default(autoincrement())
+  email     String @unique
+  password  String
+  firstName String
+  lastName  String
+  tel       String
+
+  pets Pet[]
+}
+
 model Pet {
-  id Int @id @default(autoincrement())
-  name String
-  type Type
-  gender Gender
-  
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        Type
+  gender      Gender
+  pictureUrl  String //We will input file and change it to url
+  color       String?
+  dateOfBirth DateTime?
+  ageYear     Int?
+  ageMonth    Int?
+  breed       String?
+  phoneNumber String
+  address     String
+  vacineUrl   String?
+  vaccine     String? //We will write to array in controller
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 }
