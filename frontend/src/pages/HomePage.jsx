@@ -99,31 +99,12 @@ export default function HomePage() {
               <span className="text-[#E97A28] font-sue">500,000,000</span>{" "}
               shelters to abandoned animals
             </h1>
-            <div className="hidden sm:block w-full max-w-md shadow-md">
-              <div className=" flex items-center mt-4 bg-white rounded-[6px] px-4 py-2 ">
-                <input
-                  type="text"
-                  placeholder="Search for your favorite pets"
-                  className="flex-grow outline-none text-black px-2"
-                />
-                <Search className="text-[#E97A28]" />
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Recommended Pets Section */}
         <div className="max-w-[1440px] mx-auto px-4 py-10 z-10">
-          <div className="block sm:hidden w-full max-w-md shadow-md mb-5">
-            <div className="flex items-center bg-white rounded-[6px] px-4 py-2 ">
-              <input
-                type="text"
-                placeholder="Search for your favorite pets"
-                className="flex-grow outline-none text-black px-2"
-              />
-              <Search className="text-orange-500" />
-            </div>
-          </div>
+          
           <div className="flex flex-wrap justify-between items-center gap-2 sm:gap-4 mb-6">
             <h2 className="text-lg sm:text-2xl font-bold whitespace-nowrap">
               Recommended Pets For You
