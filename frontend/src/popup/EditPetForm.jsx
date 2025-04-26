@@ -31,6 +31,8 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
     ageMonth: "",
     breed: "",
     vaccine: ["", "", "", ""],
+    image: "",
+    imageVaccine: "",
   });
 
   const [success, setSuccess] = useState(false);
@@ -116,6 +118,16 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
                   id="upload-photo-1"
                   accept="image/*"
                   className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const imageUrl = URL.createObjectURL(file);
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        image: imageUrl,
+                      }));
+                    }
+                  }}
                 />
                 <label
                   htmlFor="upload-photo-1"
@@ -124,7 +136,17 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
                   Upload
                 </label>
               </div>
-              <div className="w-full h-[280px] bg-gray-100 rounded-lg"></div>
+              {formData.image ? (
+                <img
+                  src={formData.image}
+                  alt="preview"
+                  className="w-full h-[320px] rounded-[8px]"
+                />
+              ) : (
+                <div className="w-full h-[320px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image uploaded
+                </div>
+              )}
             </div>
 
             {/* Type */}
@@ -266,6 +288,16 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
                   id="upload-photo-2"
                   accept="image/*"
                   className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const imageVaccineUrl = URL.createObjectURL(file);
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        imageVaccine: imageVaccineUrl,
+                      }));
+                    }
+                  }}
                 />
                 <label
                   htmlFor="upload-photo-2"
@@ -274,6 +306,17 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
                   Upload
                 </label>
               </div>
+              {formData.imageVaccine ? (
+                <img
+                  src={formData.imageVaccine}
+                  alt="preview"
+                  className="w-[50px] h-[50px] rounded-[8px]"
+                />
+              ) : (
+                <div className="w-full h-[50px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image uploaded
+                </div>
+              )}
               {formData.vaccine.map((val, i) => (
                 <input
                   key={i}
@@ -318,235 +361,263 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
   );
 
   const DesktopForm = (
-      <>
-        <div className="flex-grow overflow-auto">
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+    <>
+      <div className="flex-grow overflow-auto">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
           gap-x-12 gap-y-8 justify-items-center"
-          >
-            {/* 1st col */}
-            <div className="w-full max-w-[400px] min-w-[300px]">
-              {/* Picture */}
-              <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-regular font-medium">Picture</p>
-                  <input
-                    type="file"
-                    id="upload-photo-1"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => console.log("File 1:", e.target.files[0])}
-                  />
-                  <label
-                    htmlFor="upload-photo-1"
-                    className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
-                  >
-                    Upload
-                  </label>
-                </div>
+        >
+          {/* 1st col */}
+          <div className="w-full max-w-[400px] min-w-[300px]">
+            {/* Picture */}
+            <div className="mb-4">
+              <div className="flex justify-between items-center mb-2">
+                <p className="text-regular font-medium">Picture</p>
+                <input
+                  type="file"
+                  id="upload-photo-1"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const imageUrl = URL.createObjectURL(file);
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        image: imageUrl,
+                      }));
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="upload-photo-1"
+                  className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
+                >
+                  Upload
+                </label>
+              </div>
+              {formData.image ? (
                 <img
-                  src={
-                    formData.image ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw"
-                  }
-                  alt=""
+                  src={formData.image}
+                  alt="preview"
                   className="w-full h-[320px] rounded-[8px]"
                 />
-              </div>
-
-              {/* Type */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Type</p>
-                <div className="flex gap-4">
-                  {["cat", "dog"].map((val) => (
-                    <div key={val} className="flex align-items-center">
-                      <RadioButton
-                        inputId={val}
-                        name="type"
-                        value={val}
-                        className="custom-radio-orange"
-                        onChange={(e) => handleInputChange("type", e.value)}
-                        checked={formData.type === val}
-                      />
-                      <label htmlFor={val} className="ml-2 capitalize">
-                        {val}
-                      </label>
-                    </div>
-                  ))}
+              ) : (
+                <div className="w-full h-[320px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image uploaded
                 </div>
-              </div>
-
-              {/* Color */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Color</p>
-                <input
-                  type="text"
-                  value={formData.color}
-                  onChange={(e) => handleInputChange("color", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
+              )}
             </div>
 
-            {/* 2nd col */}
-            <div className="w-full max-w-[400px] min-w-[300px]">
-              {/* Name */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Name</p>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-
-              {/* Gender */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Gender</p>
-                <div className="flex gap-4">
-                  {["male", "female"].map((val) => (
-                    <div key={val} className="flex align-items-center">
-                      <RadioButton
-                        inputId={val}
-                        name="gender"
-                        value={val}
-                        className="custom-radio-orange"
-                        onChange={(e) => handleInputChange("gender", e.value)}
-                        checked={formData.gender === val}
-                      />
-                      <label htmlFor={val} className="ml-2 capitalize">
-                        {val}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* DateOfBirth */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">
-                  Date of birth
-                </p>
-                <Calendar
-                  className="p-calendar-custom flex justify-start h-[24px] w-full"
-                  inputId="birth_date"
-                  value={formData.date}
-                  onChange={(e) => handleInputChange("date", e.value)}
-                  showIcon
-                />
-              </div>
-
-              {/* Age */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Age</p>
-                <div className="flex gap-[10px] max-w-[370px]">
-                  <input
-                    type="number"
-                    value={formData.ageYear}
-                    onChange={(e) =>
-                      handleInputChange("ageYear", e.target.value)
-                    }
-                    className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                  />
-                  <label>Years</label>
-                  <input
-                    type="number"
-                    value={formData.ageMonth}
-                    onChange={(e) =>
-                      handleInputChange("ageMonth", e.target.value)
-                    }
-                    className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                  />
-                  <label>Months</label>
-                </div>
-              </div>
-
-              {/* Breed */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Breed</p>
-                <input
-                  type="text"
-                  value={formData.breed}
-                  onChange={(e) => handleInputChange("breed", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-            </div>
-
-            {/* 3rd col */}
-            <div className="w-full max-w-[400px] min-w-[300px]">
-              {/* Phone Number */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">
-                  Phone Number
-                </p>
-                <input
-                  type="text"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-
-              {/* Address */}
-              <div className="mb-4">
-                <p className="text-regular flex mb-2 font-medium">Address</p>
-                <input
-                  type="text"
-                  value={formData.address}
-                  onChange={(e) => handleInputChange("address", e.target.value)}
-                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                />
-              </div>
-
-              {/* Vaccine Record */}
-              <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-regular font-medium">Vaccine Record</p>
-                  <input
-                    type="file"
-                    id="upload-photo-2"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => console.log("File 2:", e.target.files[0])}
-                  />
-                  <label
-                    htmlFor="upload-photo-2"
-                    className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
-                  >
-                    Upload
-                  </label>
-                </div>
-                {formData.vaccine.map((val, i) => (
-                  <input
-                    key={i}
-                    value={val}
-                    onChange={(e) => handleVaccineChange(i, e.target.value)}
-                    type="text"
-                    className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
-                  />
+            {/* Type */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Type</p>
+              <div className="flex gap-4">
+                {["cat", "dog"].map((val) => (
+                  <div key={val} className="flex align-items-center">
+                    <RadioButton
+                      inputId={val}
+                      name="type"
+                      value={val}
+                      className="custom-radio-orange"
+                      onChange={(e) => handleInputChange("type", e.value)}
+                      checked={formData.type === val}
+                    />
+                    <label htmlFor={val} className="ml-2 capitalize">
+                      {val}
+                    </label>
+                  </div>
                 ))}
               </div>
             </div>
+
+            {/* Color */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Color</p>
+              <input
+                type="text"
+                value={formData.color}
+                onChange={(e) => handleInputChange("color", e.target.value)}
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+            </div>
           </div>
-          <div className="flex justify-end gap-4 mt-auto pt-4 mr-[26px]">
-            <button
-              onClick={() => setTrigger(false)}
-              className="bg-white border border-primaryO text-primaryO px-6 py-2 rounded-[8px] hover:bg-primaryO hover:text-white"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleUpdate}
-              className="bg-primaryO text-white px-6 py-2 rounded-[8px] hover:text-primaryO hover:bg-white hover:border-1 hover:border-primaryO"
-            >
-              Save
-            </button>
+
+          {/* 2nd col */}
+          <div className="w-full max-w-[400px] min-w-[300px]">
+            {/* Name */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Name</p>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => handleInputChange("name", e.target.value)}
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+            </div>
+
+            {/* Gender */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Gender</p>
+              <div className="flex gap-4">
+                {["male", "female"].map((val) => (
+                  <div key={val} className="flex align-items-center">
+                    <RadioButton
+                      inputId={val}
+                      name="gender"
+                      value={val}
+                      className="custom-radio-orange"
+                      onChange={(e) => handleInputChange("gender", e.value)}
+                      checked={formData.gender === val}
+                    />
+                    <label htmlFor={val} className="ml-2 capitalize">
+                      {val}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* DateOfBirth */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">
+                Date of birth
+              </p>
+              <Calendar
+                className="p-calendar-custom flex justify-start h-[24px] w-full"
+                inputId="birth_date"
+                value={formData.date}
+                onChange={(e) => handleInputChange("date", e.value)}
+                showIcon
+              />
+            </div>
+
+            {/* Age */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Age</p>
+              <div className="flex gap-[10px] max-w-[370px]">
+                <input
+                  type="number"
+                  value={formData.ageYear}
+                  onChange={(e) => handleInputChange("ageYear", e.target.value)}
+                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+                />
+                <label>Years</label>
+                <input
+                  type="number"
+                  value={formData.ageMonth}
+                  onChange={(e) =>
+                    handleInputChange("ageMonth", e.target.value)
+                  }
+                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+                />
+                <label>Months</label>
+              </div>
+            </div>
+
+            {/* Breed */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Breed</p>
+              <input
+                type="text"
+                value={formData.breed}
+                onChange={(e) => handleInputChange("breed", e.target.value)}
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+            </div>
+          </div>
+
+          {/* 3rd col */}
+          <div className="w-full max-w-[400px] min-w-[300px]">
+            {/* Phone Number */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Phone Number</p>
+              <input
+                type="text"
+                value={formData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+            </div>
+
+            {/* Address */}
+            <div className="mb-4">
+              <p className="text-regular flex mb-2 font-medium">Address</p>
+              <input
+                type="text"
+                value={formData.address}
+                onChange={(e) => handleInputChange("address", e.target.value)}
+                className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+              />
+            </div>
+
+            {/* Vaccine Record */}
+            <div className="mb-4">
+              <div className="flex justify-between items-center mb-2">
+                <p className="text-regular font-medium">Vaccine Record</p>
+                <input
+                  type="file"
+                  id="upload-photo-2"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const imageVaccineUrl = URL.createObjectURL(file);
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        imageVaccine: imageVaccineUrl,
+                      }));
+                    }
+                  }}
+                />
+                <label
+                  htmlFor="upload-photo-2"
+                  className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white"
+                >
+                  Upload
+                </label>
+              </div>
+              {formData.imageVaccine ? (
+                <img
+                  src={formData.imageVaccine}
+                  alt="preview"
+                  className="w-[50px] h-[50px] rounded-[8px]"
+                />
+              ) : (
+                <div className="w-full h-[50px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image uploaded
+                </div>
+              )}
+              {formData.vaccine.map((val, i) => (
+                <input
+                  key={i}
+                  value={val}
+                  onChange={(e) => handleVaccineChange(i, e.target.value)}
+                  type="text"
+                  className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </>
-    );
+        <div className="flex justify-end gap-4 mt-auto pt-4 mr-[26px]">
+          <button
+            onClick={() => setTrigger(false)}
+            className="bg-white border border-primaryO text-primaryO px-6 py-2 rounded-[8px] hover:bg-primaryO hover:text-white"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleUpdate}
+            className="bg-primaryO text-white px-6 py-2 rounded-[8px] hover:text-primaryO hover:bg-white hover:border-1 hover:border-primaryO"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </>
+  );
 
   return (
     <div className="fixed min-w-full">
@@ -581,9 +652,15 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
           </button>
         </div>
         {isMobile ? MobileForm : DesktopForm}
-        {error && <div className="flex justify-center text-red-500 mt-4">⚠️ {error}</div>}
+        {error && (
+          <div className="flex justify-center text-red-500 mt-4">
+            ⚠️ {error}
+          </div>
+        )}
         {success && (
-          <div className="flex justify-center text-green-600 mt-4">✅ Update succeed</div>
+          <div className="flex justify-center text-green-600 mt-4">
+            ✅ Update succeed
+          </div>
         )}
       </div>
     </div>

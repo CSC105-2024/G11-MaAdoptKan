@@ -33,6 +33,8 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     ageMonth: "",
     breed: "",
     vaccine: ["", "", "", ""],
+    image: "",
+    imageVaccine: "",
   });
 
   const [step, setStep] = useState(1);
@@ -104,7 +106,16 @@ export default function CreatePetForm({ trigger, setTrigger }) {
                   id="upload-photo-1"
                   accept="image/*"
                   className="hidden"
-                  onChange={(e) => console.log("File 1:", e.target.files[0])}
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const imageUrl = URL.createObjectURL(file);
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        image: imageUrl,
+                      }));
+                    }
+                  }}
                 />
                 <label
                   htmlFor="upload-photo-1"
@@ -113,7 +124,17 @@ export default function CreatePetForm({ trigger, setTrigger }) {
                   Upload
                 </label>
               </div>
-              <div className="w-full h-[280px] bg-gray-100 rounded-lg"></div>
+              {formData.image ? (
+                <img
+                  src={formData.image}
+                  alt="preview"
+                  className="w-full h-[320px] rounded-[8px]"
+                />
+              ) : (
+                <div className="w-full h-[320px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image uploaded
+                </div>
+              )}
             </div>
             <div>
               <p className="flex text-regular font-medium">Type</p>
@@ -239,7 +260,16 @@ export default function CreatePetForm({ trigger, setTrigger }) {
                   id="upload-photo-2"
                   accept="image/*"
                   className="hidden"
-                  onChange={(e) => console.log("File 2:", e.target.files[0])}
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const imageVaccineUrl = URL.createObjectURL(file);
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        imageVaccine: imageVaccineUrl,
+                      }));
+                    }
+                  }}
                 />
                 <label
                   htmlFor="upload-photo-2"
@@ -248,6 +278,17 @@ export default function CreatePetForm({ trigger, setTrigger }) {
                   Upload
                 </label>
               </div>
+              {formData.imageVaccine ? (
+                <img
+                  src={formData.imageVaccine}
+                  alt="preview"
+                  className="w-[50px] h-[50px] rounded-[8px]"
+                />
+              ) : (
+                <div className="w-full h-[50px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image uploaded
+                </div>
+              )}
               {formData.vaccine.map((val, i) => (
                 <input
                   key={i}
@@ -307,7 +348,16 @@ export default function CreatePetForm({ trigger, setTrigger }) {
                 id="upload-photo-1"
                 accept="image/*"
                 className="hidden"
-                onChange={(e) => console.log("File 1:", e.target.files[0])}
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const imageUrl = URL.createObjectURL(file);
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      image: imageUrl,
+                    }));
+                  }
+                }}
               />
               <label
                 htmlFor="upload-photo-1"
@@ -315,10 +365,6 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               >
                 Upload
               </label>
-
-              {/* <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
-                Upload
-              </button> */}
             </div>
             {formData.image ? (
               <img
@@ -480,7 +526,16 @@ export default function CreatePetForm({ trigger, setTrigger }) {
                 id="upload-photo-2"
                 accept="image/*"
                 className="hidden"
-                onChange={(e) => console.log("File 2:", e.target.files[0])}
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const imageVaccineUrl = URL.createObjectURL(file);
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      imageVaccine: imageVaccineUrl,
+                    }));
+                  }
+                }}
               />
               <label
                 htmlFor="upload-photo-2"
@@ -488,10 +543,18 @@ export default function CreatePetForm({ trigger, setTrigger }) {
               >
                 Upload
               </label>
-              {/* <button className="border-1 rounded-[8px] p-2 h-[30px] flex items-center border-primaryO text-primaryO hover:bg-primaryO hover:text-white">
-                Upload
-              </button> */}
             </div>
+            {formData.imageVaccine ? (
+              <img
+                src={formData.imageVaccine}
+                alt="preview"
+                className="w-[50px] h-[50px] rounded-[8px]"
+              />
+            ) : (
+              <div className="w-full h-[50px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                No image uploaded
+              </div>
+            )}
             {formData.vaccine.map((val, i) => (
               <input
                 key={i}
@@ -522,9 +585,11 @@ export default function CreatePetForm({ trigger, setTrigger }) {
   );
 
   return (
-    <div className={`fixed min-w-full transition-all duration-300 ${
-      trigger ? "opacity-100 z-50" : "opacity-0 pointer-events-none -z-10"
-    }`}>
+    <div
+      className={`fixed min-w-full transition-all duration-300 ${
+        trigger ? "opacity-100 z-50" : "opacity-0 pointer-events-none -z-10"
+      }`}
+    >
       <div
         className="popup-inner relative p-[32px] max-w-screen-2xl w-[95%] max-h-screen  h-[80%]
   bg-white rounded-[8px] shadow-lg overflow-auto flex flex-col mx-auto"
@@ -557,9 +622,15 @@ export default function CreatePetForm({ trigger, setTrigger }) {
         </div>
 
         {isMobile ? MobileForm : DesktopForm}
-        {error && <div className="flex justify-center text-red-500 mt-4">⚠️ {error}</div>}
+        {error && (
+          <div className="flex justify-center text-red-500 mt-4">
+            ⚠️ {error}
+          </div>
+        )}
         {success && (
-          <div className="flex justify-center text-green-600 mt-4">✅ Create succeed</div>
+          <div className="flex justify-center text-green-600 mt-4">
+            ✅ Create succeed
+          </div>
         )}
       </div>
     </div>
