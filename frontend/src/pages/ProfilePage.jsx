@@ -7,16 +7,19 @@ import RequestDetailPopup from "../popup/RequestDetail.jsx";
 import EditPetForm from "../popup/EditPetForm.jsx";
 
 export default function ProfilePage() {
-    useEffect(() => {
-          document.title = "Your Profile";
-        }, []);
-    
+  useEffect(() => {
+    document.title = "Your Profile";
+  }, []);
+
+  const [requestCount, setRequestCount] = useState(1);
   const [requestPopup, setRequestPopup] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [editPopup, setEditPopup] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [petToDeleteIndex, setPetToDeleteIndex] = useState(null);
+  const [users, setUsers] = useState(mockUsers);
+  const [requests, setRequests] = useState(mockRequests);
 
   const mockPetData = {
     name: "Milo",
@@ -30,9 +33,68 @@ export default function ProfilePage() {
     ageMonth: "3",
     breed: "Shiba",
     vaccine: ["Rabies", "Parvo", "", ""],
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw",
-    imageVaccine:"https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw",
+    imageVaccine:
+      "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg",
   };
+
+  const mockUsers = [
+    {
+      firstName: "John",
+      lastName: "Sonner",
+      email: "user@gmail.com",
+      phone: "099-536-8563",
+    },
+    {
+      firstName: "Emily",
+      lastName: "Smith",
+      email: "emily.smith@gmail.com",
+      phone: "088-765-4321",
+    },
+    {
+      firstName: "Alex",
+      lastName: "Johnson",
+      email: "alex.johnson@gmail.com",
+      phone: "086-123-4567",
+    },
+  ];
+
+  const mockRequests = [
+    {
+      firstName: mockUsers[0].firstName,
+      lastName: mockUsers[0].lastName,
+      email: mockUsers[0].email,
+      phone: mockUsers[0].phone,
+      houseEnviron: "House",
+      houseUrl: "https://i.ytimg.com/vi/B56pik49Y5s/hq720.jpg",
+      financial: "40,001 - 50,000",
+      pickup: "Delivery",
+      address: "9/168 Prachautit 23, Bangkok",
+    },
+    {
+      firstName: mockUsers[1].firstName,
+      lastName: mockUsers[1].lastName,
+      email: mockUsers[1].email,
+      phone: mockUsers[1].phone,
+      houseEnviron: "Condominium",
+      houseUrl: "https://images.unsplash.com/photo-1586105251261-72a756497a12",
+      financial: "20,001 - 30,000",
+      pickup: "Self-pickup",
+      address: "99 Sukhumvit Road, Bangkok",
+    },
+    {
+      firstName: mockUsers[2].firstName,
+      lastName: mockUsers[2].lastName,
+      email: mockUsers[2].email,
+      phone: mockUsers[2].phone,
+      houseEnviron: "House",
+      houseUrl: "https://images.unsplash.com/photo-1560448070-16d9be2b3d79",
+      financial: "30,001 - 40,000",
+      pickup: "Delivery",
+      address: "45 Silom Road, Bangkok",
+    },
+  ];
 
   const [pets, setPets] = useState([
     {
@@ -40,24 +102,28 @@ export default function ProfilePage() {
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/cat1.jpg",
+      icon: "./images/dogorangeicon.png",
     },
     {
       name: "Jaki",
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/dog2.jpg",
+      icon: "./images/dogorangeicon.png",
     },
     {
       name: "Jaki",
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/dog1.jpg",
+      icon: "./images/dogorangeicon.png",
     },
     {
       name: "Jaki",
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/cat2.jpg",
+      icon: "./images/dogorangeicon.png",
     },
   ]);
 
@@ -94,32 +160,42 @@ export default function ProfilePage() {
               <h2 className="font-bold text-lg mt-3">{pet.name}</h2>
               <p className="text-sm text-gray-500">{pet.age}</p>
               <p className="text-sm text-gray-600 flex items-center gap-1">
-                <span role="img" aria-label="paw">
-                  🐾
-                </span>
+                <img
+                  src={pet.icon}
+                  className="h-full object-cover rounded-lg group-hover:hidden"
+                  alt="icon"
+                />
+                {/* white icon */}
+                <img
+                  src={
+                    pet.type === "cat"
+                      ? "./images/catwhiteicon.png"
+                      : "./images/dogwhiteicon.png"
+                  }
+                  className="h-full object-cover rounded-lg hidden group-hover:block absolute top-0 left-0"
+                  alt="white icon"
+                />
                 {pet.breed}
               </p>
 
               <div className="flex items-center justify-between mt-4">
                 <button
                   onClick={() => {
-                    setSelectedPet(pet); // เก็บ pet ไว้เผื่อใช้ต่อ
-                    setSelectedRequest({
-                      firstName: "John",
-                      lastName: "Sonner",
-                      email: "user@gmail.com",
-                      phone: "099-536-8563",
-                      houseType: "House",
-                      houseImages: ["/images/house1.jpg", "/images/house2.jpg"],
-                      financial: "40,001 - 50,000",
-                      address: `9/168 Prachautit 23 Prachautit Road,\nBangMod, Thung Kru, Bangkok, 10140`,
-                      pickup: "Delivery",
-                    });
-                    setRequestPopup(true); // เปิด popup
+                    if (requestCount > 0) {
+                      setSelectedPet(pet);
+                      setSelectedRequest(mockRequest);
+                      setRequestPopup(true);
+                    }
                   }}
-                  className="bg-primaryO hover:bg-orange-600 text-white text-sm px-4 py-1 rounded-md"
+                  disabled={requestCount === 0}
+                  className={`text-white text-sm px-4 py-1 rounded-md
+    ${
+      requestCount === 0
+        ? "bg-gray-400 cursor-not-allowed"
+        : "bg-primaryO hover:bg-orange-600"
+    }`}
                 >
-                  1 Request
+                  {requestCount} Request
                 </button>
 
                 <div className="flex gap-2">
@@ -151,7 +227,7 @@ export default function ProfilePage() {
           <div className="fixed inset-0 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center gap-y-2">
               <svg
-              className="w-[80px]"
+                className="w-[80px]"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -206,6 +282,8 @@ export default function ProfilePage() {
           trigger={requestPopup}
           setTrigger={setRequestPopup}
           requestData={selectedRequest}
+          requestCount={requestCount}
+          setRequestCount={setRequestCount}
         />
       </div>
     </>
