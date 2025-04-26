@@ -131,9 +131,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
           <div className="min-w-[320px] my-4">
             <div className="mb-4">
               <img
-                src={
-                  pet.image
-                }
+                src={pet.image}
                 alt={pet.name}
                 className="w-[320px] h-[320px] rounded-[8px] "
               />
@@ -207,9 +205,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
                 Vaccine Record
               </p>
               <img
-                src={
-                  pet.imageVaccine || ""
-                }
+                src={pet.imageVaccine || ""}
                 alt={pet.name}
                 className="w-[150px] h-[150px] rounded-[8px] "
               />
@@ -235,7 +231,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
             Cancel
           </button>
           <button
-            onClick={() => setRequestPopup(true)} // ✅ กดปุ่ม Adopt แล้วเปิด RequestForm
+            onClick={() => setRequestPopup(true)}
             className="bg-primaryO text-white px-6 py-2 rounded hover:text-primaryO hover:bg-white hover:border border-primaryO"
           >
             Adopt
