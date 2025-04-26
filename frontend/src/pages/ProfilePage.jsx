@@ -160,11 +160,12 @@ export default function ProfilePage() {
           setTrigger={setEditPopup}
           petData={selectedPet}
         />
-        <div className="flex flex-wrap justify-center gap-8 px-8">
+        <div className="flex justify-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 px-4 md:px-8 w-full max-w-[1440px]">
           {currentPets.map((pet, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md p-4 w-[250px] flex-shrink-0 hover:scale-105 transition-all duration-300"
+              className="bg-white rounded-xl shadow-md p-4 w-full flex-shrink-0 hover:scale-105 transition-all duration-300"
             >
               <img
                 src={pet.image}
@@ -224,7 +225,8 @@ export default function ProfilePage() {
               </div>
             </div> // ✅ ปิด div แต่ละการ์ด
           ))}
-        </div>{" "}
+        </div>
+          </div>{" "}
         {/* ✅ ปิด flex container */}
         {/* Pagination Controls */}
         <div className="flex justify-center mt-8 gap-2">
