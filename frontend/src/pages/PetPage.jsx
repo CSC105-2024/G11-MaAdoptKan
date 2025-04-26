@@ -18,7 +18,7 @@ export default function PetPage() {
   const pets = [
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -26,7 +26,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -34,7 +34,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -42,7 +42,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -50,7 +50,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -58,7 +58,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -66,7 +66,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -74,7 +74,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -82,7 +82,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -90,7 +90,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -98,7 +98,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -106,7 +106,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -114,7 +114,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -122,7 +122,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -130,7 +130,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -138,7 +138,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -146,7 +146,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -154,7 +154,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -162,7 +162,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -170,7 +170,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -178,7 +178,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -186,7 +186,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -194,7 +194,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -202,7 +202,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -210,7 +210,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -218,7 +218,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -226,7 +226,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -234,7 +234,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -242,7 +242,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -250,7 +250,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
