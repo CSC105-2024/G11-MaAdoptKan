@@ -143,30 +143,44 @@ export default function HomePage() {
             }}
           >
             {pets.map((pet, idx) => (
-              <div
-                key={idx}
-                className="min-w-[250px] flex-shrink-0 bg-white rounded-xl shadow p-4 text-left"
-                onClick={() => {
-                  console.log("card clicked");
-                  setSelectedPet(mockPetData);
-                  setInfoPopup(true);
-                }}
-              >
-                <img
-                  src={pet.image}
-                  alt={pet.name}
-                  className="w-full h-[200px] object-cover rounded-lg mb-4"
-                />
-                <h3 className="text-lg font-semibold">{pet.name}</h3>
-                <p className="text-sm text-gray-500">{pet.age}</p>
-                <div className="flex items-center gap-2 mt-1 text-sm text-gray-700">
+                <div
+                    key={idx}
+                    className="group min-w-[250px] flex-shrink-0 bg-white rounded-xl p-4 text-left transition duration-300 ease-in-out hover:bg-[#E97A28] hover:text-white hover:shadow-xl cursor-pointer"
+                    onClick={() => {
+                      console.log("card clicked");
+                      setSelectedPet(mockPetData);
+                      setInfoPopup(true);
+                    }}
+                >
                   <img
-                    src={pet.icon}
-                    className="w-[25px] h-[25px] object-cover rounded-lg flex items-center"
+                      src={pet.image}
+                      alt={pet.name}
+                      className="w-full h-[200px] object-cover rounded-lg mb-4"
                   />
-                  <span className="flex items-center">{pet.breed}</span>
+                  <h3 className="text-lg font-semibold group-hover:text-white">{pet.name}</h3>
+                  <p className="text-sm text-gray-500 group-hover:text-white">{pet.age}</p>
+                  <div className="flex items-center gap-2 mt-1 text-sm text-gray-700 group-hover:text-white">
+                    <div className="relative w-[25px] h-[25px]">
+                      {/* Default icon */}
+                      <img
+                          src={pet.icon}
+                          alt="default icon"
+                          className="w-full h-full object-cover rounded-lg group-hover:hidden"
+                      />
+                      {/* White icon */}
+                      <img
+                          src={
+                            pet.icon.includes("cat")
+                                ? "./images/catwhiteicon.png"
+                                : "./images/dogwhiteicon.png"
+                          }
+                          alt="white icon"
+                          className="w-full h-full object-cover rounded-lg hidden group-hover:block absolute top-0 left-0"
+                      />
+                    </div>
+                    <span>{pet.breed}</span>
+                  </div>
                 </div>
-              </div>
             ))}
           </div>
         </div>

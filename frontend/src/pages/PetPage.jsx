@@ -324,34 +324,47 @@ export default function PetPage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6 p-6 w-full">
           {currentPets.map((pet, index) => (
-            <>
               <div
-                key={index}
-                className="text-left bg-white rounded-xl shadow p-4 cursor-pointer hover:shadow-lg transition w-full"
-                onClick={() => {
-                  console.log("card clicked");
-                  setSelectedPet(mockPetData);
-                  setInfoPopup(true);
-                }}
+                  key={index}
+                  className="group text-left bg-white rounded-xl shadow p-4 cursor-pointer hover:bg-[#E97A28] hover:text-white transition w-full"
+                  onClick={() => {
+                    console.log("card clicked");
+                    setSelectedPet(mockPetData);
+                    setInfoPopup(true);
+                  }}
               >
                 <img
-                  src={pet.image}
-                  alt={pet.name}
-                  className="rounded-md w-full h-32 object-cover"
+                    src={pet.image}
+                    alt={pet.name}
+                    className="rounded-md w-full h-32 object-cover"
                 />
                 <div className="mt-2">
-                  <div className="font-semibold text-lg">{pet.name}</div>
-                  <div className="text-sm text-gray-500">{pet.age}</div>
-                  <div className="flex text-sm pt-1 text-[#000000] mt-1 gap-2">
-                    <img
-                      src={pet.icon}
-                      className="w-[25px] h-[25px] object-cover rounded-lg"
-                    />
-                    <div className="flex items-center">{pet.breed}</div>
+                  <div className="font-semibold text-lg group-hover:text-white">{pet.name}</div>
+                  <div className="text-sm text-gray-500 group-hover:text-white">{pet.age}</div>
+                  <div className="flex text-sm pt-1 mt-1 gap-2 items-center group-hover:text-white">
+                    {/* icon swap on hover */}
+                    <div className="relative w-[25px] h-[25px]">
+                      {/* default icon */}
+                      <img
+                          src={pet.icon}
+                          className="w-full h-full object-cover rounded-lg group-hover:hidden"
+                          alt="icon"
+                      />
+                      {/* white icon */}
+                      <img
+                          src={
+                            pet.type === "cat"
+                                ? "./images/catwhiteicon.png"
+                                : "./images/dogwhiteicon.png"
+                          }
+                          className="w-full h-full object-cover rounded-lg hidden group-hover:block absolute top-0 left-0"
+                          alt="white icon"
+                      />
+                    </div>
+                    <div>{pet.breed}</div>
                   </div>
                 </div>
               </div>
-            </>
           ))}
         </div>
         <PetInformation
