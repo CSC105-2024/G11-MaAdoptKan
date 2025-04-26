@@ -304,7 +304,7 @@ export default function PetPage() {
                 key={type}
                 className={`transition-all duration-500 capitalize ${
                   filter === type
-                    ? "text-[#E97A28] text-2xl"
+                    ? "text-primaryO text-2xl"
                     : "text-gray-400 text-xl"
                 }`}
                 onClick={() => {
@@ -320,7 +320,7 @@ export default function PetPage() {
           </div>
 
           <button
-            className="bg-[#E97A28] text-white px-4 py-2 rounded-md shadow hover:bg-orange-500"
+            className="bg-[#E97A28] text-white px-4 py-2 rounded-md shadow hover:bg-primaryO"
             onClick={() => setButtonPopup(true)}
           >
             + Create
