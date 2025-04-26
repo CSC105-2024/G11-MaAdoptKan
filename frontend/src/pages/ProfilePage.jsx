@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import RequestForm from "../popup/RequestForm"; // Modal popup component
 import Navbar from "../assets/Navbar.jsx";
 import PencilIcon from "../../public/images/Pencil.png";
 import TrashIcon from "../../public/images/Delete.png";
@@ -11,15 +10,14 @@ export default function ProfilePage() {
     document.title = "Your Profile";
   }, []);
 
-  const [requestCount, setRequestCount] = useState(1);
   const [requestPopup, setRequestPopup] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [editPopup, setEditPopup] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [petToDeleteIndex, setPetToDeleteIndex] = useState(null);
-  const [users, setUsers] = useState(mockUsers);
-  const [requests, setRequests] = useState(mockRequests);
+  const [currentPage, setCurrentPage] = useState(1);
+  const petsPerPage = 10; // ✅ จำนวนการ์ดต่อหน้า
 
   const mockPetData = {
     name: "Milo",
@@ -39,93 +37,104 @@ export default function ProfilePage() {
       "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg",
   };
 
-  const mockUsers = [
-    {
-      firstName: "John",
-      lastName: "Sonner",
-      email: "user@gmail.com",
-      phone: "099-536-8563",
-    },
-    {
-      firstName: "Emily",
-      lastName: "Smith",
-      email: "emily.smith@gmail.com",
-      phone: "088-765-4321",
-    },
-    {
-      firstName: "Alex",
-      lastName: "Johnson",
-      email: "alex.johnson@gmail.com",
-      phone: "086-123-4567",
-    },
-  ];
-
-  const mockRequests = [
-    {
-      firstName: mockUsers[0].firstName,
-      lastName: mockUsers[0].lastName,
-      email: mockUsers[0].email,
-      phone: mockUsers[0].phone,
-      houseEnviron: "House",
-      houseUrl: "https://i.ytimg.com/vi/B56pik49Y5s/hq720.jpg",
-      financial: "40,001 - 50,000",
-      pickup: "Delivery",
-      address: "9/168 Prachautit 23, Bangkok",
-    },
-    {
-      firstName: mockUsers[1].firstName,
-      lastName: mockUsers[1].lastName,
-      email: mockUsers[1].email,
-      phone: mockUsers[1].phone,
-      houseEnviron: "Condominium",
-      houseUrl: "https://images.unsplash.com/photo-1586105251261-72a756497a12",
-      financial: "20,001 - 30,000",
-      pickup: "Self-pickup",
-      address: "99 Sukhumvit Road, Bangkok",
-    },
-    {
-      firstName: mockUsers[2].firstName,
-      lastName: mockUsers[2].lastName,
-      email: mockUsers[2].email,
-      phone: mockUsers[2].phone,
-      houseEnviron: "House",
-      houseUrl: "https://images.unsplash.com/photo-1560448070-16d9be2b3d79",
-      financial: "30,001 - 40,000",
-      pickup: "Delivery",
-      address: "45 Silom Road, Bangkok",
-    },
-  ];
-
   const [pets, setPets] = useState([
     {
       name: "Jaki",
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/cat1.jpg",
-      icon: "./images/dogorangeicon.png",
+      type: "cat",
     },
     {
-      name: "Jaki",
+      name: "Maki",
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/dog2.jpg",
-      icon: "./images/dogorangeicon.png",
+      type: "dog",
     },
     {
-      name: "Jaki",
+      name: "Yoi",
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/dog1.jpg",
-      icon: "./images/dogorangeicon.png",
+      type: "dog",
     },
     {
-      name: "Jaki",
+      name: "Ichi",
       age: "2 Years old",
       breed: "Jack Russell",
       image: "/images/cat2.jpg",
-      icon: "./images/dogorangeicon.png",
+      type: "cat",
+    },
+    {
+      name: "Toji",
+      age: "2 Years old",
+      breed: "Jack Russell",
+      image: "/images/cat2.jpg",
+      type: "cat",
+    },
+    {
+      name: "Momo",
+      age: "3 Years old",
+      breed: "Poodle",
+      image: "/images/dog2.jpg",
+      type: "dog",
+    },
+    {
+      name: "Momo",
+      age: "3 Years old",
+      breed: "Poodle",
+      image: "/images/dog2.jpg",
+      type: "dog",
+    },
+    {
+      name: "Sora",
+      age: "1 Year old",
+      breed: "Persian",
+      image: "/images/cat1.jpg",
+      type: "cat",
+    },
+    {
+      name: "Kuro",
+      age: "4 Years old",
+      breed: "Labrador",
+      image: "/images/dog1.jpg",
+      type: "dog",
+    },
+    {
+      name: "Nana",
+      age: "2 Years old",
+      breed: "British Shorthair",
+      image: "/images/cat2.jpg",
+      type: "cat",
+    },
+    {
+      name: "Choco",
+      age: "3 Years old",
+      breed: "Beagle",
+      image: "/images/dog2.jpg",
+      type: "dog",
     },
   ]);
+
+  const mockUser = {
+    firstName: "John",
+    lastName: "Sonner",
+    email: "user@gmail.com",
+    phoneNum: "099-536-8563",
+  };
+
+  const mockRequest = {
+    firstName: mockUser.firstName,
+    lastName: mockUser.lastName,
+    email: mockUser.email,
+    phoneNum: mockUser.phoneNum,
+    houseEnviron: "House",
+    houseUrl: "https://i.ytimg.com/vi/B56pik49Y5s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCxi5QbZd7EennlYLzHEnYOnSfccA",
+    financial: "40,001 - 50,000",
+    address: `9/168 Prachautit 23 Prachautit Road,\nBangMod, Thung Kru, Bangkok, 10140`,
+    pickup: "Delivery",
+  };
 
   const handleDelete = (indexToDelete) => {
     setPets((prevPets) =>
@@ -133,133 +142,140 @@ export default function ProfilePage() {
     );
   };
 
+  const totalPages = Math.ceil(pets.length / petsPerPage);
+  const startIndex = (currentPage - 1) * petsPerPage;
+  const currentPets = pets.slice(startIndex, startIndex + petsPerPage);
+
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-[#F0E7E1] to-[#EAD9C9]">
+      <div className="min-h-screen bg-gradient-to-b from-[#F0E7E1] to-[#EAD9C9] flex flex-col">
         <Navbar />
-        <h1 className="text-2xl font-bold mb-8 text-start pl-4 sm:pl-6 md:pl-8">
+        <h1 className="text-2xl font-bold mt-12 mb-8 text-start pl-4 sm:pl-6 md:pl-8">
           Your post
         </h1>
+
         <EditPetForm
           trigger={editPopup}
           setTrigger={setEditPopup}
           petData={selectedPet}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[34px] gap-y-[36px] px-4 justify-center">
-          {pets.map((pet, index) => (
+        <div className="flex flex-wrap justify-center gap-8 px-8">
+          {currentPets.map((pet, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md p-4 w-full max-w-[220px] mx-auto"
+              className="bg-white rounded-xl shadow-md p-4 w-[250px] flex-shrink-0 hover:scale-105 transition-all duration-300"
             >
               <img
                 src={pet.image}
                 alt={pet.name}
-                className="rounded-md w-full h-44 object-cover"
+                className="w-full h-48 object-cover rounded-lg"
               />
-              <h2 className="font-bold text-lg mt-3">{pet.name}</h2>
-              <p className="text-sm text-gray-500">{pet.age}</p>
-              <p className="text-sm text-gray-600 flex items-center gap-1">
-                <img
-                  src={pet.icon}
-                  className="h-full object-cover rounded-lg group-hover:hidden"
-                  alt="icon"
-                />
-                {/* white icon */}
-                <img
-                  src={
-                    pet.type === "cat"
-                      ? "./images/catwhiteicon.png"
-                      : "./images/dogwhiteicon.png"
-                  }
-                  className="h-full object-cover rounded-lg hidden group-hover:block absolute top-0 left-0"
-                  alt="white icon"
-                />
-                {pet.breed}
-              </p>
-
-              <div className="flex items-center justify-between mt-4">
-                <button
-                  onClick={() => {
-                    if (requestCount > 0) {
-                      setSelectedPet(pet);
-                      setSelectedRequest(mockRequest);
-                      setRequestPopup(true);
+              <div className="p-4 flex flex-col flex-grow">
+                <h2 className="font-bold text-lg mb-1">{pet.name}</h2>
+                <p className="text-sm text-gray-500">{pet.age}</p>
+                <p className="text-sm flex items-center gap-2 mt-1">
+                  <img
+                    src={
+                      pet.type === "dog"
+                        ? "/images/dogorangeicon.png"
+                        : "/images/catorangeicon.png"
                     }
-                  }}
-                  disabled={requestCount === 0}
-                  className={`text-white text-sm px-4 py-1 rounded-md
-    ${
-      requestCount === 0
-        ? "bg-gray-400 cursor-not-allowed"
-        : "bg-primaryO hover:bg-orange-600"
-    }`}
-                >
-                  {requestCount} Request
-                </button>
+                    className="w-6 h-6"
+                    alt={pet.type}
+                  />
+                  <span className="text-sm text-gray-600">{pet.breed}</span>
+                </p>
 
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedPet(mockPetData);
-                      setEditPopup(true);
-                    }}
-                    className="text-primaryO hover:text-orange-600 text-xl"
-                  >
-                    <img src={PencilIcon} className="w-6 h-6" alt="Edit" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setPetToDeleteIndex(index);
-                      setShowDeleteConfirm(true);
-                    }}
-                    className="text-primaryO hover:text-orange-600 text-xl"
-                  >
-                    <img src={TrashIcon} className="w-6 h-6" alt="Delete" />
-                  </button>
+                <div className="mt-auto">
+                  <div className="flex items-center justify-between mt-4">
+                    <button
+                      onClick={() => {
+                        setSelectedPet(pet);
+                        setSelectedRequest(mockRequest);
+                        setRequestPopup(true);
+                      }}
+                      className="bg-primaryO text-white text-sm px-4 py-1 rounded-md transition-all duration-300
+                      hover:bg-white hover:text-primaryO border hover:border-primaryO"
+                    >
+                      1 Request
+                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedPet(mockPetData);
+                          setEditPopup(true);
+                        }}
+                        className="text-primaryO hover:text-orange-600"
+                      >
+                        <img src={PencilIcon} className="w-6 h-6" alt="Edit" />
+                      </button>
+                      <button
+                        onClick={() => {
+                          setPetToDeleteIndex(index);
+                          setShowDeleteConfirm(true);
+                        }}
+                        className="text-primaryO hover:text-orange-600"
+                      >
+                        <img src={TrashIcon} className="w-6 h-6" alt="Delete" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
+        {/* Pagination Controls */}
+        <div className="flex justify-center mt-8 gap-2">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 rounded border text-primaryO border-primaryO hover:bg-primaryO hover:text-white disabled:opacity-50"
+          >
+            Prev
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-4 py-2 rounded border ${
+                currentPage === i + 1
+                  ? "bg-primaryO text-white"
+                  : "text-primaryO border-primaryO hover:bg-primaryO hover:text-white"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 rounded border text-primaryO border-primaryO hover:bg-primaryO hover:text-white disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+
+        {/* Popups */}
         {showDeleteConfirm && (
           <div className="fixed inset-0 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center gap-y-2">
-              <svg
-                className="w-[80px]"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  {" "}
-                  <path
-                    d="M2.75 6.16667C2.75 5.70644 3.09538 5.33335 3.52143 5.33335L6.18567 5.3329C6.71502 5.31841 7.18202 4.95482 7.36214 4.41691C7.36688 4.40277 7.37232 4.38532 7.39185 4.32203L7.50665 3.94993C7.5769 3.72179 7.6381 3.52303 7.72375 3.34536C8.06209 2.64349 8.68808 2.1561 9.41147 2.03132C9.59457 1.99973 9.78848 1.99987 10.0111 2.00002H13.4891C13.7117 1.99987 13.9056 1.99973 14.0887 2.03132C14.8121 2.1561 15.4381 2.64349 15.7764 3.34536C15.8621 3.52303 15.9233 3.72179 15.9935 3.94993L16.1083 4.32203C16.1279 4.38532 16.1333 4.40277 16.138 4.41691C16.3182 4.95482 16.8778 5.31886 17.4071 5.33335H19.9786C20.4046 5.33335 20.75 5.70644 20.75 6.16667C20.75 6.62691 20.4046 7 19.9786 7H3.52143C3.09538 7 2.75 6.62691 2.75 6.16667Z"
-                    fill="#EF5350"
-                  ></path>{" "}
-                  <path
-                    d="M11.6068 21.9998H12.3937C15.1012 21.9998 16.4549 21.9998 17.3351 21.1366C18.2153 20.2734 18.3054 18.8575 18.4855 16.0256L18.745 11.945C18.8427 10.4085 18.8916 9.6402 18.45 9.15335C18.0084 8.6665 17.2628 8.6665 15.7714 8.6665H8.22905C6.73771 8.6665 5.99204 8.6665 5.55047 9.15335C5.10891 9.6402 5.15777 10.4085 5.25549 11.945L5.515 16.0256C5.6951 18.8575 5.78515 20.2734 6.66534 21.1366C7.54553 21.9998 8.89927 21.9998 11.6068 21.9998Z"
-                    fill="#EF5350"
-                  ></path>{" "}
-                </g>
-              </svg>
-              <h2 className="text-xl font-bold mb-2 text-red-400">
+              <h2 className="text-xl font-bold text-primaryO">
                 Confirm Delete?
               </h2>
-              <p className="text-sm text-gray-600 mb-6">
+              <p className="text-gray-600">
                 Are you sure you want to delete this item?
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 mt-4">
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
-                  className="border border-red-400 text-red-400 px-4 py-2 rounded hover:bg-red-100"
+                  className="border border-primaryO text-primaryO px-4 py-2 rounded hover:bg-red-100"
                 >
                   Cancel
                 </button>
@@ -268,7 +284,7 @@ export default function ProfilePage() {
                     handleDelete(petToDeleteIndex);
                     setShowDeleteConfirm(false);
                   }}
-                  className="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-500"
+                  className="bg-primaryO text-white px-4 py-2 rounded"
                 >
                   Delete
                 </button>
@@ -277,13 +293,10 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {/* Modal popup */}
         <RequestDetailPopup
           trigger={requestPopup}
           setTrigger={setRequestPopup}
           requestData={selectedRequest}
-          requestCount={requestCount}
-          setRequestCount={setRequestCount}
         />
       </div>
     </>
