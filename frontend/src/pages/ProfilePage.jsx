@@ -36,7 +36,6 @@ export default function ProfilePage() {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw",
     imageVaccine:
       "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg",
-
   };
 
   const [pets, setPets] = useState([
@@ -132,14 +131,17 @@ export default function ProfilePage() {
     email: mockUser.email,
     phoneNum: mockUser.phoneNum,
     houseEnviron: "House",
-    houseUrl: "https://i.ytimg.com/vi/B56pik49Y5s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCxi5QbZd7EennlYLzHEnYOnSfccA",
+    houseUrl:
+      "https://i.ytimg.com/vi/B56pik49Y5s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCxi5QbZd7EennlYLzHEnYOnSfccA",
     financial: "40,001 - 50,000",
     address: `9/168 Prachautit 23 Prachautit Road,\nBangMod, Thung Kru, Bangkok, 10140`,
     pickup: "Delivery",
   };
 
   const handleDelete = (indexToDelete) => {
-    setPets((prevPets) => prevPets.filter((_, index) => index !== indexToDelete));
+    setPets((prevPets) =>
+      prevPets.filter((_, index) => index !== indexToDelete)
+    );
   };
 
   const totalPages = Math.ceil(pets.length / petsPerPage);
@@ -153,13 +155,11 @@ export default function ProfilePage() {
         <h1 className="text-2xl font-bold mt-12 mb-8 text-start pl-4 sm:pl-6 md:pl-8">
           Your post
         </h1>
-
         <EditPetForm
           trigger={editPopup}
           setTrigger={setEditPopup}
           petData={selectedPet}
         />
-
         <div className="flex flex-wrap justify-center gap-8 px-8">
           {currentPets.map((pet, index) => (
             <div
@@ -195,8 +195,7 @@ export default function ProfilePage() {
                         setSelectedRequest(mockRequest);
                         setRequestPopup(true);
                       }}
-                      className="bg-primaryO text-white text-sm px-4 py-1 rounded-md transition-all duration-300
-                      hover:bg-white hover:text-primaryO border hover:border-primaryO"
+                      className="bg-primaryO text-white text-sm px-4 py-1 rounded-md transition-all duration-300 hover:bg-white hover:text-primaryO border hover:border-primaryO"
                     >
                       1 Request
                     </button>
@@ -219,14 +218,14 @@ export default function ProfilePage() {
                       >
                         <img src={TrashIcon} className="w-6 h-6" alt="Delete" />
                       </button>
-
                     </div>
                   </div>
                 </div>
-            ))}
-          </div>
-
-
+              </div>
+            </div> // ✅ ปิด div แต่ละการ์ด
+          ))}
+        </div>{" "}
+        {/* ✅ ปิด flex container */}
         {/* Pagination Controls */}
         <div className="flex justify-center mt-8 gap-2">
           <button
@@ -261,7 +260,6 @@ export default function ProfilePage() {
             Next
           </button>
         </div>
-
         {/* Popups */}
         {showDeleteConfirm && (
           <div className="fixed inset-0 flex justify-center items-center z-50">
@@ -285,20 +283,13 @@ export default function ProfilePage() {
                     setShowDeleteConfirm(false);
                   }}
                   className="bg-primaryO text-white px-4 py-2 rounded"
-
                 >
-                  {i + 1}
+                  Delete
                 </button>
-            ))}
-
-            <button
-                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 rounded border text-primaryO border-primaryO hover:bg-primaryO hover:text-white disabled:opacity-50"
-            >
-              Next
-            </button>
+              </div>
+            </div>
           </div>
+        )}
         <RequestDetailPopup
           trigger={requestPopup}
           setTrigger={setRequestPopup}
@@ -306,6 +297,5 @@ export default function ProfilePage() {
         />
       </div>
     </>
-
   );
 }
