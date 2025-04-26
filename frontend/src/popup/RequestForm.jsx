@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+
 
 export default function RequestForm({ trigger, setTrigger, petData }) {
+    const [previewUrl, setPreviewUrl] = useState(null);
     if (!trigger) return null;
+
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            setPreviewUrl(url); // เซ็ต preview
+        }
+    };
+
 
     return (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
@@ -33,22 +45,42 @@ export default function RequestForm({ trigger, setTrigger, petData }) {
                             <label className="font-semibold mb-1">House Environment</label>
                             <div className="flex items-center gap-2">
                                 <select className="w-full px-4 py-2 border rounded-md shadow">
-                                    <option>House Options</option>
+                                    <option>House</option>
+                                    <option>Condominium</option>
                                 </select>
-                                <button className="px-4 py-2 border border-orange-400 text-orange-500 rounded-md hover:bg-orange-100 transition">
+                                <label
+                                    htmlFor="upload-img"
+                                    className="bg-white border border-primaryO text-primaryO px-6 py-2 rounded-[8px] hover:bg-primaryO hover:text-white"
+                                >
                                     Upload
-                                </button>
+                                    <input
+                                        id="upload-img"
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={handleImageChange}
+                                    />
+                                </label>
                             </div>
+
+                            {/* preview รูป */}
+                            {previewUrl && (
+                                <img
+                                    src={previewUrl}
+                                    alt="Preview"
+                                    className="w-40 h-40 object-cover rounded-md mt-4"
+                                />
+                            )}
                         </div>
                         <div>
                             <label className="font-semibold mb-2">Pickup</label>
                             <div className="flex gap-6">
                                 <label className="flex items-center gap-2">
-                                    <input type="radio" name="pickup" className="accent-orange-400" />
+                                    <input type="radio" name="pickup" className="accent-primaryO" />
                                     Self-pickup
                                 </label>
                                 <label className="flex items-center gap-2">
-                                    <input type="radio" name="pickup" className="accent-orange-400" defaultChecked />
+                                    <input type="radio" name="pickup" className="accent-primaryO" defaultChecked />
                                     Delivery
                                 </label>
                             </div>
@@ -69,6 +101,12 @@ export default function RequestForm({ trigger, setTrigger, petData }) {
                             <label className="font-semibold mb-1">Financial</label>
                             <select className="w-full px-4 py-2 border rounded-md shadow">
                                 <option>Range Of Your Salary</option>
+                                <option>0-10,000</option>
+                                <option>10,001-20,000</option>
+                                <option>20,001-30,000</option>
+                                <option>30,001-40,000</option>
+                                <option>40,001-50,000</option>
+                                <option> more than 50,000 </option>
                             </select>
                         </div>
                         <div>
@@ -86,11 +124,11 @@ export default function RequestForm({ trigger, setTrigger, petData }) {
                 <div className="flex justify-end gap-4 mt-10">
                     <button
                         onClick={() => setTrigger(false)}
-                        className="px-6 py-2 border border-orange-400 text-orange-500 rounded-md hover:bg-orange-100 transition"
+                        className="bg-white border border-primaryO text-primaryO px-6 py-2 rounded-[8px] hover:bg-primaryO hover:text-white"
                     >
                         Cancel
                     </button>
-                    <button className="px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
+                    <button className="bg-primaryO text-white px-6 py-2 rounded hover:text-primaryO hover:bg-white hover:border border-primaryO">
                         Send Request
                     </button>
                 </div>

@@ -74,11 +74,11 @@ export default function RequestDetailPopup({ trigger, setTrigger, requestData })
                 <div className="flex justify-end gap-4 mt-10">
                     <button
                         onClick={() => setTrigger(false)}
-                        className="px-6 py-2 border border-orange-400 text-orange-500 rounded-md hover:bg-orange-100 transition"
+                        className="px-6 py-2 border border-primaryO text-primaryO rounded-md hover:bg-orange-100 transition"
                     >
                         Decline
                     </button>
-                    <button className="px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
+                    <button className="px-6 py-2 bg-primaryO text-white rounded-md hover:bg-orange-600 transition">
                         Accept
                     </button>
                 </div>
