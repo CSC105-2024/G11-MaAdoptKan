@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TabSwitcher from "../pages/TabSwitcher";
 import Pawpic from "../../public/images/Pawpic.png";
+import { useEffect } from "react";
 
 //Create a Zod schema
 const signUpSchema = z.object({
@@ -16,6 +17,10 @@ const signUpSchema = z.object({
 });
 
 const SignUpPage = () => {
+    useEffect(() => {
+          document.title = "Sign Up";
+        }, []);
+
     // Use react-hook-form with Zod
     const {
         register,

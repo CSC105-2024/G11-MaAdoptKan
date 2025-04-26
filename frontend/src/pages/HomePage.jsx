@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./../assets/Navbar";
 import { Search, PawPrint } from "lucide-react"; // for icons (optional)
 import { Link } from "react-router-dom";
 import PetInformation from "../popup/PetInformation";
 
 export default function HomePage() {
+  useEffect(() => {
+      document.title = "MaAdoptKan";
+    }, []);
+
   const pets = [
     {
       name: "Maki",

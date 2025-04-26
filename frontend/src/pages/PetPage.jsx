@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../assets/Navbar";
 import CreatePetForm from "../popup/CreatePetForm";
 import EditPetForm from "../popup/EditPetForm";
@@ -6,6 +6,10 @@ import PetInformation from "../popup/PetInformation";
 import RequestForm from "../popup/RequestForm";
 
 export default function PetPage() {
+  useEffect(() => {
+      document.title = "Pet";
+    }, []);
+
   const [buttonPopup, setButtonPopup] = useState(false);
   const [editPopup, setEditPopup] = useState(false);
   const [infoPopup, setInfoPopup] = useState(false);

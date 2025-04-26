@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './DonationPage.css';
 import Navbar from "../assets/Navbar.jsx";
 
 function DonationPage() {
+    useEffect(() => {
+        document.title = "Donation";
+      }, []);
     return (
         <>
             <div>
