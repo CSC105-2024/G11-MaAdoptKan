@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RequestForm from "../popup/RequestForm"; // Modal popup component
 import Navbar from "../assets/Navbar.jsx";
 import PencilIcon from "../../public/images/Pencil.png";
@@ -7,6 +7,10 @@ import RequestDetailPopup from "../popup/RequestDetail.jsx";
 import EditPetForm from "../popup/EditPetForm.jsx";
 
 export default function ProfilePage() {
+    useEffect(() => {
+          document.title = "Your Profile";
+        }, []);
+    
   const [requestPopup, setRequestPopup] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   const [selectedRequest, setSelectedRequest] = useState(null);

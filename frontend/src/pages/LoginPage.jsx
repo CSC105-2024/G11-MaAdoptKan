@@ -3,7 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TabSwitcher from "../pages/TabSwitcher";
 import Pawpic from "../../public/images/Pawpic.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Zod schema for login
@@ -13,6 +13,10 @@ const loginSchema = z.object({
 });
 
 const LoginPage = () => {
+    useEffect(() => {
+        document.title = "Login";
+      }, []);
+
     const [loginSuccess, setLoginSuccess] = useState(false);
     const navigate = useNavigate();
 
