@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -14,14 +8,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Gender {
+  male
+  female
+}
+
 enum Type {
   cat
   dog
 }
 
-enum Gender {
-  male
-  female
+model Pet {
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        Type
+  gender      Gender
+  pictureUrl  String
+  color       String?
+  dateOfBirth DateTime?
+  ageYear     Int?
+  ageMonth    Int?
+  breed       String?
+  phoneNumber String
+  address     String
+  vacineUrl   String?
+  userId      Int
+  User        User      @relation(fields: [userId], references: [id])
+  Vaccine     Vaccine[]
+  Request     Request[]
+}
+
+model Vaccine {
+  id      Int     @id @default(autoincrement())
+  vaccine String?
+  petId   Int
+  Pet     Pet     @relation(fields: [petId], references: [id])
 }
 
 model User {
@@ -31,26 +52,17 @@ model User {
   firstName String
   lastName  String
   tel       String
-
-  pets Pet[]
+  Pet       Pet[]
+  Request Request[]
 }
 
-model Pet {
-  id          Int       @id @default(autoincrement())
-  name        String
-  type        Type
-  gender      Gender
-  pictureUrl  String //We will input file and change it to url
-  color       String?
-  dateOfBirth DateTime?
-  ageYear     Int?
-  ageMonth    Int?
-  breed       String?
-  phoneNumber String
-  address     String
-  vacineUrl   String?
-  vaccine     String? //We will write to array in controller
+model Request {
+  id Int @id @default(autoincrement())
+  
 
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
+  userId      Int
+  User        User      @relation(fields: [userId], references: [id])
+  
+  petId Int @unique
+  Pet   Pet @relation(fields: [petId], references: [id])
 }
