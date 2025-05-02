@@ -114,15 +114,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  password: 'password',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  tel: 'tel'
-};
-
 exports.Prisma.PetScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -137,8 +128,28 @@ exports.Prisma.PetScalarFieldEnum = {
   phoneNumber: 'phoneNumber',
   address: 'address',
   vacineUrl: 'vacineUrl',
-  vaccine: 'vaccine',
   userId: 'userId'
+};
+
+exports.Prisma.VaccineScalarFieldEnum = {
+  id: 'id',
+  vaccine: 'vaccine',
+  petId: 'petId'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  tel: 'tel'
+};
+
+exports.Prisma.RequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  petId: 'petId'
 };
 
 exports.Prisma.SortOrder = {
@@ -161,8 +172,10 @@ exports.Gender = exports.$Enums.Gender = {
 };
 
 exports.Prisma.ModelName = {
+  Pet: 'Pet',
+  Vaccine: 'Vaccine',
   User: 'User',
-  Pet: 'Pet'
+  Request: 'Request'
 };
 
 /**

@@ -23,4 +23,21 @@ const createUser = async( email: string, password: string, firstName: string, la
     return user;
 }
 
-export {isDuplicate, createUser}
+const getUser = async (id:number)=>{
+    const user = await db.user.findUnique({
+        where: {
+            id:id
+        }
+    })
+    return user;
+}
+
+const getAllUser = async () =>{
+    const user = await db.user.findMany({
+
+    })
+    return user;
+}
+
+
+export {isDuplicate, createUser, getUser, getAllUser}
