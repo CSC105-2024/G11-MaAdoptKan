@@ -1,63 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./../assets/Navbar";
 import { Search, PawPrint } from "lucide-react"; // for icons (optional)
 import { Link } from "react-router-dom";
 import PetInformation from "../popup/PetInformation";
 
 export default function HomePage() {
+  useEffect(() => {
+      document.title = "MaAdoptKan";
+    }, []);
+
   const pets = [
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
     },
     {
       name: "Jaki",
-      age: "2 Yearsold",
+      age: "2 Year sold",
       breed: "Jack Russell",
       image: "./images/Jaki.png",
       icon: "./images/dogorangeicon.png",
     },
     {
       name: "Tojin",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Scottish Fold",
       image: "./images/Tojin.png",
       icon: "./images/catorangeicon.png",
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
     },
     {
       name: "Jaki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Jack Russell",
       image: "./images/Jaki.png",
       icon: "./images/dogorangeicon.png",
     },
     {
       name: "Tojin",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Scottish Fold",
       image: "./images/Tojin.png",
       icon: "./images/catorangeicon.png",
@@ -79,6 +83,9 @@ export default function HomePage() {
     ageMonth: "3",
     breed: "Shiba",
     vaccine: ["Rabies", "Parvo", "", ""],
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw",
+    imageVaccine:"https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg",
+
   };
 
   return (
@@ -99,31 +106,12 @@ export default function HomePage() {
               <span className="text-[#E97A28] font-sue">500,000,000</span>{" "}
               shelters to abandoned animals
             </h1>
-            <div className="hidden sm:block w-full max-w-md shadow-md">
-              <div className=" flex items-center mt-4 bg-white rounded-[6px] px-4 py-2 ">
-                <input
-                  type="text"
-                  placeholder="Search for your favorite pets"
-                  className="flex-grow outline-none text-black px-2"
-                />
-                <Search className="text-[#E97A28]" />
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Recommended Pets Section */}
         <div className="max-w-[1440px] mx-auto px-4 py-10 z-10">
-          <div className="block sm:hidden w-full max-w-md shadow-md mb-5">
-            <div className="flex items-center bg-white rounded-[6px] px-4 py-2 ">
-              <input
-                type="text"
-                placeholder="Search for your favorite pets"
-                className="flex-grow outline-none text-black px-2"
-              />
-              <Search className="text-orange-500" />
-            </div>
-          </div>
+          
           <div className="flex flex-wrap justify-between items-center gap-2 sm:gap-4 mb-6">
             <h2 className="text-lg sm:text-2xl font-bold whitespace-nowrap">
               Recommended Pets For You
@@ -162,30 +150,44 @@ export default function HomePage() {
             }}
           >
             {pets.map((pet, idx) => (
-              <div
-                key={idx}
-                className="min-w-[250px] flex-shrink-0 bg-white rounded-xl shadow p-4 text-left"
-                onClick={() => {
-                  console.log("card clicked");
-                  setSelectedPet(mockPetData);
-                  setInfoPopup(true);
-                }}
-              >
-                <img
-                  src={pet.image}
-                  alt={pet.name}
-                  className="w-full h-[200px] object-cover rounded-lg mb-4"
-                />
-                <h3 className="text-lg font-semibold">{pet.name}</h3>
-                <p className="text-sm text-gray-500">{pet.age}</p>
-                <div className="flex items-center gap-2 mt-1 text-sm text-gray-700">
+                <div
+                    key={idx}
+                    className="group min-w-[250px] flex-shrink-0 bg-white rounded-xl p-4 text-left transition duration-300 ease-in-out hover:bg-[#E97A28] hover:text-white hover:shadow-xl cursor-pointer"
+                    onClick={() => {
+                      console.log("card clicked");
+                      setSelectedPet(mockPetData);
+                      setInfoPopup(true);
+                    }}
+                >
                   <img
-                    src={pet.icon}
-                    className="w-[25px] h-[25px] object-cover rounded-lg flex items-center"
+                      src={pet.image}
+                      alt={pet.name}
+                      className="w-full h-[200px] object-cover rounded-lg mb-4"
                   />
-                  <span className="flex items-center">{pet.breed}</span>
+                  <h3 className="text-lg font-semibold group-hover:text-white">{pet.name}</h3>
+                  <p className="text-sm text-gray-500 group-hover:text-white">{pet.age}</p>
+                  <div className="flex items-center gap-2 mt-1 text-sm text-gray-700 group-hover:text-white">
+                    <div className="relative w-[25px] h-[25px]">
+                      {/* Default icon */}
+                      <img
+                          src={pet.icon}
+                          alt="default icon"
+                          className="w-full h-full object-cover rounded-lg group-hover:hidden"
+                      />
+                      {/* White icon */}
+                      <img
+                          src={
+                            pet.icon.includes("cat")
+                                ? "./images/catwhiteicon.png"
+                                : "./images/dogwhiteicon.png"
+                          }
+                          alt="white icon"
+                          className="w-full h-full object-cover rounded-lg hidden group-hover:block absolute top-0 left-0"
+                      />
+                    </div>
+                    <span>{pet.breed}</span>
+                  </div>
                 </div>
-              </div>
             ))}
           </div>
         </div>

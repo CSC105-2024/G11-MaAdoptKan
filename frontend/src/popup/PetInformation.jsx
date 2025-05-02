@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import RequestForm from "./RequestForm";
 
 export default function PetInformation({ trigger, setTrigger, pet }) {
   const [isMobile, setIsMobile] = useState(false);
   const [step, setStep] = useState(1);
+  const [requestPopup, setRequestPopup] = useState(false); // ✅ ไว้สั่ง popup RequestForm ขึ้น
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -78,7 +80,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
             {pet.vaccine?.length > 0 ? (
               pet.vaccine.map((v, i) => (
                 <p key={i} className="text-left text-primaryO capitalize">
-                  {v || `Vaccine ${i + 1}`}
+                  {v || ""}
                 </p>
               ))
             ) : (
@@ -107,7 +109,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
         ) : (
           <>
             <button
-              onClick={() => alert("Adopt clicked")}
+              onClick={() => setRequestPopup(true)}
               className="bg-primaryO text-white px-6 py-2 rounded hover:text-primaryO hover:bg-white hover:border border-primaryO"
             >
               Adopt
@@ -122,17 +124,14 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
     <>
       <div className="flex-grow overflow-auto z-999">
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
           gap-x-12 gap-y-8 justify-items-center"
         >
           {/* 1st col - Picture + Type + Color */}
           <div className="min-w-[320px] my-4">
             <div className="mb-4">
               <img
-                src={
-                  pet.image ||
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw"
-                }
+                src={pet.image}
                 alt={pet.name}
                 className="w-[320px] h-[320px] rounded-[8px] "
               />
@@ -206,17 +205,14 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
                 Vaccine Record
               </p>
               <img
-                src={
-                  pet.vaccineImage ||
-                  "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg"
-                }
+                src={pet.imageVaccine || ""}
                 alt={pet.name}
                 className="w-[150px] h-[150px] rounded-[8px] "
               />
               {pet.vaccine?.length > 0 ? (
                 pet.vaccine.map((v, i) => (
                   <p key={i} className="flex text-primaryO capitalize">
-                    {v || `Vaccine ${i + 1}`}
+                    {v || ""}
                   </p>
                 ))
               ) : (
@@ -235,8 +231,8 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
             Cancel
           </button>
           <button
-            onClick={() => alert("Adopt clicked")}
-            className="bg-primaryO text-white px-6 py-2 rounded-[8px] hover:text-primaryO hover:bg-white hover:border-1 hover:border-primaryO"
+            onClick={() => setRequestPopup(true)}
+            className="bg-primaryO text-white px-6 py-2 rounded hover:text-primaryO hover:bg-white hover:border border-primaryO"
           >
             Adopt
           </button>
@@ -256,7 +252,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
           <button
             type="button"
             onClick={() => setTrigger(false)}
-            className="bg-white rounded-md flex 
+            className="bg-white rounded-md flex
         items-center text-gray-400 md:hidden"
           >
             <span className="sr-only">Close menu</span>
@@ -283,7 +279,12 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
           {isMobile ? <MobileInfo /> : <DesktopInfo />}
         </div>
 
-        <div className="flex justify-end gap-4 px-6 py-8"></div>
+        {/* ✅ RequestForm popup ซ้อนมา */}
+        <RequestForm
+          trigger={requestPopup}
+          setTrigger={setRequestPopup}
+          petData={pet}
+        />
       </div>
     </div>
   );

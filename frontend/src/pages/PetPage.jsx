@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../assets/Navbar";
 import CreatePetForm from "../popup/CreatePetForm";
 import EditPetForm from "../popup/EditPetForm";
@@ -6,6 +6,10 @@ import PetInformation from "../popup/PetInformation";
 import RequestForm from "../popup/RequestForm";
 
 export default function PetPage() {
+  useEffect(() => {
+      document.title = "Pet";
+    }, []);
+
   const [buttonPopup, setButtonPopup] = useState(false);
   const [editPopup, setEditPopup] = useState(false);
   const [infoPopup, setInfoPopup] = useState(false);
@@ -18,7 +22,7 @@ export default function PetPage() {
   const pets = [
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -26,7 +30,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -34,7 +38,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -42,7 +46,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -50,7 +54,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -58,7 +62,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -66,7 +70,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -74,7 +78,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -82,7 +86,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -90,7 +94,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -98,7 +102,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -106,7 +110,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -114,7 +118,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -122,7 +126,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -130,7 +134,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -138,7 +142,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -146,7 +150,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -154,7 +158,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -162,7 +166,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -170,7 +174,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -178,7 +182,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -186,7 +190,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -194,7 +198,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -202,7 +206,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -210,7 +214,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -218,7 +222,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -226,7 +230,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -234,7 +238,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -242,7 +246,7 @@ export default function PetPage() {
     },
     {
       name: "Maki",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Himalayan",
       image: "./images/Maki.png",
       icon: "./images/catorangeicon.png",
@@ -250,7 +254,7 @@ export default function PetPage() {
     },
     {
       name: "Yuma",
-      age: "2 Yearsold",
+      age: "2 Years old",
       breed: "Labrador Retriever",
       image: "./images/Yuma.png",
       icon: "./images/dogorangeicon.png",
@@ -271,6 +275,8 @@ export default function PetPage() {
     ageMonth: "3",
     breed: "Shiba",
     vaccine: ["Rabies", "Parvo", "", ""],
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw",
+    imageVaccine:"https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg",
   };
 
   const filteredPets =
@@ -298,7 +304,7 @@ export default function PetPage() {
                 key={type}
                 className={`transition-all duration-500 capitalize ${
                   filter === type
-                    ? "text-[#E97A28] text-2xl"
+                    ? "text-primaryO text-2xl"
                     : "text-gray-400 text-xl"
                 }`}
                 onClick={() => {
@@ -314,7 +320,7 @@ export default function PetPage() {
           </div>
 
           <button
-            className="bg-[#E97A28] text-white px-4 py-2 rounded-md shadow hover:bg-orange-500"
+            className="bg-[#E97A28] text-white px-4 py-2 rounded-md shadow hover:bg-primaryO"
             onClick={() => setButtonPopup(true)}
           >
             + Create
@@ -324,34 +330,47 @@ export default function PetPage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6 p-6 w-full">
           {currentPets.map((pet, index) => (
-            <>
               <div
-                key={index}
-                className="text-left bg-white rounded-xl shadow p-4 cursor-pointer hover:shadow-lg transition w-full"
-                onClick={() => {
-                  console.log("card clicked");
-                  setSelectedPet(mockPetData);
-                  setInfoPopup(true);
-                }}
+                  key={index}
+                  className="group text-left bg-white rounded-xl shadow p-4 cursor-pointer hover:bg-[#E97A28] hover:text-white transition w-full"
+                  onClick={() => {
+                    console.log("card clicked");
+                    setSelectedPet(mockPetData);
+                    setInfoPopup(true);
+                  }}
               >
                 <img
-                  src={pet.image}
-                  alt={pet.name}
-                  className="rounded-md w-full h-32 object-cover"
+                    src={pet.image}
+                    alt={pet.name}
+                    className="rounded-md w-full h-32 object-cover"
                 />
                 <div className="mt-2">
-                  <div className="font-semibold text-lg">{pet.name}</div>
-                  <div className="text-sm text-gray-500">{pet.age}</div>
-                  <div className="flex text-sm pt-1 text-[#000000] mt-1 gap-2">
-                    <img
-                      src={pet.icon}
-                      className="w-[25px] h-[25px] object-cover rounded-lg"
-                    />
-                    <div className="flex items-center">{pet.breed}</div>
+                  <div className="font-semibold text-lg group-hover:text-white">{pet.name}</div>
+                  <div className="text-sm text-gray-500 group-hover:text-white">{pet.age}</div>
+                  <div className="flex text-sm pt-1 mt-1 gap-2 items-center group-hover:text-white">
+                    {/* icon swap on hover */}
+                    <div className="relative w-[25px] h-[25px]">
+                      {/* default icon */}
+                      <img
+                          src={pet.icon}
+                          className="w-full h-full object-cover rounded-lg group-hover:hidden"
+                          alt="icon"
+                      />
+                      {/* white icon */}
+                      <img
+                          src={
+                            pet.type === "cat"
+                                ? "./images/catwhiteicon.png"
+                                : "./images/dogwhiteicon.png"
+                          }
+                          className="w-full h-full object-cover rounded-lg hidden group-hover:block absolute top-0 left-0"
+                          alt="white icon"
+                      />
+                    </div>
+                    <div>{pet.breed}</div>
                   </div>
                 </div>
               </div>
-            </>
           ))}
         </div>
         <PetInformation
