@@ -6,5 +6,6 @@ const userRouter = new Hono();
 userRouter.post("/create", userController.createUser);
 userRouter.get("/get", userController.getUser);
 userRouter.get("/getAll", userController.getAllUser);
+userRouter.get("/pets", userController.getAllPetFromUser);
 
 export { userRouter };

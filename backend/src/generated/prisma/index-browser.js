@@ -146,8 +146,12 @@ exports.Prisma.UserScalarFieldEnum = {
   tel: 'tel'
 };
 
-exports.Prisma.RequestScalarFieldEnum = {
+exports.Prisma.RequestFormScalarFieldEnum = {
   id: 'id',
+  houseEn: 'houseEn',
+  financial: 'financial',
+  pickup: 'pickup',
+  addressRequest: 'addressRequest',
   userId: 'userId',
   petId: 'petId'
 };
@@ -171,11 +175,30 @@ exports.Gender = exports.$Enums.Gender = {
   female: 'female'
 };
 
+exports.HouseEn = exports.$Enums.HouseEn = {
+  house: 'house',
+  condo: 'condo'
+};
+
+exports.Financial = exports.$Enums.Financial = {
+  belowTenThousand: 'belowTenThousand',
+  tenThousand: 'tenThousand',
+  twentyThousand: 'twentyThousand',
+  thirtyThousand: 'thirtyThousand',
+  fourThousand: 'fourThousand',
+  aboveFiveThousand: 'aboveFiveThousand'
+};
+
+exports.Pickup = exports.$Enums.Pickup = {
+  selfPickup: 'selfPickup',
+  delivery: 'delivery'
+};
+
 exports.Prisma.ModelName = {
   Pet: 'Pet',
   Vaccine: 'Vaccine',
   User: 'User',
-  Request: 'Request'
+  RequestForm: 'RequestForm'
 };
 
 /**

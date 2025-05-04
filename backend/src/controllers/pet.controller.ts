@@ -1,5 +1,6 @@
 import type { Context } from "hono";
 import * as petModel from "../models/pet.model.ts";
+import * as requestModel from "../models/request.model.ts"
 import type { $Enums } from "../generated/prisma/index.js";
 
 type createPetBody = {
@@ -210,4 +211,31 @@ const deletePet = async (c: Context) => {
   }
 };
 
-export { createPet, editPet, getPet, getAllPet, deletePet };
+const getAllRequestFromPet = async (c: Context) => {
+  try {
+    const param = c.req.query("id");
+    if (param !== undefined && param !== null) {
+      const data = await requestModel.getAllRequestFromPet(parseInt(param));
+      return c.json(data, 200);
+    }
+    return c.json(
+        {
+          success: false,
+          data: null,
+          msg: "Missing required fields",
+        },
+        400
+      );
+  } catch (e) {
+    return c.json(
+      {
+        success: false,
+        data: null,
+        msg: `${e}`,
+      },
+      500
+    );
+  }
+};
+
+export { createPet, editPet, getPet, getAllPet, deletePet, getAllRequestFromPet };

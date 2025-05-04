@@ -29,10 +29,10 @@ export type Vaccine = $Result.DefaultSelection<Prisma.$VaccinePayload>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model Request
+ * Model RequestForm
  * 
  */
-export type Request = $Result.DefaultSelection<Prisma.$RequestPayload>
+export type RequestForm = $Result.DefaultSelection<Prisma.$RequestFormPayload>
 
 /**
  * Enums
@@ -53,6 +53,34 @@ export const Type: {
 
 export type Type = (typeof Type)[keyof typeof Type]
 
+
+export const HouseEn: {
+  house: 'house',
+  condo: 'condo'
+};
+
+export type HouseEn = (typeof HouseEn)[keyof typeof HouseEn]
+
+
+export const Financial: {
+  belowTenThousand: 'belowTenThousand',
+  tenThousand: 'tenThousand',
+  twentyThousand: 'twentyThousand',
+  thirtyThousand: 'thirtyThousand',
+  fourThousand: 'fourThousand',
+  aboveFiveThousand: 'aboveFiveThousand'
+};
+
+export type Financial = (typeof Financial)[keyof typeof Financial]
+
+
+export const Pickup: {
+  selfPickup: 'selfPickup',
+  delivery: 'delivery'
+};
+
+export type Pickup = (typeof Pickup)[keyof typeof Pickup]
+
 }
 
 export type Gender = $Enums.Gender
@@ -62,6 +90,18 @@ export const Gender: typeof $Enums.Gender
 export type Type = $Enums.Type
 
 export const Type: typeof $Enums.Type
+
+export type HouseEn = $Enums.HouseEn
+
+export const HouseEn: typeof $Enums.HouseEn
+
+export type Financial = $Enums.Financial
+
+export const Financial: typeof $Enums.Financial
+
+export type Pickup = $Enums.Pickup
+
+export const Pickup: typeof $Enums.Pickup
 
 /**
  * ##  Prisma Client ʲˢ
@@ -219,14 +259,14 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.request`: Exposes CRUD operations for the **Request** model.
+   * `prisma.requestForm`: Exposes CRUD operations for the **RequestForm** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Requests
-    * const requests = await prisma.request.findMany()
+    * // Fetch zero or more RequestForms
+    * const requestForms = await prisma.requestForm.findMany()
     * ```
     */
-  get request(): Prisma.RequestDelegate<ExtArgs, ClientOptions>;
+  get requestForm(): Prisma.RequestFormDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -670,7 +710,7 @@ export namespace Prisma {
     Pet: 'Pet',
     Vaccine: 'Vaccine',
     User: 'User',
-    Request: 'Request'
+    RequestForm: 'RequestForm'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -689,7 +729,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "pet" | "vaccine" | "user" | "request"
+      modelProps: "pet" | "vaccine" | "user" | "requestForm"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -915,77 +955,77 @@ export namespace Prisma {
           }
         }
       }
-      Request: {
-        payload: Prisma.$RequestPayload<ExtArgs>
-        fields: Prisma.RequestFieldRefs
+      RequestForm: {
+        payload: Prisma.$RequestFormPayload<ExtArgs>
+        fields: Prisma.RequestFormFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.RequestFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload> | null
+            args: Prisma.RequestFormFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.RequestFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>
+            args: Prisma.RequestFormFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>
           }
           findFirst: {
-            args: Prisma.RequestFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload> | null
+            args: Prisma.RequestFormFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.RequestFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>
+            args: Prisma.RequestFormFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>
           }
           findMany: {
-            args: Prisma.RequestFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>[]
+            args: Prisma.RequestFormFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>[]
           }
           create: {
-            args: Prisma.RequestCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>
+            args: Prisma.RequestFormCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>
           }
           createMany: {
-            args: Prisma.RequestCreateManyArgs<ExtArgs>
+            args: Prisma.RequestFormCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.RequestCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>[]
+            args: Prisma.RequestFormCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>[]
           }
           delete: {
-            args: Prisma.RequestDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>
+            args: Prisma.RequestFormDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>
           }
           update: {
-            args: Prisma.RequestUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>
+            args: Prisma.RequestFormUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>
           }
           deleteMany: {
-            args: Prisma.RequestDeleteManyArgs<ExtArgs>
+            args: Prisma.RequestFormDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.RequestUpdateManyArgs<ExtArgs>
+            args: Prisma.RequestFormUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.RequestUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>[]
+            args: Prisma.RequestFormUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>[]
           }
           upsert: {
-            args: Prisma.RequestUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RequestPayload>
+            args: Prisma.RequestFormUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestFormPayload>
           }
           aggregate: {
-            args: Prisma.RequestAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateRequest>
+            args: Prisma.RequestFormAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRequestForm>
           }
           groupBy: {
-            args: Prisma.RequestGroupByArgs<ExtArgs>
-            result: $Utils.Optional<RequestGroupByOutputType>[]
+            args: Prisma.RequestFormGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RequestFormGroupByOutputType>[]
           }
           count: {
-            args: Prisma.RequestCountArgs<ExtArgs>
-            result: $Utils.Optional<RequestCountAggregateOutputType> | number
+            args: Prisma.RequestFormCountArgs<ExtArgs>
+            result: $Utils.Optional<RequestFormCountAggregateOutputType> | number
           }
         }
       }
@@ -1076,7 +1116,7 @@ export namespace Prisma {
     pet?: PetOmit
     vaccine?: VaccineOmit
     user?: UserOmit
-    request?: RequestOmit
+    requestForm?: RequestFormOmit
   }
 
   /* Types for Logging */
@@ -1172,12 +1212,12 @@ export namespace Prisma {
 
   export type PetCountOutputType = {
     Vaccine: number
-    Request: number
+    RequestForm: number
   }
 
   export type PetCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Vaccine?: boolean | PetCountOutputTypeCountVaccineArgs
-    Request?: boolean | PetCountOutputTypeCountRequestArgs
+    RequestForm?: boolean | PetCountOutputTypeCountRequestFormArgs
   }
 
   // Custom InputTypes
@@ -1201,8 +1241,8 @@ export namespace Prisma {
   /**
    * PetCountOutputType without action
    */
-  export type PetCountOutputTypeCountRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RequestWhereInput
+  export type PetCountOutputTypeCountRequestFormArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RequestFormWhereInput
   }
 
 
@@ -1212,12 +1252,12 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     Pet: number
-    Request: number
+    RequestForm: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Pet?: boolean | UserCountOutputTypeCountPetArgs
-    Request?: boolean | UserCountOutputTypeCountRequestArgs
+    RequestForm?: boolean | UserCountOutputTypeCountRequestFormArgs
   }
 
   // Custom InputTypes
@@ -1241,8 +1281,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RequestWhereInput
+  export type UserCountOutputTypeCountRequestFormArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RequestFormWhereInput
   }
 
 
@@ -1534,7 +1574,7 @@ export namespace Prisma {
     userId?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
     Vaccine?: boolean | Pet$VaccineArgs<ExtArgs>
-    Request?: boolean | Pet$RequestArgs<ExtArgs>
+    RequestForm?: boolean | Pet$RequestFormArgs<ExtArgs>
     _count?: boolean | PetCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pet"]>
 
@@ -1595,7 +1635,7 @@ export namespace Prisma {
   export type PetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
     Vaccine?: boolean | Pet$VaccineArgs<ExtArgs>
-    Request?: boolean | Pet$RequestArgs<ExtArgs>
+    RequestForm?: boolean | Pet$RequestFormArgs<ExtArgs>
     _count?: boolean | PetCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1610,7 +1650,7 @@ export namespace Prisma {
     objects: {
       User: Prisma.$UserPayload<ExtArgs>
       Vaccine: Prisma.$VaccinePayload<ExtArgs>[]
-      Request: Prisma.$RequestPayload<ExtArgs>[]
+      RequestForm: Prisma.$RequestFormPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2023,7 +2063,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Vaccine<T extends Pet$VaccineArgs<ExtArgs> = {}>(args?: Subset<T, Pet$VaccineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VaccinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Request<T extends Pet$RequestArgs<ExtArgs> = {}>(args?: Subset<T, Pet$RequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    RequestForm<T extends Pet$RequestFormArgs<ExtArgs> = {}>(args?: Subset<T, Pet$RequestFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2485,27 +2525,27 @@ export namespace Prisma {
   }
 
   /**
-   * Pet.Request
+   * Pet.RequestForm
    */
-  export type Pet$RequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Pet$RequestFormArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
-    where?: RequestWhereInput
-    orderBy?: RequestOrderByWithRelationInput | RequestOrderByWithRelationInput[]
-    cursor?: RequestWhereUniqueInput
+    include?: RequestFormInclude<ExtArgs> | null
+    where?: RequestFormWhereInput
+    orderBy?: RequestFormOrderByWithRelationInput | RequestFormOrderByWithRelationInput[]
+    cursor?: RequestFormWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: RequestScalarFieldEnum | RequestScalarFieldEnum[]
+    distinct?: RequestFormScalarFieldEnum | RequestFormScalarFieldEnum[]
   }
 
   /**
@@ -3802,7 +3842,7 @@ export namespace Prisma {
     lastName?: boolean
     tel?: boolean
     Pet?: boolean | User$PetArgs<ExtArgs>
-    Request?: boolean | User$RequestArgs<ExtArgs>
+    RequestForm?: boolean | User$RequestFormArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3836,7 +3876,7 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "tel", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Pet?: boolean | User$PetArgs<ExtArgs>
-    Request?: boolean | User$RequestArgs<ExtArgs>
+    RequestForm?: boolean | User$RequestFormArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3846,7 +3886,7 @@ export namespace Prisma {
     name: "User"
     objects: {
       Pet: Prisma.$PetPayload<ExtArgs>[]
-      Request: Prisma.$RequestPayload<ExtArgs>[]
+      RequestForm: Prisma.$RequestFormPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4250,7 +4290,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Pet<T extends User$PetArgs<ExtArgs> = {}>(args?: Subset<T, User$PetArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Request<T extends User$RequestArgs<ExtArgs> = {}>(args?: Subset<T, User$RequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    RequestForm<T extends User$RequestFormArgs<ExtArgs> = {}>(args?: Subset<T, User$RequestFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4696,27 +4736,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.Request
+   * User.RequestForm
    */
-  export type User$RequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$RequestFormArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
-    where?: RequestWhereInput
-    orderBy?: RequestOrderByWithRelationInput | RequestOrderByWithRelationInput[]
-    cursor?: RequestWhereUniqueInput
+    include?: RequestFormInclude<ExtArgs> | null
+    where?: RequestFormWhereInput
+    orderBy?: RequestFormOrderByWithRelationInput | RequestFormOrderByWithRelationInput[]
+    cursor?: RequestFormWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: RequestScalarFieldEnum | RequestScalarFieldEnum[]
+    distinct?: RequestFormScalarFieldEnum | RequestFormScalarFieldEnum[]
   }
 
   /**
@@ -4739,375 +4779,423 @@ export namespace Prisma {
 
 
   /**
-   * Model Request
+   * Model RequestForm
    */
 
-  export type AggregateRequest = {
-    _count: RequestCountAggregateOutputType | null
-    _avg: RequestAvgAggregateOutputType | null
-    _sum: RequestSumAggregateOutputType | null
-    _min: RequestMinAggregateOutputType | null
-    _max: RequestMaxAggregateOutputType | null
+  export type AggregateRequestForm = {
+    _count: RequestFormCountAggregateOutputType | null
+    _avg: RequestFormAvgAggregateOutputType | null
+    _sum: RequestFormSumAggregateOutputType | null
+    _min: RequestFormMinAggregateOutputType | null
+    _max: RequestFormMaxAggregateOutputType | null
   }
 
-  export type RequestAvgAggregateOutputType = {
+  export type RequestFormAvgAggregateOutputType = {
     id: number | null
     userId: number | null
     petId: number | null
   }
 
-  export type RequestSumAggregateOutputType = {
+  export type RequestFormSumAggregateOutputType = {
     id: number | null
     userId: number | null
     petId: number | null
   }
 
-  export type RequestMinAggregateOutputType = {
+  export type RequestFormMinAggregateOutputType = {
     id: number | null
+    houseEn: $Enums.HouseEn | null
+    financial: $Enums.Financial | null
+    pickup: $Enums.Pickup | null
+    addressRequest: string | null
     userId: number | null
     petId: number | null
   }
 
-  export type RequestMaxAggregateOutputType = {
+  export type RequestFormMaxAggregateOutputType = {
     id: number | null
+    houseEn: $Enums.HouseEn | null
+    financial: $Enums.Financial | null
+    pickup: $Enums.Pickup | null
+    addressRequest: string | null
     userId: number | null
     petId: number | null
   }
 
-  export type RequestCountAggregateOutputType = {
+  export type RequestFormCountAggregateOutputType = {
     id: number
+    houseEn: number
+    financial: number
+    pickup: number
+    addressRequest: number
     userId: number
     petId: number
     _all: number
   }
 
 
-  export type RequestAvgAggregateInputType = {
+  export type RequestFormAvgAggregateInputType = {
     id?: true
     userId?: true
     petId?: true
   }
 
-  export type RequestSumAggregateInputType = {
+  export type RequestFormSumAggregateInputType = {
     id?: true
     userId?: true
     petId?: true
   }
 
-  export type RequestMinAggregateInputType = {
+  export type RequestFormMinAggregateInputType = {
     id?: true
+    houseEn?: true
+    financial?: true
+    pickup?: true
+    addressRequest?: true
     userId?: true
     petId?: true
   }
 
-  export type RequestMaxAggregateInputType = {
+  export type RequestFormMaxAggregateInputType = {
     id?: true
+    houseEn?: true
+    financial?: true
+    pickup?: true
+    addressRequest?: true
     userId?: true
     petId?: true
   }
 
-  export type RequestCountAggregateInputType = {
+  export type RequestFormCountAggregateInputType = {
     id?: true
+    houseEn?: true
+    financial?: true
+    pickup?: true
+    addressRequest?: true
     userId?: true
     petId?: true
     _all?: true
   }
 
-  export type RequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Request to aggregate.
+     * Filter which RequestForm to aggregate.
      */
-    where?: RequestWhereInput
+    where?: RequestFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Requests to fetch.
+     * Determine the order of RequestForms to fetch.
      */
-    orderBy?: RequestOrderByWithRelationInput | RequestOrderByWithRelationInput[]
+    orderBy?: RequestFormOrderByWithRelationInput | RequestFormOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: RequestWhereUniqueInput
+    cursor?: RequestFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Requests from the position of the cursor.
+     * Take `±n` RequestForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Requests.
+     * Skip the first `n` RequestForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Requests
+     * Count returned RequestForms
     **/
-    _count?: true | RequestCountAggregateInputType
+    _count?: true | RequestFormCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: RequestAvgAggregateInputType
+    _avg?: RequestFormAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: RequestSumAggregateInputType
+    _sum?: RequestFormSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: RequestMinAggregateInputType
+    _min?: RequestFormMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: RequestMaxAggregateInputType
+    _max?: RequestFormMaxAggregateInputType
   }
 
-  export type GetRequestAggregateType<T extends RequestAggregateArgs> = {
-        [P in keyof T & keyof AggregateRequest]: P extends '_count' | 'count'
+  export type GetRequestFormAggregateType<T extends RequestFormAggregateArgs> = {
+        [P in keyof T & keyof AggregateRequestForm]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateRequest[P]>
-      : GetScalarType<T[P], AggregateRequest[P]>
+        : GetScalarType<T[P], AggregateRequestForm[P]>
+      : GetScalarType<T[P], AggregateRequestForm[P]>
   }
 
 
 
 
-  export type RequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RequestWhereInput
-    orderBy?: RequestOrderByWithAggregationInput | RequestOrderByWithAggregationInput[]
-    by: RequestScalarFieldEnum[] | RequestScalarFieldEnum
-    having?: RequestScalarWhereWithAggregatesInput
+  export type RequestFormGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RequestFormWhereInput
+    orderBy?: RequestFormOrderByWithAggregationInput | RequestFormOrderByWithAggregationInput[]
+    by: RequestFormScalarFieldEnum[] | RequestFormScalarFieldEnum
+    having?: RequestFormScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: RequestCountAggregateInputType | true
-    _avg?: RequestAvgAggregateInputType
-    _sum?: RequestSumAggregateInputType
-    _min?: RequestMinAggregateInputType
-    _max?: RequestMaxAggregateInputType
+    _count?: RequestFormCountAggregateInputType | true
+    _avg?: RequestFormAvgAggregateInputType
+    _sum?: RequestFormSumAggregateInputType
+    _min?: RequestFormMinAggregateInputType
+    _max?: RequestFormMaxAggregateInputType
   }
 
-  export type RequestGroupByOutputType = {
+  export type RequestFormGroupByOutputType = {
     id: number
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
     userId: number
     petId: number
-    _count: RequestCountAggregateOutputType | null
-    _avg: RequestAvgAggregateOutputType | null
-    _sum: RequestSumAggregateOutputType | null
-    _min: RequestMinAggregateOutputType | null
-    _max: RequestMaxAggregateOutputType | null
+    _count: RequestFormCountAggregateOutputType | null
+    _avg: RequestFormAvgAggregateOutputType | null
+    _sum: RequestFormSumAggregateOutputType | null
+    _min: RequestFormMinAggregateOutputType | null
+    _max: RequestFormMaxAggregateOutputType | null
   }
 
-  type GetRequestGroupByPayload<T extends RequestGroupByArgs> = Prisma.PrismaPromise<
+  type GetRequestFormGroupByPayload<T extends RequestFormGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<RequestGroupByOutputType, T['by']> &
+      PickEnumerable<RequestFormGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof RequestGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof RequestFormGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], RequestGroupByOutputType[P]>
-            : GetScalarType<T[P], RequestGroupByOutputType[P]>
+              : GetScalarType<T[P], RequestFormGroupByOutputType[P]>
+            : GetScalarType<T[P], RequestFormGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type RequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type RequestFormSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    houseEn?: boolean
+    financial?: boolean
+    pickup?: boolean
+    addressRequest?: boolean
     userId?: boolean
     petId?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
     Pet?: boolean | PetDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["request"]>
+  }, ExtArgs["result"]["requestForm"]>
 
-  export type RequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type RequestFormSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    houseEn?: boolean
+    financial?: boolean
+    pickup?: boolean
+    addressRequest?: boolean
     userId?: boolean
     petId?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
     Pet?: boolean | PetDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["request"]>
+  }, ExtArgs["result"]["requestForm"]>
 
-  export type RequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type RequestFormSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    houseEn?: boolean
+    financial?: boolean
+    pickup?: boolean
+    addressRequest?: boolean
     userId?: boolean
     petId?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
     Pet?: boolean | PetDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["request"]>
+  }, ExtArgs["result"]["requestForm"]>
 
-  export type RequestSelectScalar = {
+  export type RequestFormSelectScalar = {
     id?: boolean
+    houseEn?: boolean
+    financial?: boolean
+    pickup?: boolean
+    addressRequest?: boolean
     userId?: boolean
     petId?: boolean
   }
 
-  export type RequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "petId", ExtArgs["result"]["request"]>
-  export type RequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "houseEn" | "financial" | "pickup" | "addressRequest" | "userId" | "petId", ExtArgs["result"]["requestForm"]>
+  export type RequestFormInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
     Pet?: boolean | PetDefaultArgs<ExtArgs>
   }
-  export type RequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
     Pet?: boolean | PetDefaultArgs<ExtArgs>
   }
-  export type RequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
     Pet?: boolean | PetDefaultArgs<ExtArgs>
   }
 
-  export type $RequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Request"
+  export type $RequestFormPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RequestForm"
     objects: {
       User: Prisma.$UserPayload<ExtArgs>
       Pet: Prisma.$PetPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      houseEn: $Enums.HouseEn
+      financial: $Enums.Financial
+      pickup: $Enums.Pickup
+      addressRequest: string
       userId: number
       petId: number
-    }, ExtArgs["result"]["request"]>
+    }, ExtArgs["result"]["requestForm"]>
     composites: {}
   }
 
-  type RequestGetPayload<S extends boolean | null | undefined | RequestDefaultArgs> = $Result.GetResult<Prisma.$RequestPayload, S>
+  type RequestFormGetPayload<S extends boolean | null | undefined | RequestFormDefaultArgs> = $Result.GetResult<Prisma.$RequestFormPayload, S>
 
-  type RequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<RequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: RequestCountAggregateInputType | true
+  type RequestFormCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RequestFormFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RequestFormCountAggregateInputType | true
     }
 
-  export interface RequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Request'], meta: { name: 'Request' } }
+  export interface RequestFormDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RequestForm'], meta: { name: 'RequestForm' } }
     /**
-     * Find zero or one Request that matches the filter.
-     * @param {RequestFindUniqueArgs} args - Arguments to find a Request
+     * Find zero or one RequestForm that matches the filter.
+     * @param {RequestFormFindUniqueArgs} args - Arguments to find a RequestForm
      * @example
-     * // Get one Request
-     * const request = await prisma.request.findUnique({
+     * // Get one RequestForm
+     * const requestForm = await prisma.requestForm.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends RequestFindUniqueArgs>(args: SelectSubset<T, RequestFindUniqueArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends RequestFormFindUniqueArgs>(args: SelectSubset<T, RequestFormFindUniqueArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Request that matches the filter or throw an error with `error.code='P2025'`
+     * Find one RequestForm that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {RequestFindUniqueOrThrowArgs} args - Arguments to find a Request
+     * @param {RequestFormFindUniqueOrThrowArgs} args - Arguments to find a RequestForm
      * @example
-     * // Get one Request
-     * const request = await prisma.request.findUniqueOrThrow({
+     * // Get one RequestForm
+     * const requestForm = await prisma.requestForm.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends RequestFindUniqueOrThrowArgs>(args: SelectSubset<T, RequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends RequestFormFindUniqueOrThrowArgs>(args: SelectSubset<T, RequestFormFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Request that matches the filter.
+     * Find the first RequestForm that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequestFindFirstArgs} args - Arguments to find a Request
+     * @param {RequestFormFindFirstArgs} args - Arguments to find a RequestForm
      * @example
-     * // Get one Request
-     * const request = await prisma.request.findFirst({
+     * // Get one RequestForm
+     * const requestForm = await prisma.requestForm.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends RequestFindFirstArgs>(args?: SelectSubset<T, RequestFindFirstArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends RequestFormFindFirstArgs>(args?: SelectSubset<T, RequestFormFindFirstArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Request that matches the filter or
+     * Find the first RequestForm that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequestFindFirstOrThrowArgs} args - Arguments to find a Request
+     * @param {RequestFormFindFirstOrThrowArgs} args - Arguments to find a RequestForm
      * @example
-     * // Get one Request
-     * const request = await prisma.request.findFirstOrThrow({
+     * // Get one RequestForm
+     * const requestForm = await prisma.requestForm.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends RequestFindFirstOrThrowArgs>(args?: SelectSubset<T, RequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends RequestFormFindFirstOrThrowArgs>(args?: SelectSubset<T, RequestFormFindFirstOrThrowArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Requests that matches the filter.
+     * Find zero or more RequestForms that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {RequestFormFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Requests
-     * const requests = await prisma.request.findMany()
+     * // Get all RequestForms
+     * const requestForms = await prisma.requestForm.findMany()
      * 
-     * // Get first 10 Requests
-     * const requests = await prisma.request.findMany({ take: 10 })
+     * // Get first 10 RequestForms
+     * const requestForms = await prisma.requestForm.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const requestWithIdOnly = await prisma.request.findMany({ select: { id: true } })
+     * const requestFormWithIdOnly = await prisma.requestForm.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends RequestFindManyArgs>(args?: SelectSubset<T, RequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends RequestFormFindManyArgs>(args?: SelectSubset<T, RequestFormFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Request.
-     * @param {RequestCreateArgs} args - Arguments to create a Request.
+     * Create a RequestForm.
+     * @param {RequestFormCreateArgs} args - Arguments to create a RequestForm.
      * @example
-     * // Create one Request
-     * const Request = await prisma.request.create({
+     * // Create one RequestForm
+     * const RequestForm = await prisma.requestForm.create({
      *   data: {
-     *     // ... data to create a Request
+     *     // ... data to create a RequestForm
      *   }
      * })
      * 
      */
-    create<T extends RequestCreateArgs>(args: SelectSubset<T, RequestCreateArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends RequestFormCreateArgs>(args: SelectSubset<T, RequestFormCreateArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Requests.
-     * @param {RequestCreateManyArgs} args - Arguments to create many Requests.
+     * Create many RequestForms.
+     * @param {RequestFormCreateManyArgs} args - Arguments to create many RequestForms.
      * @example
-     * // Create many Requests
-     * const request = await prisma.request.createMany({
+     * // Create many RequestForms
+     * const requestForm = await prisma.requestForm.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends RequestCreateManyArgs>(args?: SelectSubset<T, RequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends RequestFormCreateManyArgs>(args?: SelectSubset<T, RequestFormCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Requests and returns the data saved in the database.
-     * @param {RequestCreateManyAndReturnArgs} args - Arguments to create many Requests.
+     * Create many RequestForms and returns the data saved in the database.
+     * @param {RequestFormCreateManyAndReturnArgs} args - Arguments to create many RequestForms.
      * @example
-     * // Create many Requests
-     * const request = await prisma.request.createManyAndReturn({
+     * // Create many RequestForms
+     * const requestForm = await prisma.requestForm.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Requests and only return the `id`
-     * const requestWithIdOnly = await prisma.request.createManyAndReturn({
+     * // Create many RequestForms and only return the `id`
+     * const requestFormWithIdOnly = await prisma.requestForm.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -5117,28 +5205,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends RequestCreateManyAndReturnArgs>(args?: SelectSubset<T, RequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends RequestFormCreateManyAndReturnArgs>(args?: SelectSubset<T, RequestFormCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Request.
-     * @param {RequestDeleteArgs} args - Arguments to delete one Request.
+     * Delete a RequestForm.
+     * @param {RequestFormDeleteArgs} args - Arguments to delete one RequestForm.
      * @example
-     * // Delete one Request
-     * const Request = await prisma.request.delete({
+     * // Delete one RequestForm
+     * const RequestForm = await prisma.requestForm.delete({
      *   where: {
-     *     // ... filter to delete one Request
+     *     // ... filter to delete one RequestForm
      *   }
      * })
      * 
      */
-    delete<T extends RequestDeleteArgs>(args: SelectSubset<T, RequestDeleteArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends RequestFormDeleteArgs>(args: SelectSubset<T, RequestFormDeleteArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Request.
-     * @param {RequestUpdateArgs} args - Arguments to update one Request.
+     * Update one RequestForm.
+     * @param {RequestFormUpdateArgs} args - Arguments to update one RequestForm.
      * @example
-     * // Update one Request
-     * const request = await prisma.request.update({
+     * // Update one RequestForm
+     * const requestForm = await prisma.requestForm.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5148,30 +5236,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends RequestUpdateArgs>(args: SelectSubset<T, RequestUpdateArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends RequestFormUpdateArgs>(args: SelectSubset<T, RequestFormUpdateArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Requests.
-     * @param {RequestDeleteManyArgs} args - Arguments to filter Requests to delete.
+     * Delete zero or more RequestForms.
+     * @param {RequestFormDeleteManyArgs} args - Arguments to filter RequestForms to delete.
      * @example
-     * // Delete a few Requests
-     * const { count } = await prisma.request.deleteMany({
+     * // Delete a few RequestForms
+     * const { count } = await prisma.requestForm.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends RequestDeleteManyArgs>(args?: SelectSubset<T, RequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends RequestFormDeleteManyArgs>(args?: SelectSubset<T, RequestFormDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Requests.
+     * Update zero or more RequestForms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {RequestFormUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Requests
-     * const request = await prisma.request.updateMany({
+     * // Update many RequestForms
+     * const requestForm = await prisma.requestForm.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5181,14 +5269,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends RequestUpdateManyArgs>(args: SelectSubset<T, RequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends RequestFormUpdateManyArgs>(args: SelectSubset<T, RequestFormUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Requests and returns the data updated in the database.
-     * @param {RequestUpdateManyAndReturnArgs} args - Arguments to update many Requests.
+     * Update zero or more RequestForms and returns the data updated in the database.
+     * @param {RequestFormUpdateManyAndReturnArgs} args - Arguments to update many RequestForms.
      * @example
-     * // Update many Requests
-     * const request = await prisma.request.updateManyAndReturn({
+     * // Update many RequestForms
+     * const requestForm = await prisma.requestForm.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5197,8 +5285,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Requests and only return the `id`
-     * const requestWithIdOnly = await prisma.request.updateManyAndReturn({
+     * // Update zero or more RequestForms and only return the `id`
+     * const requestFormWithIdOnly = await prisma.requestForm.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -5211,56 +5299,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends RequestUpdateManyAndReturnArgs>(args: SelectSubset<T, RequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends RequestFormUpdateManyAndReturnArgs>(args: SelectSubset<T, RequestFormUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Request.
-     * @param {RequestUpsertArgs} args - Arguments to update or create a Request.
+     * Create or update one RequestForm.
+     * @param {RequestFormUpsertArgs} args - Arguments to update or create a RequestForm.
      * @example
-     * // Update or create a Request
-     * const request = await prisma.request.upsert({
+     * // Update or create a RequestForm
+     * const requestForm = await prisma.requestForm.upsert({
      *   create: {
-     *     // ... data to create a Request
+     *     // ... data to create a RequestForm
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Request we want to update
+     *     // ... the filter for the RequestForm we want to update
      *   }
      * })
      */
-    upsert<T extends RequestUpsertArgs>(args: SelectSubset<T, RequestUpsertArgs<ExtArgs>>): Prisma__RequestClient<$Result.GetResult<Prisma.$RequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends RequestFormUpsertArgs>(args: SelectSubset<T, RequestFormUpsertArgs<ExtArgs>>): Prisma__RequestFormClient<$Result.GetResult<Prisma.$RequestFormPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Requests.
+     * Count the number of RequestForms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequestCountArgs} args - Arguments to filter Requests to count.
+     * @param {RequestFormCountArgs} args - Arguments to filter RequestForms to count.
      * @example
-     * // Count the number of Requests
-     * const count = await prisma.request.count({
+     * // Count the number of RequestForms
+     * const count = await prisma.requestForm.count({
      *   where: {
-     *     // ... the filter for the Requests we want to count
+     *     // ... the filter for the RequestForms we want to count
      *   }
      * })
     **/
-    count<T extends RequestCountArgs>(
-      args?: Subset<T, RequestCountArgs>,
+    count<T extends RequestFormCountArgs>(
+      args?: Subset<T, RequestFormCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], RequestCountAggregateOutputType>
+          : GetScalarType<T['select'], RequestFormCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Request.
+     * Allows you to perform aggregations operations on a RequestForm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {RequestFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5280,13 +5368,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends RequestAggregateArgs>(args: Subset<T, RequestAggregateArgs>): Prisma.PrismaPromise<GetRequestAggregateType<T>>
+    aggregate<T extends RequestFormAggregateArgs>(args: Subset<T, RequestFormAggregateArgs>): Prisma.PrismaPromise<GetRequestFormAggregateType<T>>
 
     /**
-     * Group by Request.
+     * Group by RequestForm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RequestGroupByArgs} args - Group by arguments.
+     * @param {RequestFormGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -5301,14 +5389,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends RequestGroupByArgs,
+      T extends RequestFormGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: RequestGroupByArgs['orderBy'] }
-        : { orderBy?: RequestGroupByArgs['orderBy'] },
+        ? { orderBy: RequestFormGroupByArgs['orderBy'] }
+        : { orderBy?: RequestFormGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5357,20 +5445,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, RequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, RequestFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRequestFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Request model
+   * Fields of the RequestForm model
    */
-  readonly fields: RequestFieldRefs;
+  readonly fields: RequestFormFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Request.
+   * The delegate class that acts as a "Promise-like" for RequestForm.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__RequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__RequestFormClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Pet<T extends PetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PetDefaultArgs<ExtArgs>>): Prisma__PetClient<$Result.GetResult<Prisma.$PetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -5400,421 +5488,425 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Request model
+   * Fields of the RequestForm model
    */
-  interface RequestFieldRefs {
-    readonly id: FieldRef<"Request", 'Int'>
-    readonly userId: FieldRef<"Request", 'Int'>
-    readonly petId: FieldRef<"Request", 'Int'>
+  interface RequestFormFieldRefs {
+    readonly id: FieldRef<"RequestForm", 'Int'>
+    readonly houseEn: FieldRef<"RequestForm", 'HouseEn'>
+    readonly financial: FieldRef<"RequestForm", 'Financial'>
+    readonly pickup: FieldRef<"RequestForm", 'Pickup'>
+    readonly addressRequest: FieldRef<"RequestForm", 'String'>
+    readonly userId: FieldRef<"RequestForm", 'Int'>
+    readonly petId: FieldRef<"RequestForm", 'Int'>
   }
     
 
   // Custom InputTypes
   /**
-   * Request findUnique
+   * RequestForm findUnique
    */
-  export type RequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * Filter, which Request to fetch.
+     * Filter, which RequestForm to fetch.
      */
-    where: RequestWhereUniqueInput
+    where: RequestFormWhereUniqueInput
   }
 
   /**
-   * Request findUniqueOrThrow
+   * RequestForm findUniqueOrThrow
    */
-  export type RequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * Filter, which Request to fetch.
+     * Filter, which RequestForm to fetch.
      */
-    where: RequestWhereUniqueInput
+    where: RequestFormWhereUniqueInput
   }
 
   /**
-   * Request findFirst
+   * RequestForm findFirst
    */
-  export type RequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * Filter, which Request to fetch.
+     * Filter, which RequestForm to fetch.
      */
-    where?: RequestWhereInput
+    where?: RequestFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Requests to fetch.
+     * Determine the order of RequestForms to fetch.
      */
-    orderBy?: RequestOrderByWithRelationInput | RequestOrderByWithRelationInput[]
+    orderBy?: RequestFormOrderByWithRelationInput | RequestFormOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Requests.
+     * Sets the position for searching for RequestForms.
      */
-    cursor?: RequestWhereUniqueInput
+    cursor?: RequestFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Requests from the position of the cursor.
+     * Take `±n` RequestForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Requests.
+     * Skip the first `n` RequestForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Requests.
+     * Filter by unique combinations of RequestForms.
      */
-    distinct?: RequestScalarFieldEnum | RequestScalarFieldEnum[]
+    distinct?: RequestFormScalarFieldEnum | RequestFormScalarFieldEnum[]
   }
 
   /**
-   * Request findFirstOrThrow
+   * RequestForm findFirstOrThrow
    */
-  export type RequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * Filter, which Request to fetch.
+     * Filter, which RequestForm to fetch.
      */
-    where?: RequestWhereInput
+    where?: RequestFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Requests to fetch.
+     * Determine the order of RequestForms to fetch.
      */
-    orderBy?: RequestOrderByWithRelationInput | RequestOrderByWithRelationInput[]
+    orderBy?: RequestFormOrderByWithRelationInput | RequestFormOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Requests.
+     * Sets the position for searching for RequestForms.
      */
-    cursor?: RequestWhereUniqueInput
+    cursor?: RequestFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Requests from the position of the cursor.
+     * Take `±n` RequestForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Requests.
+     * Skip the first `n` RequestForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Requests.
+     * Filter by unique combinations of RequestForms.
      */
-    distinct?: RequestScalarFieldEnum | RequestScalarFieldEnum[]
+    distinct?: RequestFormScalarFieldEnum | RequestFormScalarFieldEnum[]
   }
 
   /**
-   * Request findMany
+   * RequestForm findMany
    */
-  export type RequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * Filter, which Requests to fetch.
+     * Filter, which RequestForms to fetch.
      */
-    where?: RequestWhereInput
+    where?: RequestFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Requests to fetch.
+     * Determine the order of RequestForms to fetch.
      */
-    orderBy?: RequestOrderByWithRelationInput | RequestOrderByWithRelationInput[]
+    orderBy?: RequestFormOrderByWithRelationInput | RequestFormOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Requests.
+     * Sets the position for listing RequestForms.
      */
-    cursor?: RequestWhereUniqueInput
+    cursor?: RequestFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Requests from the position of the cursor.
+     * Take `±n` RequestForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Requests.
+     * Skip the first `n` RequestForms.
      */
     skip?: number
-    distinct?: RequestScalarFieldEnum | RequestScalarFieldEnum[]
+    distinct?: RequestFormScalarFieldEnum | RequestFormScalarFieldEnum[]
   }
 
   /**
-   * Request create
+   * RequestForm create
    */
-  export type RequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * The data needed to create a Request.
+     * The data needed to create a RequestForm.
      */
-    data: XOR<RequestCreateInput, RequestUncheckedCreateInput>
+    data: XOR<RequestFormCreateInput, RequestFormUncheckedCreateInput>
   }
 
   /**
-   * Request createMany
+   * RequestForm createMany
    */
-  export type RequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Requests.
+     * The data used to create many RequestForms.
      */
-    data: RequestCreateManyInput | RequestCreateManyInput[]
+    data: RequestFormCreateManyInput | RequestFormCreateManyInput[]
   }
 
   /**
-   * Request createManyAndReturn
+   * RequestForm createManyAndReturn
    */
-  export type RequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelectCreateManyAndReturn<ExtArgs> | null
+    select?: RequestFormSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
-     * The data used to create many Requests.
+     * The data used to create many RequestForms.
      */
-    data: RequestCreateManyInput | RequestCreateManyInput[]
+    data: RequestFormCreateManyInput | RequestFormCreateManyInput[]
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: RequestFormIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Request update
+   * RequestForm update
    */
-  export type RequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * The data needed to update a Request.
+     * The data needed to update a RequestForm.
      */
-    data: XOR<RequestUpdateInput, RequestUncheckedUpdateInput>
+    data: XOR<RequestFormUpdateInput, RequestFormUncheckedUpdateInput>
     /**
-     * Choose, which Request to update.
+     * Choose, which RequestForm to update.
      */
-    where: RequestWhereUniqueInput
+    where: RequestFormWhereUniqueInput
   }
 
   /**
-   * Request updateMany
+   * RequestForm updateMany
    */
-  export type RequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Requests.
+     * The data used to update RequestForms.
      */
-    data: XOR<RequestUpdateManyMutationInput, RequestUncheckedUpdateManyInput>
+    data: XOR<RequestFormUpdateManyMutationInput, RequestFormUncheckedUpdateManyInput>
     /**
-     * Filter which Requests to update
+     * Filter which RequestForms to update
      */
-    where?: RequestWhereInput
+    where?: RequestFormWhereInput
     /**
-     * Limit how many Requests to update.
+     * Limit how many RequestForms to update.
      */
     limit?: number
   }
 
   /**
-   * Request updateManyAndReturn
+   * RequestForm updateManyAndReturn
    */
-  export type RequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: RequestFormSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
-     * The data used to update Requests.
+     * The data used to update RequestForms.
      */
-    data: XOR<RequestUpdateManyMutationInput, RequestUncheckedUpdateManyInput>
+    data: XOR<RequestFormUpdateManyMutationInput, RequestFormUncheckedUpdateManyInput>
     /**
-     * Filter which Requests to update
+     * Filter which RequestForms to update
      */
-    where?: RequestWhereInput
+    where?: RequestFormWhereInput
     /**
-     * Limit how many Requests to update.
+     * Limit how many RequestForms to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: RequestFormIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Request upsert
+   * RequestForm upsert
    */
-  export type RequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * The filter to search for the Request to update in case it exists.
+     * The filter to search for the RequestForm to update in case it exists.
      */
-    where: RequestWhereUniqueInput
+    where: RequestFormWhereUniqueInput
     /**
-     * In case the Request found by the `where` argument doesn't exist, create a new Request with this data.
+     * In case the RequestForm found by the `where` argument doesn't exist, create a new RequestForm with this data.
      */
-    create: XOR<RequestCreateInput, RequestUncheckedCreateInput>
+    create: XOR<RequestFormCreateInput, RequestFormUncheckedCreateInput>
     /**
-     * In case the Request was found with the provided `where` argument, update it with this data.
+     * In case the RequestForm was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<RequestUpdateInput, RequestUncheckedUpdateInput>
+    update: XOR<RequestFormUpdateInput, RequestFormUncheckedUpdateInput>
   }
 
   /**
-   * Request delete
+   * RequestForm delete
    */
-  export type RequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
     /**
-     * Filter which Request to delete.
+     * Filter which RequestForm to delete.
      */
-    where: RequestWhereUniqueInput
+    where: RequestFormWhereUniqueInput
   }
 
   /**
-   * Request deleteMany
+   * RequestForm deleteMany
    */
-  export type RequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Requests to delete
+     * Filter which RequestForms to delete
      */
-    where?: RequestWhereInput
+    where?: RequestFormWhereInput
     /**
-     * Limit how many Requests to delete.
+     * Limit how many RequestForms to delete.
      */
     limit?: number
   }
 
   /**
-   * Request without action
+   * RequestForm without action
    */
-  export type RequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RequestFormDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Request
+     * Select specific fields to fetch from the RequestForm
      */
-    select?: RequestSelect<ExtArgs> | null
+    select?: RequestFormSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Request
+     * Omit specific fields from the RequestForm
      */
-    omit?: RequestOmit<ExtArgs> | null
+    omit?: RequestFormOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RequestInclude<ExtArgs> | null
+    include?: RequestFormInclude<ExtArgs> | null
   }
 
 
@@ -5870,13 +5962,17 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const RequestScalarFieldEnum: {
+  export const RequestFormScalarFieldEnum: {
     id: 'id',
+    houseEn: 'houseEn',
+    financial: 'financial',
+    pickup: 'pickup',
+    addressRequest: 'addressRequest',
     userId: 'userId',
     petId: 'petId'
   };
 
-  export type RequestScalarFieldEnum = (typeof RequestScalarFieldEnum)[keyof typeof RequestScalarFieldEnum]
+  export type RequestFormScalarFieldEnum = (typeof RequestFormScalarFieldEnum)[keyof typeof RequestFormScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5936,6 +6032,27 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'HouseEn'
+   */
+  export type EnumHouseEnFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HouseEn'>
+    
+
+
+  /**
+   * Reference to a field of type 'Financial'
+   */
+  export type EnumFinancialFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Financial'>
+    
+
+
+  /**
+   * Reference to a field of type 'Pickup'
+   */
+  export type EnumPickupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Pickup'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5965,7 +6082,7 @@ export namespace Prisma {
     userId?: IntFilter<"Pet"> | number
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
     Vaccine?: VaccineListRelationFilter
-    Request?: RequestListRelationFilter
+    RequestForm?: RequestFormListRelationFilter
   }
 
   export type PetOrderByWithRelationInput = {
@@ -5985,7 +6102,7 @@ export namespace Prisma {
     userId?: SortOrder
     User?: UserOrderByWithRelationInput
     Vaccine?: VaccineOrderByRelationAggregateInput
-    Request?: RequestOrderByRelationAggregateInput
+    RequestForm?: RequestFormOrderByRelationAggregateInput
   }
 
   export type PetWhereUniqueInput = Prisma.AtLeast<{
@@ -6008,7 +6125,7 @@ export namespace Prisma {
     userId?: IntFilter<"Pet"> | number
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
     Vaccine?: VaccineListRelationFilter
-    Request?: RequestListRelationFilter
+    RequestForm?: RequestFormListRelationFilter
   }, "id">
 
   export type PetOrderByWithAggregationInput = {
@@ -6111,7 +6228,7 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     tel?: StringFilter<"User"> | string
     Pet?: PetListRelationFilter
-    Request?: RequestListRelationFilter
+    RequestForm?: RequestFormListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6122,7 +6239,7 @@ export namespace Prisma {
     lastName?: SortOrder
     tel?: SortOrder
     Pet?: PetOrderByRelationAggregateInput
-    Request?: RequestOrderByRelationAggregateInput
+    RequestForm?: RequestFormOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6136,7 +6253,7 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     tel?: StringFilter<"User"> | string
     Pet?: PetListRelationFilter
-    Request?: RequestListRelationFilter
+    RequestForm?: RequestFormListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -6165,54 +6282,74 @@ export namespace Prisma {
     tel?: StringWithAggregatesFilter<"User"> | string
   }
 
-  export type RequestWhereInput = {
-    AND?: RequestWhereInput | RequestWhereInput[]
-    OR?: RequestWhereInput[]
-    NOT?: RequestWhereInput | RequestWhereInput[]
-    id?: IntFilter<"Request"> | number
-    userId?: IntFilter<"Request"> | number
-    petId?: IntFilter<"Request"> | number
+  export type RequestFormWhereInput = {
+    AND?: RequestFormWhereInput | RequestFormWhereInput[]
+    OR?: RequestFormWhereInput[]
+    NOT?: RequestFormWhereInput | RequestFormWhereInput[]
+    id?: IntFilter<"RequestForm"> | number
+    houseEn?: EnumHouseEnFilter<"RequestForm"> | $Enums.HouseEn
+    financial?: EnumFinancialFilter<"RequestForm"> | $Enums.Financial
+    pickup?: EnumPickupFilter<"RequestForm"> | $Enums.Pickup
+    addressRequest?: StringFilter<"RequestForm"> | string
+    userId?: IntFilter<"RequestForm"> | number
+    petId?: IntFilter<"RequestForm"> | number
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
     Pet?: XOR<PetScalarRelationFilter, PetWhereInput>
   }
 
-  export type RequestOrderByWithRelationInput = {
+  export type RequestFormOrderByWithRelationInput = {
     id?: SortOrder
+    houseEn?: SortOrder
+    financial?: SortOrder
+    pickup?: SortOrder
+    addressRequest?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
     User?: UserOrderByWithRelationInput
     Pet?: PetOrderByWithRelationInput
   }
 
-  export type RequestWhereUniqueInput = Prisma.AtLeast<{
+  export type RequestFormWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    petId?: number
-    AND?: RequestWhereInput | RequestWhereInput[]
-    OR?: RequestWhereInput[]
-    NOT?: RequestWhereInput | RequestWhereInput[]
-    userId?: IntFilter<"Request"> | number
+    AND?: RequestFormWhereInput | RequestFormWhereInput[]
+    OR?: RequestFormWhereInput[]
+    NOT?: RequestFormWhereInput | RequestFormWhereInput[]
+    houseEn?: EnumHouseEnFilter<"RequestForm"> | $Enums.HouseEn
+    financial?: EnumFinancialFilter<"RequestForm"> | $Enums.Financial
+    pickup?: EnumPickupFilter<"RequestForm"> | $Enums.Pickup
+    addressRequest?: StringFilter<"RequestForm"> | string
+    userId?: IntFilter<"RequestForm"> | number
+    petId?: IntFilter<"RequestForm"> | number
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
     Pet?: XOR<PetScalarRelationFilter, PetWhereInput>
-  }, "id" | "petId">
+  }, "id">
 
-  export type RequestOrderByWithAggregationInput = {
+  export type RequestFormOrderByWithAggregationInput = {
     id?: SortOrder
+    houseEn?: SortOrder
+    financial?: SortOrder
+    pickup?: SortOrder
+    addressRequest?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
-    _count?: RequestCountOrderByAggregateInput
-    _avg?: RequestAvgOrderByAggregateInput
-    _max?: RequestMaxOrderByAggregateInput
-    _min?: RequestMinOrderByAggregateInput
-    _sum?: RequestSumOrderByAggregateInput
+    _count?: RequestFormCountOrderByAggregateInput
+    _avg?: RequestFormAvgOrderByAggregateInput
+    _max?: RequestFormMaxOrderByAggregateInput
+    _min?: RequestFormMinOrderByAggregateInput
+    _sum?: RequestFormSumOrderByAggregateInput
   }
 
-  export type RequestScalarWhereWithAggregatesInput = {
-    AND?: RequestScalarWhereWithAggregatesInput | RequestScalarWhereWithAggregatesInput[]
-    OR?: RequestScalarWhereWithAggregatesInput[]
-    NOT?: RequestScalarWhereWithAggregatesInput | RequestScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Request"> | number
-    userId?: IntWithAggregatesFilter<"Request"> | number
-    petId?: IntWithAggregatesFilter<"Request"> | number
+  export type RequestFormScalarWhereWithAggregatesInput = {
+    AND?: RequestFormScalarWhereWithAggregatesInput | RequestFormScalarWhereWithAggregatesInput[]
+    OR?: RequestFormScalarWhereWithAggregatesInput[]
+    NOT?: RequestFormScalarWhereWithAggregatesInput | RequestFormScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"RequestForm"> | number
+    houseEn?: EnumHouseEnWithAggregatesFilter<"RequestForm"> | $Enums.HouseEn
+    financial?: EnumFinancialWithAggregatesFilter<"RequestForm"> | $Enums.Financial
+    pickup?: EnumPickupWithAggregatesFilter<"RequestForm"> | $Enums.Pickup
+    addressRequest?: StringWithAggregatesFilter<"RequestForm"> | string
+    userId?: IntWithAggregatesFilter<"RequestForm"> | number
+    petId?: IntWithAggregatesFilter<"RequestForm"> | number
   }
 
   export type PetCreateInput = {
@@ -6230,7 +6367,7 @@ export namespace Prisma {
     vacineUrl?: string | null
     User: UserCreateNestedOneWithoutPetInput
     Vaccine?: VaccineCreateNestedManyWithoutPetInput
-    Request?: RequestCreateNestedManyWithoutPetInput
+    RequestForm?: RequestFormCreateNestedManyWithoutPetInput
   }
 
   export type PetUncheckedCreateInput = {
@@ -6249,7 +6386,7 @@ export namespace Prisma {
     vacineUrl?: string | null
     userId: number
     Vaccine?: VaccineUncheckedCreateNestedManyWithoutPetInput
-    Request?: RequestUncheckedCreateNestedManyWithoutPetInput
+    RequestForm?: RequestFormUncheckedCreateNestedManyWithoutPetInput
   }
 
   export type PetUpdateInput = {
@@ -6267,7 +6404,7 @@ export namespace Prisma {
     vacineUrl?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutPetNestedInput
     Vaccine?: VaccineUpdateManyWithoutPetNestedInput
-    Request?: RequestUpdateManyWithoutPetNestedInput
+    RequestForm?: RequestFormUpdateManyWithoutPetNestedInput
   }
 
   export type PetUncheckedUpdateInput = {
@@ -6286,7 +6423,7 @@ export namespace Prisma {
     vacineUrl?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     Vaccine?: VaccineUncheckedUpdateManyWithoutPetNestedInput
-    Request?: RequestUncheckedUpdateManyWithoutPetNestedInput
+    RequestForm?: RequestFormUncheckedUpdateManyWithoutPetNestedInput
   }
 
   export type PetCreateManyInput = {
@@ -6383,7 +6520,7 @@ export namespace Prisma {
     lastName: string
     tel: string
     Pet?: PetCreateNestedManyWithoutUserInput
-    Request?: RequestCreateNestedManyWithoutUserInput
+    RequestForm?: RequestFormCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6394,7 +6531,7 @@ export namespace Prisma {
     lastName: string
     tel: string
     Pet?: PetUncheckedCreateNestedManyWithoutUserInput
-    Request?: RequestUncheckedCreateNestedManyWithoutUserInput
+    RequestForm?: RequestFormUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6404,7 +6541,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     tel?: StringFieldUpdateOperationsInput | string
     Pet?: PetUpdateManyWithoutUserNestedInput
-    Request?: RequestUpdateManyWithoutUserNestedInput
+    RequestForm?: RequestFormUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6415,7 +6552,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     tel?: StringFieldUpdateOperationsInput | string
     Pet?: PetUncheckedUpdateManyWithoutUserNestedInput
-    Request?: RequestUncheckedUpdateManyWithoutUserNestedInput
+    RequestForm?: RequestFormUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6444,40 +6581,67 @@ export namespace Prisma {
     tel?: StringFieldUpdateOperationsInput | string
   }
 
-  export type RequestCreateInput = {
-    User: UserCreateNestedOneWithoutRequestInput
-    Pet: PetCreateNestedOneWithoutRequestInput
+  export type RequestFormCreateInput = {
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
+    User: UserCreateNestedOneWithoutRequestFormInput
+    Pet: PetCreateNestedOneWithoutRequestFormInput
   }
 
-  export type RequestUncheckedCreateInput = {
+  export type RequestFormUncheckedCreateInput = {
     id?: number
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
     userId: number
     petId: number
   }
 
-  export type RequestUpdateInput = {
-    User?: UserUpdateOneRequiredWithoutRequestNestedInput
-    Pet?: PetUpdateOneRequiredWithoutRequestNestedInput
+  export type RequestFormUpdateInput = {
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
+    User?: UserUpdateOneRequiredWithoutRequestFormNestedInput
+    Pet?: PetUpdateOneRequiredWithoutRequestFormNestedInput
   }
 
-  export type RequestUncheckedUpdateInput = {
+  export type RequestFormUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     petId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type RequestCreateManyInput = {
+  export type RequestFormCreateManyInput = {
     id?: number
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
     userId: number
     petId: number
   }
 
-  export type RequestUpdateManyMutationInput = {
-
+  export type RequestFormUpdateManyMutationInput = {
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
   }
 
-  export type RequestUncheckedUpdateManyInput = {
+  export type RequestFormUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     petId?: IntFieldUpdateOperationsInput | number
   }
@@ -6568,10 +6732,10 @@ export namespace Prisma {
     none?: VaccineWhereInput
   }
 
-  export type RequestListRelationFilter = {
-    every?: RequestWhereInput
-    some?: RequestWhereInput
-    none?: RequestWhereInput
+  export type RequestFormListRelationFilter = {
+    every?: RequestFormWhereInput
+    some?: RequestFormWhereInput
+    none?: RequestFormWhereInput
   }
 
   export type SortOrderInput = {
@@ -6583,7 +6747,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type RequestOrderByRelationAggregateInput = {
+  export type RequestFormOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6830,34 +6994,97 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type RequestCountOrderByAggregateInput = {
+  export type EnumHouseEnFilter<$PrismaModel = never> = {
+    equals?: $Enums.HouseEn | EnumHouseEnFieldRefInput<$PrismaModel>
+    in?: $Enums.HouseEn[]
+    notIn?: $Enums.HouseEn[]
+    not?: NestedEnumHouseEnFilter<$PrismaModel> | $Enums.HouseEn
+  }
+
+  export type EnumFinancialFilter<$PrismaModel = never> = {
+    equals?: $Enums.Financial | EnumFinancialFieldRefInput<$PrismaModel>
+    in?: $Enums.Financial[]
+    notIn?: $Enums.Financial[]
+    not?: NestedEnumFinancialFilter<$PrismaModel> | $Enums.Financial
+  }
+
+  export type EnumPickupFilter<$PrismaModel = never> = {
+    equals?: $Enums.Pickup | EnumPickupFieldRefInput<$PrismaModel>
+    in?: $Enums.Pickup[]
+    notIn?: $Enums.Pickup[]
+    not?: NestedEnumPickupFilter<$PrismaModel> | $Enums.Pickup
+  }
+
+  export type RequestFormCountOrderByAggregateInput = {
+    id?: SortOrder
+    houseEn?: SortOrder
+    financial?: SortOrder
+    pickup?: SortOrder
+    addressRequest?: SortOrder
+    userId?: SortOrder
+    petId?: SortOrder
+  }
+
+  export type RequestFormAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
   }
 
-  export type RequestAvgOrderByAggregateInput = {
+  export type RequestFormMaxOrderByAggregateInput = {
+    id?: SortOrder
+    houseEn?: SortOrder
+    financial?: SortOrder
+    pickup?: SortOrder
+    addressRequest?: SortOrder
+    userId?: SortOrder
+    petId?: SortOrder
+  }
+
+  export type RequestFormMinOrderByAggregateInput = {
+    id?: SortOrder
+    houseEn?: SortOrder
+    financial?: SortOrder
+    pickup?: SortOrder
+    addressRequest?: SortOrder
+    userId?: SortOrder
+    petId?: SortOrder
+  }
+
+  export type RequestFormSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
   }
 
-  export type RequestMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    petId?: SortOrder
+  export type EnumHouseEnWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HouseEn | EnumHouseEnFieldRefInput<$PrismaModel>
+    in?: $Enums.HouseEn[]
+    notIn?: $Enums.HouseEn[]
+    not?: NestedEnumHouseEnWithAggregatesFilter<$PrismaModel> | $Enums.HouseEn
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHouseEnFilter<$PrismaModel>
+    _max?: NestedEnumHouseEnFilter<$PrismaModel>
   }
 
-  export type RequestMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    petId?: SortOrder
+  export type EnumFinancialWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Financial | EnumFinancialFieldRefInput<$PrismaModel>
+    in?: $Enums.Financial[]
+    notIn?: $Enums.Financial[]
+    not?: NestedEnumFinancialWithAggregatesFilter<$PrismaModel> | $Enums.Financial
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFinancialFilter<$PrismaModel>
+    _max?: NestedEnumFinancialFilter<$PrismaModel>
   }
 
-  export type RequestSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    petId?: SortOrder
+  export type EnumPickupWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Pickup | EnumPickupFieldRefInput<$PrismaModel>
+    in?: $Enums.Pickup[]
+    notIn?: $Enums.Pickup[]
+    not?: NestedEnumPickupWithAggregatesFilter<$PrismaModel> | $Enums.Pickup
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPickupFilter<$PrismaModel>
+    _max?: NestedEnumPickupFilter<$PrismaModel>
   }
 
   export type UserCreateNestedOneWithoutPetInput = {
@@ -6873,11 +7100,11 @@ export namespace Prisma {
     connect?: VaccineWhereUniqueInput | VaccineWhereUniqueInput[]
   }
 
-  export type RequestCreateNestedManyWithoutPetInput = {
-    create?: XOR<RequestCreateWithoutPetInput, RequestUncheckedCreateWithoutPetInput> | RequestCreateWithoutPetInput[] | RequestUncheckedCreateWithoutPetInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutPetInput | RequestCreateOrConnectWithoutPetInput[]
-    createMany?: RequestCreateManyPetInputEnvelope
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
+  export type RequestFormCreateNestedManyWithoutPetInput = {
+    create?: XOR<RequestFormCreateWithoutPetInput, RequestFormUncheckedCreateWithoutPetInput> | RequestFormCreateWithoutPetInput[] | RequestFormUncheckedCreateWithoutPetInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutPetInput | RequestFormCreateOrConnectWithoutPetInput[]
+    createMany?: RequestFormCreateManyPetInputEnvelope
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
   }
 
   export type VaccineUncheckedCreateNestedManyWithoutPetInput = {
@@ -6887,11 +7114,11 @@ export namespace Prisma {
     connect?: VaccineWhereUniqueInput | VaccineWhereUniqueInput[]
   }
 
-  export type RequestUncheckedCreateNestedManyWithoutPetInput = {
-    create?: XOR<RequestCreateWithoutPetInput, RequestUncheckedCreateWithoutPetInput> | RequestCreateWithoutPetInput[] | RequestUncheckedCreateWithoutPetInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutPetInput | RequestCreateOrConnectWithoutPetInput[]
-    createMany?: RequestCreateManyPetInputEnvelope
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
+  export type RequestFormUncheckedCreateNestedManyWithoutPetInput = {
+    create?: XOR<RequestFormCreateWithoutPetInput, RequestFormUncheckedCreateWithoutPetInput> | RequestFormCreateWithoutPetInput[] | RequestFormUncheckedCreateWithoutPetInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutPetInput | RequestFormCreateOrConnectWithoutPetInput[]
+    createMany?: RequestFormCreateManyPetInputEnvelope
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6944,18 +7171,18 @@ export namespace Prisma {
     deleteMany?: VaccineScalarWhereInput | VaccineScalarWhereInput[]
   }
 
-  export type RequestUpdateManyWithoutPetNestedInput = {
-    create?: XOR<RequestCreateWithoutPetInput, RequestUncheckedCreateWithoutPetInput> | RequestCreateWithoutPetInput[] | RequestUncheckedCreateWithoutPetInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutPetInput | RequestCreateOrConnectWithoutPetInput[]
-    upsert?: RequestUpsertWithWhereUniqueWithoutPetInput | RequestUpsertWithWhereUniqueWithoutPetInput[]
-    createMany?: RequestCreateManyPetInputEnvelope
-    set?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    disconnect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    delete?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    update?: RequestUpdateWithWhereUniqueWithoutPetInput | RequestUpdateWithWhereUniqueWithoutPetInput[]
-    updateMany?: RequestUpdateManyWithWhereWithoutPetInput | RequestUpdateManyWithWhereWithoutPetInput[]
-    deleteMany?: RequestScalarWhereInput | RequestScalarWhereInput[]
+  export type RequestFormUpdateManyWithoutPetNestedInput = {
+    create?: XOR<RequestFormCreateWithoutPetInput, RequestFormUncheckedCreateWithoutPetInput> | RequestFormCreateWithoutPetInput[] | RequestFormUncheckedCreateWithoutPetInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutPetInput | RequestFormCreateOrConnectWithoutPetInput[]
+    upsert?: RequestFormUpsertWithWhereUniqueWithoutPetInput | RequestFormUpsertWithWhereUniqueWithoutPetInput[]
+    createMany?: RequestFormCreateManyPetInputEnvelope
+    set?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    disconnect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    delete?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    update?: RequestFormUpdateWithWhereUniqueWithoutPetInput | RequestFormUpdateWithWhereUniqueWithoutPetInput[]
+    updateMany?: RequestFormUpdateManyWithWhereWithoutPetInput | RequestFormUpdateManyWithWhereWithoutPetInput[]
+    deleteMany?: RequestFormScalarWhereInput | RequestFormScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -6980,18 +7207,18 @@ export namespace Prisma {
     deleteMany?: VaccineScalarWhereInput | VaccineScalarWhereInput[]
   }
 
-  export type RequestUncheckedUpdateManyWithoutPetNestedInput = {
-    create?: XOR<RequestCreateWithoutPetInput, RequestUncheckedCreateWithoutPetInput> | RequestCreateWithoutPetInput[] | RequestUncheckedCreateWithoutPetInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutPetInput | RequestCreateOrConnectWithoutPetInput[]
-    upsert?: RequestUpsertWithWhereUniqueWithoutPetInput | RequestUpsertWithWhereUniqueWithoutPetInput[]
-    createMany?: RequestCreateManyPetInputEnvelope
-    set?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    disconnect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    delete?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    update?: RequestUpdateWithWhereUniqueWithoutPetInput | RequestUpdateWithWhereUniqueWithoutPetInput[]
-    updateMany?: RequestUpdateManyWithWhereWithoutPetInput | RequestUpdateManyWithWhereWithoutPetInput[]
-    deleteMany?: RequestScalarWhereInput | RequestScalarWhereInput[]
+  export type RequestFormUncheckedUpdateManyWithoutPetNestedInput = {
+    create?: XOR<RequestFormCreateWithoutPetInput, RequestFormUncheckedCreateWithoutPetInput> | RequestFormCreateWithoutPetInput[] | RequestFormUncheckedCreateWithoutPetInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutPetInput | RequestFormCreateOrConnectWithoutPetInput[]
+    upsert?: RequestFormUpsertWithWhereUniqueWithoutPetInput | RequestFormUpsertWithWhereUniqueWithoutPetInput[]
+    createMany?: RequestFormCreateManyPetInputEnvelope
+    set?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    disconnect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    delete?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    update?: RequestFormUpdateWithWhereUniqueWithoutPetInput | RequestFormUpdateWithWhereUniqueWithoutPetInput[]
+    updateMany?: RequestFormUpdateManyWithWhereWithoutPetInput | RequestFormUpdateManyWithWhereWithoutPetInput[]
+    deleteMany?: RequestFormScalarWhereInput | RequestFormScalarWhereInput[]
   }
 
   export type PetCreateNestedOneWithoutVaccineInput = {
@@ -7015,11 +7242,11 @@ export namespace Prisma {
     connect?: PetWhereUniqueInput | PetWhereUniqueInput[]
   }
 
-  export type RequestCreateNestedManyWithoutUserInput = {
-    create?: XOR<RequestCreateWithoutUserInput, RequestUncheckedCreateWithoutUserInput> | RequestCreateWithoutUserInput[] | RequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutUserInput | RequestCreateOrConnectWithoutUserInput[]
-    createMany?: RequestCreateManyUserInputEnvelope
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
+  export type RequestFormCreateNestedManyWithoutUserInput = {
+    create?: XOR<RequestFormCreateWithoutUserInput, RequestFormUncheckedCreateWithoutUserInput> | RequestFormCreateWithoutUserInput[] | RequestFormUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutUserInput | RequestFormCreateOrConnectWithoutUserInput[]
+    createMany?: RequestFormCreateManyUserInputEnvelope
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
   }
 
   export type PetUncheckedCreateNestedManyWithoutUserInput = {
@@ -7029,11 +7256,11 @@ export namespace Prisma {
     connect?: PetWhereUniqueInput | PetWhereUniqueInput[]
   }
 
-  export type RequestUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<RequestCreateWithoutUserInput, RequestUncheckedCreateWithoutUserInput> | RequestCreateWithoutUserInput[] | RequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutUserInput | RequestCreateOrConnectWithoutUserInput[]
-    createMany?: RequestCreateManyUserInputEnvelope
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
+  export type RequestFormUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RequestFormCreateWithoutUserInput, RequestFormUncheckedCreateWithoutUserInput> | RequestFormCreateWithoutUserInput[] | RequestFormUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutUserInput | RequestFormCreateOrConnectWithoutUserInput[]
+    createMany?: RequestFormCreateManyUserInputEnvelope
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
   }
 
   export type PetUpdateManyWithoutUserNestedInput = {
@@ -7050,18 +7277,18 @@ export namespace Prisma {
     deleteMany?: PetScalarWhereInput | PetScalarWhereInput[]
   }
 
-  export type RequestUpdateManyWithoutUserNestedInput = {
-    create?: XOR<RequestCreateWithoutUserInput, RequestUncheckedCreateWithoutUserInput> | RequestCreateWithoutUserInput[] | RequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutUserInput | RequestCreateOrConnectWithoutUserInput[]
-    upsert?: RequestUpsertWithWhereUniqueWithoutUserInput | RequestUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: RequestCreateManyUserInputEnvelope
-    set?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    disconnect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    delete?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    update?: RequestUpdateWithWhereUniqueWithoutUserInput | RequestUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: RequestUpdateManyWithWhereWithoutUserInput | RequestUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: RequestScalarWhereInput | RequestScalarWhereInput[]
+  export type RequestFormUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RequestFormCreateWithoutUserInput, RequestFormUncheckedCreateWithoutUserInput> | RequestFormCreateWithoutUserInput[] | RequestFormUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutUserInput | RequestFormCreateOrConnectWithoutUserInput[]
+    upsert?: RequestFormUpsertWithWhereUniqueWithoutUserInput | RequestFormUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RequestFormCreateManyUserInputEnvelope
+    set?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    disconnect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    delete?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    update?: RequestFormUpdateWithWhereUniqueWithoutUserInput | RequestFormUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RequestFormUpdateManyWithWhereWithoutUserInput | RequestFormUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RequestFormScalarWhereInput | RequestFormScalarWhereInput[]
   }
 
   export type PetUncheckedUpdateManyWithoutUserNestedInput = {
@@ -7078,46 +7305,58 @@ export namespace Prisma {
     deleteMany?: PetScalarWhereInput | PetScalarWhereInput[]
   }
 
-  export type RequestUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<RequestCreateWithoutUserInput, RequestUncheckedCreateWithoutUserInput> | RequestCreateWithoutUserInput[] | RequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RequestCreateOrConnectWithoutUserInput | RequestCreateOrConnectWithoutUserInput[]
-    upsert?: RequestUpsertWithWhereUniqueWithoutUserInput | RequestUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: RequestCreateManyUserInputEnvelope
-    set?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    disconnect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    delete?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    connect?: RequestWhereUniqueInput | RequestWhereUniqueInput[]
-    update?: RequestUpdateWithWhereUniqueWithoutUserInput | RequestUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: RequestUpdateManyWithWhereWithoutUserInput | RequestUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: RequestScalarWhereInput | RequestScalarWhereInput[]
+  export type RequestFormUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RequestFormCreateWithoutUserInput, RequestFormUncheckedCreateWithoutUserInput> | RequestFormCreateWithoutUserInput[] | RequestFormUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RequestFormCreateOrConnectWithoutUserInput | RequestFormCreateOrConnectWithoutUserInput[]
+    upsert?: RequestFormUpsertWithWhereUniqueWithoutUserInput | RequestFormUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RequestFormCreateManyUserInputEnvelope
+    set?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    disconnect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    delete?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    connect?: RequestFormWhereUniqueInput | RequestFormWhereUniqueInput[]
+    update?: RequestFormUpdateWithWhereUniqueWithoutUserInput | RequestFormUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RequestFormUpdateManyWithWhereWithoutUserInput | RequestFormUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RequestFormScalarWhereInput | RequestFormScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutRequestInput = {
-    create?: XOR<UserCreateWithoutRequestInput, UserUncheckedCreateWithoutRequestInput>
-    connectOrCreate?: UserCreateOrConnectWithoutRequestInput
+  export type UserCreateNestedOneWithoutRequestFormInput = {
+    create?: XOR<UserCreateWithoutRequestFormInput, UserUncheckedCreateWithoutRequestFormInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRequestFormInput
     connect?: UserWhereUniqueInput
   }
 
-  export type PetCreateNestedOneWithoutRequestInput = {
-    create?: XOR<PetCreateWithoutRequestInput, PetUncheckedCreateWithoutRequestInput>
-    connectOrCreate?: PetCreateOrConnectWithoutRequestInput
+  export type PetCreateNestedOneWithoutRequestFormInput = {
+    create?: XOR<PetCreateWithoutRequestFormInput, PetUncheckedCreateWithoutRequestFormInput>
+    connectOrCreate?: PetCreateOrConnectWithoutRequestFormInput
     connect?: PetWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutRequestNestedInput = {
-    create?: XOR<UserCreateWithoutRequestInput, UserUncheckedCreateWithoutRequestInput>
-    connectOrCreate?: UserCreateOrConnectWithoutRequestInput
-    upsert?: UserUpsertWithoutRequestInput
+  export type EnumHouseEnFieldUpdateOperationsInput = {
+    set?: $Enums.HouseEn
+  }
+
+  export type EnumFinancialFieldUpdateOperationsInput = {
+    set?: $Enums.Financial
+  }
+
+  export type EnumPickupFieldUpdateOperationsInput = {
+    set?: $Enums.Pickup
+  }
+
+  export type UserUpdateOneRequiredWithoutRequestFormNestedInput = {
+    create?: XOR<UserCreateWithoutRequestFormInput, UserUncheckedCreateWithoutRequestFormInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRequestFormInput
+    upsert?: UserUpsertWithoutRequestFormInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRequestInput, UserUpdateWithoutRequestInput>, UserUncheckedUpdateWithoutRequestInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRequestFormInput, UserUpdateWithoutRequestFormInput>, UserUncheckedUpdateWithoutRequestFormInput>
   }
 
-  export type PetUpdateOneRequiredWithoutRequestNestedInput = {
-    create?: XOR<PetCreateWithoutRequestInput, PetUncheckedCreateWithoutRequestInput>
-    connectOrCreate?: PetCreateOrConnectWithoutRequestInput
-    upsert?: PetUpsertWithoutRequestInput
+  export type PetUpdateOneRequiredWithoutRequestFormNestedInput = {
+    create?: XOR<PetCreateWithoutRequestFormInput, PetUncheckedCreateWithoutRequestFormInput>
+    connectOrCreate?: PetCreateOrConnectWithoutRequestFormInput
+    upsert?: PetUpsertWithoutRequestFormInput
     connect?: PetWhereUniqueInput
-    update?: XOR<XOR<PetUpdateToOneWithWhereWithoutRequestInput, PetUpdateWithoutRequestInput>, PetUncheckedUpdateWithoutRequestInput>
+    update?: XOR<XOR<PetUpdateToOneWithWhereWithoutRequestFormInput, PetUpdateWithoutRequestFormInput>, PetUncheckedUpdateWithoutRequestFormInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -7317,13 +7556,64 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumHouseEnFilter<$PrismaModel = never> = {
+    equals?: $Enums.HouseEn | EnumHouseEnFieldRefInput<$PrismaModel>
+    in?: $Enums.HouseEn[]
+    notIn?: $Enums.HouseEn[]
+    not?: NestedEnumHouseEnFilter<$PrismaModel> | $Enums.HouseEn
+  }
+
+  export type NestedEnumFinancialFilter<$PrismaModel = never> = {
+    equals?: $Enums.Financial | EnumFinancialFieldRefInput<$PrismaModel>
+    in?: $Enums.Financial[]
+    notIn?: $Enums.Financial[]
+    not?: NestedEnumFinancialFilter<$PrismaModel> | $Enums.Financial
+  }
+
+  export type NestedEnumPickupFilter<$PrismaModel = never> = {
+    equals?: $Enums.Pickup | EnumPickupFieldRefInput<$PrismaModel>
+    in?: $Enums.Pickup[]
+    notIn?: $Enums.Pickup[]
+    not?: NestedEnumPickupFilter<$PrismaModel> | $Enums.Pickup
+  }
+
+  export type NestedEnumHouseEnWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HouseEn | EnumHouseEnFieldRefInput<$PrismaModel>
+    in?: $Enums.HouseEn[]
+    notIn?: $Enums.HouseEn[]
+    not?: NestedEnumHouseEnWithAggregatesFilter<$PrismaModel> | $Enums.HouseEn
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHouseEnFilter<$PrismaModel>
+    _max?: NestedEnumHouseEnFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFinancialWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Financial | EnumFinancialFieldRefInput<$PrismaModel>
+    in?: $Enums.Financial[]
+    notIn?: $Enums.Financial[]
+    not?: NestedEnumFinancialWithAggregatesFilter<$PrismaModel> | $Enums.Financial
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFinancialFilter<$PrismaModel>
+    _max?: NestedEnumFinancialFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPickupWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Pickup | EnumPickupFieldRefInput<$PrismaModel>
+    in?: $Enums.Pickup[]
+    notIn?: $Enums.Pickup[]
+    not?: NestedEnumPickupWithAggregatesFilter<$PrismaModel> | $Enums.Pickup
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPickupFilter<$PrismaModel>
+    _max?: NestedEnumPickupFilter<$PrismaModel>
+  }
+
   export type UserCreateWithoutPetInput = {
     email: string
     password: string
     firstName: string
     lastName: string
     tel: string
-    Request?: RequestCreateNestedManyWithoutUserInput
+    RequestForm?: RequestFormCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPetInput = {
@@ -7333,7 +7623,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     tel: string
-    Request?: RequestUncheckedCreateNestedManyWithoutUserInput
+    RequestForm?: RequestFormUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPetInput = {
@@ -7359,22 +7649,30 @@ export namespace Prisma {
     data: VaccineCreateManyPetInput | VaccineCreateManyPetInput[]
   }
 
-  export type RequestCreateWithoutPetInput = {
-    User: UserCreateNestedOneWithoutRequestInput
+  export type RequestFormCreateWithoutPetInput = {
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
+    User: UserCreateNestedOneWithoutRequestFormInput
   }
 
-  export type RequestUncheckedCreateWithoutPetInput = {
+  export type RequestFormUncheckedCreateWithoutPetInput = {
     id?: number
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
     userId: number
   }
 
-  export type RequestCreateOrConnectWithoutPetInput = {
-    where: RequestWhereUniqueInput
-    create: XOR<RequestCreateWithoutPetInput, RequestUncheckedCreateWithoutPetInput>
+  export type RequestFormCreateOrConnectWithoutPetInput = {
+    where: RequestFormWhereUniqueInput
+    create: XOR<RequestFormCreateWithoutPetInput, RequestFormUncheckedCreateWithoutPetInput>
   }
 
-  export type RequestCreateManyPetInputEnvelope = {
-    data: RequestCreateManyPetInput | RequestCreateManyPetInput[]
+  export type RequestFormCreateManyPetInputEnvelope = {
+    data: RequestFormCreateManyPetInput | RequestFormCreateManyPetInput[]
   }
 
   export type UserUpsertWithoutPetInput = {
@@ -7394,7 +7692,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     tel?: StringFieldUpdateOperationsInput | string
-    Request?: RequestUpdateManyWithoutUserNestedInput
+    RequestForm?: RequestFormUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPetInput = {
@@ -7404,7 +7702,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     tel?: StringFieldUpdateOperationsInput | string
-    Request?: RequestUncheckedUpdateManyWithoutUserNestedInput
+    RequestForm?: RequestFormUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type VaccineUpsertWithWhereUniqueWithoutPetInput = {
@@ -7432,29 +7730,33 @@ export namespace Prisma {
     petId?: IntFilter<"Vaccine"> | number
   }
 
-  export type RequestUpsertWithWhereUniqueWithoutPetInput = {
-    where: RequestWhereUniqueInput
-    update: XOR<RequestUpdateWithoutPetInput, RequestUncheckedUpdateWithoutPetInput>
-    create: XOR<RequestCreateWithoutPetInput, RequestUncheckedCreateWithoutPetInput>
+  export type RequestFormUpsertWithWhereUniqueWithoutPetInput = {
+    where: RequestFormWhereUniqueInput
+    update: XOR<RequestFormUpdateWithoutPetInput, RequestFormUncheckedUpdateWithoutPetInput>
+    create: XOR<RequestFormCreateWithoutPetInput, RequestFormUncheckedCreateWithoutPetInput>
   }
 
-  export type RequestUpdateWithWhereUniqueWithoutPetInput = {
-    where: RequestWhereUniqueInput
-    data: XOR<RequestUpdateWithoutPetInput, RequestUncheckedUpdateWithoutPetInput>
+  export type RequestFormUpdateWithWhereUniqueWithoutPetInput = {
+    where: RequestFormWhereUniqueInput
+    data: XOR<RequestFormUpdateWithoutPetInput, RequestFormUncheckedUpdateWithoutPetInput>
   }
 
-  export type RequestUpdateManyWithWhereWithoutPetInput = {
-    where: RequestScalarWhereInput
-    data: XOR<RequestUpdateManyMutationInput, RequestUncheckedUpdateManyWithoutPetInput>
+  export type RequestFormUpdateManyWithWhereWithoutPetInput = {
+    where: RequestFormScalarWhereInput
+    data: XOR<RequestFormUpdateManyMutationInput, RequestFormUncheckedUpdateManyWithoutPetInput>
   }
 
-  export type RequestScalarWhereInput = {
-    AND?: RequestScalarWhereInput | RequestScalarWhereInput[]
-    OR?: RequestScalarWhereInput[]
-    NOT?: RequestScalarWhereInput | RequestScalarWhereInput[]
-    id?: IntFilter<"Request"> | number
-    userId?: IntFilter<"Request"> | number
-    petId?: IntFilter<"Request"> | number
+  export type RequestFormScalarWhereInput = {
+    AND?: RequestFormScalarWhereInput | RequestFormScalarWhereInput[]
+    OR?: RequestFormScalarWhereInput[]
+    NOT?: RequestFormScalarWhereInput | RequestFormScalarWhereInput[]
+    id?: IntFilter<"RequestForm"> | number
+    houseEn?: EnumHouseEnFilter<"RequestForm"> | $Enums.HouseEn
+    financial?: EnumFinancialFilter<"RequestForm"> | $Enums.Financial
+    pickup?: EnumPickupFilter<"RequestForm"> | $Enums.Pickup
+    addressRequest?: StringFilter<"RequestForm"> | string
+    userId?: IntFilter<"RequestForm"> | number
+    petId?: IntFilter<"RequestForm"> | number
   }
 
   export type PetCreateWithoutVaccineInput = {
@@ -7471,7 +7773,7 @@ export namespace Prisma {
     address: string
     vacineUrl?: string | null
     User: UserCreateNestedOneWithoutPetInput
-    Request?: RequestCreateNestedManyWithoutPetInput
+    RequestForm?: RequestFormCreateNestedManyWithoutPetInput
   }
 
   export type PetUncheckedCreateWithoutVaccineInput = {
@@ -7489,7 +7791,7 @@ export namespace Prisma {
     address: string
     vacineUrl?: string | null
     userId: number
-    Request?: RequestUncheckedCreateNestedManyWithoutPetInput
+    RequestForm?: RequestFormUncheckedCreateNestedManyWithoutPetInput
   }
 
   export type PetCreateOrConnectWithoutVaccineInput = {
@@ -7522,7 +7824,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     vacineUrl?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutPetNestedInput
-    Request?: RequestUpdateManyWithoutPetNestedInput
+    RequestForm?: RequestFormUpdateManyWithoutPetNestedInput
   }
 
   export type PetUncheckedUpdateWithoutVaccineInput = {
@@ -7540,7 +7842,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     vacineUrl?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
-    Request?: RequestUncheckedUpdateManyWithoutPetNestedInput
+    RequestForm?: RequestFormUncheckedUpdateManyWithoutPetNestedInput
   }
 
   export type PetCreateWithoutUserInput = {
@@ -7557,7 +7859,7 @@ export namespace Prisma {
     address: string
     vacineUrl?: string | null
     Vaccine?: VaccineCreateNestedManyWithoutPetInput
-    Request?: RequestCreateNestedManyWithoutPetInput
+    RequestForm?: RequestFormCreateNestedManyWithoutPetInput
   }
 
   export type PetUncheckedCreateWithoutUserInput = {
@@ -7575,7 +7877,7 @@ export namespace Prisma {
     address: string
     vacineUrl?: string | null
     Vaccine?: VaccineUncheckedCreateNestedManyWithoutPetInput
-    Request?: RequestUncheckedCreateNestedManyWithoutPetInput
+    RequestForm?: RequestFormUncheckedCreateNestedManyWithoutPetInput
   }
 
   export type PetCreateOrConnectWithoutUserInput = {
@@ -7587,22 +7889,30 @@ export namespace Prisma {
     data: PetCreateManyUserInput | PetCreateManyUserInput[]
   }
 
-  export type RequestCreateWithoutUserInput = {
-    Pet: PetCreateNestedOneWithoutRequestInput
+  export type RequestFormCreateWithoutUserInput = {
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
+    Pet: PetCreateNestedOneWithoutRequestFormInput
   }
 
-  export type RequestUncheckedCreateWithoutUserInput = {
+  export type RequestFormUncheckedCreateWithoutUserInput = {
     id?: number
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
     petId: number
   }
 
-  export type RequestCreateOrConnectWithoutUserInput = {
-    where: RequestWhereUniqueInput
-    create: XOR<RequestCreateWithoutUserInput, RequestUncheckedCreateWithoutUserInput>
+  export type RequestFormCreateOrConnectWithoutUserInput = {
+    where: RequestFormWhereUniqueInput
+    create: XOR<RequestFormCreateWithoutUserInput, RequestFormUncheckedCreateWithoutUserInput>
   }
 
-  export type RequestCreateManyUserInputEnvelope = {
-    data: RequestCreateManyUserInput | RequestCreateManyUserInput[]
+  export type RequestFormCreateManyUserInputEnvelope = {
+    data: RequestFormCreateManyUserInput | RequestFormCreateManyUserInput[]
   }
 
   export type PetUpsertWithWhereUniqueWithoutUserInput = {
@@ -7641,23 +7951,23 @@ export namespace Prisma {
     userId?: IntFilter<"Pet"> | number
   }
 
-  export type RequestUpsertWithWhereUniqueWithoutUserInput = {
-    where: RequestWhereUniqueInput
-    update: XOR<RequestUpdateWithoutUserInput, RequestUncheckedUpdateWithoutUserInput>
-    create: XOR<RequestCreateWithoutUserInput, RequestUncheckedCreateWithoutUserInput>
+  export type RequestFormUpsertWithWhereUniqueWithoutUserInput = {
+    where: RequestFormWhereUniqueInput
+    update: XOR<RequestFormUpdateWithoutUserInput, RequestFormUncheckedUpdateWithoutUserInput>
+    create: XOR<RequestFormCreateWithoutUserInput, RequestFormUncheckedCreateWithoutUserInput>
   }
 
-  export type RequestUpdateWithWhereUniqueWithoutUserInput = {
-    where: RequestWhereUniqueInput
-    data: XOR<RequestUpdateWithoutUserInput, RequestUncheckedUpdateWithoutUserInput>
+  export type RequestFormUpdateWithWhereUniqueWithoutUserInput = {
+    where: RequestFormWhereUniqueInput
+    data: XOR<RequestFormUpdateWithoutUserInput, RequestFormUncheckedUpdateWithoutUserInput>
   }
 
-  export type RequestUpdateManyWithWhereWithoutUserInput = {
-    where: RequestScalarWhereInput
-    data: XOR<RequestUpdateManyMutationInput, RequestUncheckedUpdateManyWithoutUserInput>
+  export type RequestFormUpdateManyWithWhereWithoutUserInput = {
+    where: RequestFormScalarWhereInput
+    data: XOR<RequestFormUpdateManyMutationInput, RequestFormUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type UserCreateWithoutRequestInput = {
+  export type UserCreateWithoutRequestFormInput = {
     email: string
     password: string
     firstName: string
@@ -7666,7 +7976,7 @@ export namespace Prisma {
     Pet?: PetCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutRequestInput = {
+  export type UserUncheckedCreateWithoutRequestFormInput = {
     id?: number
     email: string
     password: string
@@ -7676,12 +7986,12 @@ export namespace Prisma {
     Pet?: PetUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutRequestInput = {
+  export type UserCreateOrConnectWithoutRequestFormInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutRequestInput, UserUncheckedCreateWithoutRequestInput>
+    create: XOR<UserCreateWithoutRequestFormInput, UserUncheckedCreateWithoutRequestFormInput>
   }
 
-  export type PetCreateWithoutRequestInput = {
+  export type PetCreateWithoutRequestFormInput = {
     name: string
     type: $Enums.Type
     gender: $Enums.Gender
@@ -7698,7 +8008,7 @@ export namespace Prisma {
     Vaccine?: VaccineCreateNestedManyWithoutPetInput
   }
 
-  export type PetUncheckedCreateWithoutRequestInput = {
+  export type PetUncheckedCreateWithoutRequestFormInput = {
     id?: number
     name: string
     type: $Enums.Type
@@ -7716,23 +8026,23 @@ export namespace Prisma {
     Vaccine?: VaccineUncheckedCreateNestedManyWithoutPetInput
   }
 
-  export type PetCreateOrConnectWithoutRequestInput = {
+  export type PetCreateOrConnectWithoutRequestFormInput = {
     where: PetWhereUniqueInput
-    create: XOR<PetCreateWithoutRequestInput, PetUncheckedCreateWithoutRequestInput>
+    create: XOR<PetCreateWithoutRequestFormInput, PetUncheckedCreateWithoutRequestFormInput>
   }
 
-  export type UserUpsertWithoutRequestInput = {
-    update: XOR<UserUpdateWithoutRequestInput, UserUncheckedUpdateWithoutRequestInput>
-    create: XOR<UserCreateWithoutRequestInput, UserUncheckedCreateWithoutRequestInput>
+  export type UserUpsertWithoutRequestFormInput = {
+    update: XOR<UserUpdateWithoutRequestFormInput, UserUncheckedUpdateWithoutRequestFormInput>
+    create: XOR<UserCreateWithoutRequestFormInput, UserUncheckedCreateWithoutRequestFormInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutRequestInput = {
+  export type UserUpdateToOneWithWhereWithoutRequestFormInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutRequestInput, UserUncheckedUpdateWithoutRequestInput>
+    data: XOR<UserUpdateWithoutRequestFormInput, UserUncheckedUpdateWithoutRequestFormInput>
   }
 
-  export type UserUpdateWithoutRequestInput = {
+  export type UserUpdateWithoutRequestFormInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -7741,7 +8051,7 @@ export namespace Prisma {
     Pet?: PetUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutRequestInput = {
+  export type UserUncheckedUpdateWithoutRequestFormInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -7751,18 +8061,18 @@ export namespace Prisma {
     Pet?: PetUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type PetUpsertWithoutRequestInput = {
-    update: XOR<PetUpdateWithoutRequestInput, PetUncheckedUpdateWithoutRequestInput>
-    create: XOR<PetCreateWithoutRequestInput, PetUncheckedCreateWithoutRequestInput>
+  export type PetUpsertWithoutRequestFormInput = {
+    update: XOR<PetUpdateWithoutRequestFormInput, PetUncheckedUpdateWithoutRequestFormInput>
+    create: XOR<PetCreateWithoutRequestFormInput, PetUncheckedCreateWithoutRequestFormInput>
     where?: PetWhereInput
   }
 
-  export type PetUpdateToOneWithWhereWithoutRequestInput = {
+  export type PetUpdateToOneWithWhereWithoutRequestFormInput = {
     where?: PetWhereInput
-    data: XOR<PetUpdateWithoutRequestInput, PetUncheckedUpdateWithoutRequestInput>
+    data: XOR<PetUpdateWithoutRequestFormInput, PetUncheckedUpdateWithoutRequestFormInput>
   }
 
-  export type PetUpdateWithoutRequestInput = {
+  export type PetUpdateWithoutRequestFormInput = {
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
@@ -7779,7 +8089,7 @@ export namespace Prisma {
     Vaccine?: VaccineUpdateManyWithoutPetNestedInput
   }
 
-  export type PetUncheckedUpdateWithoutRequestInput = {
+  export type PetUncheckedUpdateWithoutRequestFormInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
@@ -7802,8 +8112,12 @@ export namespace Prisma {
     vaccine?: string | null
   }
 
-  export type RequestCreateManyPetInput = {
+  export type RequestFormCreateManyPetInput = {
     id?: number
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
     userId: number
   }
 
@@ -7821,17 +8135,29 @@ export namespace Prisma {
     vaccine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RequestUpdateWithoutPetInput = {
-    User?: UserUpdateOneRequiredWithoutRequestNestedInput
+  export type RequestFormUpdateWithoutPetInput = {
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
+    User?: UserUpdateOneRequiredWithoutRequestFormNestedInput
   }
 
-  export type RequestUncheckedUpdateWithoutPetInput = {
+  export type RequestFormUncheckedUpdateWithoutPetInput = {
     id?: IntFieldUpdateOperationsInput | number
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type RequestUncheckedUpdateManyWithoutPetInput = {
+  export type RequestFormUncheckedUpdateManyWithoutPetInput = {
     id?: IntFieldUpdateOperationsInput | number
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -7851,8 +8177,12 @@ export namespace Prisma {
     vacineUrl?: string | null
   }
 
-  export type RequestCreateManyUserInput = {
+  export type RequestFormCreateManyUserInput = {
     id?: number
+    houseEn: $Enums.HouseEn
+    financial: $Enums.Financial
+    pickup: $Enums.Pickup
+    addressRequest: string
     petId: number
   }
 
@@ -7870,7 +8200,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     vacineUrl?: NullableStringFieldUpdateOperationsInput | string | null
     Vaccine?: VaccineUpdateManyWithoutPetNestedInput
-    Request?: RequestUpdateManyWithoutPetNestedInput
+    RequestForm?: RequestFormUpdateManyWithoutPetNestedInput
   }
 
   export type PetUncheckedUpdateWithoutUserInput = {
@@ -7888,7 +8218,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     vacineUrl?: NullableStringFieldUpdateOperationsInput | string | null
     Vaccine?: VaccineUncheckedUpdateManyWithoutPetNestedInput
-    Request?: RequestUncheckedUpdateManyWithoutPetNestedInput
+    RequestForm?: RequestFormUncheckedUpdateManyWithoutPetNestedInput
   }
 
   export type PetUncheckedUpdateManyWithoutUserInput = {
@@ -7907,17 +8237,29 @@ export namespace Prisma {
     vacineUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RequestUpdateWithoutUserInput = {
-    Pet?: PetUpdateOneRequiredWithoutRequestNestedInput
+  export type RequestFormUpdateWithoutUserInput = {
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
+    Pet?: PetUpdateOneRequiredWithoutRequestFormNestedInput
   }
 
-  export type RequestUncheckedUpdateWithoutUserInput = {
+  export type RequestFormUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
     petId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type RequestUncheckedUpdateManyWithoutUserInput = {
+  export type RequestFormUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
+    financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
+    pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    addressRequest?: StringFieldUpdateOperationsInput | string
     petId?: IntFieldUpdateOperationsInput | number
   }
 

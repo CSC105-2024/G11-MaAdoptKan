@@ -105,6 +105,15 @@ const getAllPet = async () => {
   return pet;
 };
 
+const getAllPetFromUser = async (userId: number) => {
+  const pet = await db.pet.findMany({
+    where: {
+      userId: userId
+    }
+  })
+  return pet;
+}
+
 const deletePet = async (id: number) => {
   const pet = await db.pet.delete({
     where:{
@@ -114,4 +123,4 @@ const deletePet = async (id: number) => {
   return pet;
 }
 
-export { createPet, getPet, getAllPet, editPet, deletePet };
+export { createPet, getPet, getAllPet, editPet, deletePet, getAllPetFromUser };
