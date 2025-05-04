@@ -1,5 +1,6 @@
 import type { Context } from "hono";
 import * as userModel from "../models/user.model.ts";
+import * as petModel from "../models/pet.model.ts";
 
 type createUserBody = {
   email: string;
@@ -101,4 +102,31 @@ const getAllUser = async (c: Context) => {
 	}
 };
 
-export { createUser, getUser, getAllUser };
+const getAllPetFromUser = async (c: Context) => {
+  try {
+    const param = c.req.query("id");
+    if (param !== undefined && param !== null) {
+      const data = await petModel.getAllPetFromUser(parseInt(param));
+      return c.json(data, 200);
+    }
+    return c.json(
+        {
+          success: false,
+          data: null,
+          msg: "Missing required fields",
+        },
+        400
+      );
+  } catch (e) {
+    return c.json(
+      {
+        success: false,
+        data: null,
+        msg: `${e}`,
+      },
+      500
+    );
+  }
+};
+
+export { createUser, getUser, getAllUser, getAllPetFromUser };

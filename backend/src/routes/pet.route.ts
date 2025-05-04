@@ -8,6 +8,7 @@ petRouter.patch("/edit", petController.editPet);
 petRouter.get("/get", petController.getPet);
 petRouter.get("/getAll", petController.getAllPet);
 petRouter.delete("/delete", petController.deletePet);
+petRouter.get("/requests", petController.getAllRequestFromPet)
 
 
 
