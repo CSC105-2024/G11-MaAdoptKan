@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import TabSwitcher from "../pages/TabSwitcher";
 import Pawpic from "../../public/images/Pawpic.png";
 import { useEffect } from "react";
+import { axiosInstance } from "../axios";
 
 //Create a Zod schema
 const signUpSchema = z.object({
