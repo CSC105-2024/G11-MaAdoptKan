@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import cat1 from "../../pubilc/images/cat1.jpg";
+import cat1 from "../../public/images/cat1.jpg";
 import cat2 from "../../public/images/cat2.jpg";
 import dog1 from "../../public/images/dog1.jpg";
 import dog2 from "../../public/images/dog2.jpg";
