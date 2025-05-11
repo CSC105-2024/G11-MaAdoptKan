@@ -114,12 +114,12 @@ export default function Navbar() {
         hover:bg-white hover:text-primaryO hover:border hover:border-primaryO"
                 onClick={async(e) => {
                   e.preventDefault();
-                  const res = await axiosInstance.get("/user/get?id=3");
-                  console.log(res.data);
+                  // const res = await axiosInstance.get("/user/get?id=3");
+                  // console.log(res.data);
                 }}
                 >
-                  {/* <Link to="/signup">Sign Up</Link> */}
-                  Sign Up
+                  <Link to="/signup">Sign Up</Link>
+                  {/* Sign Up */}
                 </button>
               )}
             </div>
