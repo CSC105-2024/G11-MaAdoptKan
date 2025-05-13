@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { RadioButton } from "primereact/radiobutton";
 import { Calendar } from "primereact/calendar";
+import { createPet } from "./../api/createPet";
 import { z } from "zod";
+import { data } from "react-router-dom";
 
 console.log("✅ Form mounted or updated");
 
@@ -21,6 +23,7 @@ const petFormSchema = z.object({
 });
 
 export default function CreatePetForm({ trigger, setTrigger }) {
+  const [status, setStatus] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -63,7 +66,10 @@ export default function CreatePetForm({ trigger, setTrigger }) {
     setFormData((prev) => ({ ...prev, vaccine: updated }));
   };
 
-  const handleUpload = () => {
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    // if user are not login will alert("You must login first") 
+    console.log(formData);
     const result = petFormSchema.safeParse(formData);
     if (!result.success) {
       const firstError =
@@ -74,6 +80,19 @@ export default function CreatePetForm({ trigger, setTrigger }) {
       setError("");
       setSuccess(true);
       setTimeout(() => setTrigger(false), 1500);
+    }
+
+    // Now it has a problem because 
+    // we need to upload the pictureUrl and userId
+    // But now we cannot get it
+    setStatus("Creating a Pet...");
+    const res = await createPet(formData);
+
+    if (res.success) {
+      setStatus("Pet created!!");
+    } else {
+      alert("Error creating a pet! Try Again!");
+      setStatus("Error");
     }
   };
 
