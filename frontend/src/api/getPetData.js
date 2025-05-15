@@ -1,12 +1,13 @@
 import { axiosInstance } from "../axios";
 
-export const createPet = async (formData) => {
+export const getPetData = async () => {
     try {
-        const res = await axiosInstance.postForm("/pet/create", formData);
+        const res = await axiosInstance.get('/pet/getAll');
+        console.log(res);
         return {
             success: true,
             data: res.data,
-        };
+        }
     } catch (e) {
         console.log(e);
         return {
