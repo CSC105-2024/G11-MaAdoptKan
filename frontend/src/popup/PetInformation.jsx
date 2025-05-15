@@ -44,7 +44,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
         <>
           <img
             src={
-              pet.image ||
+              `http://localhost:3000/${pet.pictureUrl}` ||
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw"
             }
             alt={pet.name}
@@ -71,7 +71,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
             </p>
             <img
               src={
-                pet.vaccineImage ||
+                `http://localhost:3000/${pet.vaccineUrl}` ||
                 "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg"
               }
               alt="vaccine"
@@ -131,7 +131,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
           <div className="min-w-[320px] my-4">
             <div className="mb-4">
               <img
-                src={pet.image}
+                src={`http://localhost:3000/${pet.pictureUrl}`}
                 alt={pet.name}
                 className="w-[320px] h-[320px] rounded-[8px] "
               />
@@ -190,7 +190,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
           <div className="min-w-[370px] my-4">
             <div className="mb-4">
               <p className="flex text-regular font-medium mb-1">Phone Number</p>
-              <p className="flex text-primaryO capitalize">{pet.phone}</p>
+              <p className="flex text-primaryO capitalize">{pet.phoneNumber}</p>
             </div>
 
             <div className="mb-4">
@@ -205,8 +205,8 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
                 Vaccine Record
               </p>
               <img
-                src={pet.imageVaccine || ""}
-                alt={pet.name}
+                src={`http://localhost:3000/${pet.vacineUrl}`}
+                //alt={pet.name}
                 className="w-[150px] h-[150px] rounded-[8px] "
               />
               {pet.vaccine?.length > 0 ? (

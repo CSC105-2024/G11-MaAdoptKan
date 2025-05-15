@@ -1,7 +1,9 @@
 import type { Context } from "hono";
 import * as petModel from "../models/pet.model.ts";
-import * as requestModel from "../models/request.model.ts"
+import * as requestModel from "../models/request.model.ts";
 import type { $Enums } from "../generated/prisma/index.js";
+import { writeFile } from "fs/promises";
+import path from "path";
 
 type createPetBody = {
   name: string;
@@ -20,11 +22,37 @@ type createPetBody = {
   vaccines?: Record<"vaccine", string>[];
 };
 
+// File saving logic
+const saveFile = async (file: File, fileName: string): Promise<string> => {
+  const buffer = await file.arrayBuffer(); // convert to buffer
+  const savePath = path.join(process.cwd(), "files", fileName); // adjust as needed
+  await writeFile(savePath, Buffer.from(buffer));
+  return fileName;
+};
+
 const createPet = async (c: Context) => {
-  console.log(true);
   try {
-    const body = await c.req.json<createPetBody>();
-    console.log(body);
+    const userId = c.get("userId");
+    const formData = await c.req.parseBody();
+    const body = JSON.parse(formData.json as string);
+
+    const pictureFile = formData.pictureFile as File;
+    const vaccineFile = formData.vaccineFile as File;
+
+    const current = new Date(Date.now());
+    let vaccineUrl: string = "";
+    if (typeof vaccineFile !== "string") {
+      vaccineUrl = await saveFile(
+        vaccineFile,
+        `${userId}-${current.getMilliseconds()}-${vaccineFile.name}`
+      );
+    }
+
+    const pictureUrl = await saveFile(
+      pictureFile,
+      `${userId}-${current.getMilliseconds()}-${pictureFile.name}`
+    );
+
     if (
       !body.name ||
       !body.type ||
@@ -46,16 +74,16 @@ const createPet = async (c: Context) => {
       body.name,
       body.type,
       body.gender,
-      body.pictureUrl,
+      pictureUrl,
       body.phoneNumber,
       body.address,
-      body.userId,
+      userId,
       body.color,
       body.dateOfBirth,
-      body.ageYear,
-      body.ageMonth,
+      Number(body.ageYear),
+      Number(body.ageMonth),
       body.breed,
-      body.vaccineUrl,
+      vaccineUrl,
       body.vaccines
     );
 
@@ -219,13 +247,13 @@ const getAllRequestFromPet = async (c: Context) => {
       return c.json(data, 200);
     }
     return c.json(
-        {
-          success: false,
-          data: null,
-          msg: "Missing required fields",
-        },
-        400
-      );
+      {
+        success: false,
+        data: null,
+        msg: "Missing required fields",
+      },
+      400
+    );
   } catch (e) {
     return c.json(
       {
@@ -238,4 +266,11 @@ const getAllRequestFromPet = async (c: Context) => {
   }
 };
 
-export { createPet, editPet, getPet, getAllPet, deletePet, getAllRequestFromPet };
+export {
+  createPet,
+  editPet,
+  getPet,
+  getAllPet,
+  deletePet,
+  getAllRequestFromPet,
+};

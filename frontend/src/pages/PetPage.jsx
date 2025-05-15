@@ -4,11 +4,18 @@ import CreatePetForm from "../popup/CreatePetForm";
 import EditPetForm from "../popup/EditPetForm";
 import PetInformation from "../popup/PetInformation";
 import RequestForm from "../popup/RequestForm";
+import { getPetData } from "../api/getPetData";
 
 export default function PetPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    const getData = async () => {
+      const data = await getPetData();
+      setPets(() => data.data);
+    }
+
+    getData();
     document.title = "Pet";
     const login = localStorage.getItem("isLoggedIn");
     if (login) {
@@ -19,257 +26,14 @@ export default function PetPage() {
   }, []);
 
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [editPopup, setEditPopup] = useState(false);
+  // const [editPopup, setEditPopup] = useState(false);
   const [infoPopup, setInfoPopup] = useState(false);
-  const [requestPopup, setRequestPopup] = useState(false);
+  // const [requestPopup, setRequestPopup] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   const [filter, setFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const petsPerPage = 20;
-
-  const pets = [
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Himalayan",
-      image: "./images/Maki.png",
-      icon: "./images/catorangeicon.png",
-      type: "cat",
-    },
-    {
-      name: "Yuma",
-      age: "2 Years old",
-      breed: "Labrador Retriever",
-      image: "./images/Yuma.png",
-      icon: "./images/dogorangeicon.png",
-      type: "dog",
-    },
-    // (more pet entries... repeated or new)
-  ];
+  const [pets, setPets] = useState([]);
 
   const mockPetData = {
     name: "Milo",
@@ -281,7 +45,7 @@ export default function PetPage() {
     date: new Date("2022-01-01"),
     ageYear: "2",
     ageMonth: "3",
-    breed: "Shiba",
+    breed: "Shiba", 
     vaccine: ["Rabies", "Parvo", "", ""],
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw",
@@ -302,6 +66,8 @@ export default function PetPage() {
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
+
+  // if (pets.length === 0) return null;
 
   return (
     <>
@@ -346,12 +112,12 @@ export default function PetPage() {
               className="group text-left bg-white rounded-xl shadow p-4 cursor-pointer hover:bg-[#E97A28] hover:text-white transition w-full"
               onClick={() => {
                 console.log("card clicked");
-                setSelectedPet(mockPetData);
+                setSelectedPet(pet);
                 setInfoPopup(true);
               }}
             >
               <img
-                src={pet.image}
+                src={`http://localhost:3000/${pet.pictureUrl}`}
                 alt={pet.name}
                 className="rounded-md w-full h-32 object-cover"
               />
@@ -367,7 +133,11 @@ export default function PetPage() {
                   <div className="relative w-[25px] h-[25px]">
                     {/* default icon */}
                     <img
-                      src={pet.icon}
+                      src={
+                        pet.type === "cat"
+                          ? "./images/catorangeicon.png"
+                          : "./images/dogorangeicon.png"
+                      }
                       className="w-full h-full object-cover rounded-lg group-hover:hidden"
                       alt="icon"
                     />

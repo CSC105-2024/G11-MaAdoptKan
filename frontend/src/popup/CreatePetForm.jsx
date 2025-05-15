@@ -68,9 +68,11 @@ export default function CreatePetForm({ trigger, setTrigger }) {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    // if user are not login will alert("You must login first") 
-    console.log(formData);
+    // if user are not login will alert("You must login first")
     const result = petFormSchema.safeParse(formData);
+    const pictureFile = document.getElementById("upload-photo-1").files[0];
+    const vaccineFile = document.getElementById("upload-photo-2").files[0];
+
     if (!result.success) {
       const firstError =
         result.error.issues[0]?.message || "Please fill required fields";
@@ -82,13 +84,44 @@ export default function CreatePetForm({ trigger, setTrigger }) {
       setTimeout(() => setTrigger(false), 1500);
     }
 
-    // Now it has a problem because 
+    // Now it has a problem because
     // we need to upload the pictureUrl and userId
     // But now we cannot get it
-    setStatus("Creating a Pet...");
-    const res = await createPet(formData);
 
+    const realFormData = new FormData();
+    realFormData.append("pictureFile", pictureFile);
+    realFormData.append("vaccineFile", vaccineFile);
+    realFormData.append(
+      "json",
+      JSON.stringify({
+        name: formData.name,
+        phoneNumber: formData.phone,
+        address: formData.address,
+        type: formData.type,
+        gender: formData.gender,
+        color: formData.color,
+        date: formData.date,
+        ageYear: formData.ageYear,
+        ageMonth: formData.ageMonth,
+        breed: formData.breed,
+        vaccine: formData.vaccine,
+        pictureUrl: formData.image,
+        vaccineUrl: formData.imageVaccine,
+      })
+    );
+    /**
+     * {
+     *  "pictureFile": value,
+     *  "vaccineFile": value,
+     *  "body": {}
+     * }
+     */
+
+    setStatus("Creating a Pet...");
+    const res = await createPet(realFormData);
+    
     if (res.success) {
+      location.reload();
       setStatus("Pet created!!");
     } else {
       alert("Error creating a pet! Try Again!");
