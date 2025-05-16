@@ -68,7 +68,6 @@ export default function CreatePetForm({ trigger, setTrigger }) {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    // if user are not login will alert("You must login first")
     const result = petFormSchema.safeParse(formData);
     const pictureFile = document.getElementById("upload-photo-1").files[0];
     const vaccineFile = document.getElementById("upload-photo-2").files[0];
@@ -152,7 +151,7 @@ export default function CreatePetForm({ trigger, setTrigger }) {
           <>
             <div className="w-full">
               <div className="flex w-full justify-between mb-2">
-                <p className="flex items-center font-medium">Picture</p>
+                <p className="flex items-center font-medium">Picture *</p>
                 <input
                   type="file"
                   id="upload-photo-1"

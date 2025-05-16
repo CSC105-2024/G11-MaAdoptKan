@@ -22,6 +22,10 @@ type createPetBody = {
   vaccines?: Record<"vaccine", string>[];
 };
 
+type editPetBody = createPetBody & {
+  id: number;
+};
+
 // File saving logic
 const saveFile = async (file: File, fileName: string): Promise<string> => {
   const buffer = await file.arrayBuffer(); // convert to buffer
@@ -105,17 +109,45 @@ const createPet = async (c: Context) => {
 };
 
 const editPet = async (c: Context) => {
+  // Not finish still have the problems
+  //FormData didnt sent id to backend
+  //Need help from Julian pls
+
   console.log(true);
   try {
-    const petId = c.req.query("petId");
-    const body = await c.req.json<createPetBody>();
+    const userId = c.get("userId");
+    const formData = await c.req.parseBody();
+    const body = JSON.parse(formData.json as string);
     console.log(body);
+
+    const pictureFile = formData.pictureFile as File;
+    const vaccineFile = formData.vaccineFile as File;
+
+    const current = new Date(Date.now());
+
+    //Save new files (if provided), or fallback to old URLs
+    let vaccineUrl = body.vaccineUrl || "";
+    if (vaccineFile && typeof vaccineFile !== "string") {
+      vaccineUrl = await saveFile(
+        vaccineFile,
+        `${userId}-${current.getMilliseconds()}-${vaccineFile.name}`
+      );
+    }
+
+    let pictureUrl = body.pictureUrl || "";
+    if (pictureFile && typeof pictureFile !== "string") {
+      pictureUrl = await saveFile(
+        pictureFile,
+        `${userId}-${current.getMilliseconds()}-${pictureFile.name}`
+      );
+    }
+
     if (
-      !petId ||
+      !body.id ||
       !body.name ||
       !body.type ||
       !body.gender ||
-      !body.pictureUrl ||
+      !pictureUrl ||
       !body.address ||
       !body.phoneNumber
     ) {
@@ -129,20 +161,20 @@ const editPet = async (c: Context) => {
       );
     }
     const newPet = await petModel.editPet(
-      parseInt(petId),
+      Number(body.id),
       body.name,
       body.type,
       body.gender,
-      body.pictureUrl,
+      pictureUrl,
       body.phoneNumber,
       body.address,
-      body.userId,
+      userId,
       body.color,
       body.dateOfBirth,
-      body.ageYear,
-      body.ageMonth,
+      Number(body.ageYear),
+      Number(body.ageMonth),
       body.breed,
-      body.vaccineUrl,
+      vaccineUrl,
       body.vaccines
     );
 

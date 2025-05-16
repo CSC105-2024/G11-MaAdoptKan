@@ -111,16 +111,16 @@ const getAllUser = async (c: Context) => {
 
 const getAllPetFromUser = async (c: Context) => {
   try {
-    const param = c.req.query("id");
-    if (param !== undefined && param !== null) {
-      const data = await petModel.getAllPetFromUser(parseInt(param));
+    const userId = c.get("userId");
+    if (userId) {
+      const data = await petModel.getAllPetFromUser(parseInt(userId));
       return c.json(data, 200);
     }
     return c.json(
       {
         success: false,
         data: null,
-        msg: "Missing required fields",
+        msg: "UserId undefined!",
       },
       400
     );

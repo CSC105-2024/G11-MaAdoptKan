@@ -4,10 +4,27 @@ import PencilIcon from "../../public/images/Pencil.png";
 import TrashIcon from "../../public/images/Delete.png";
 import RequestDetailPopup from "../popup/RequestDetail.jsx";
 import EditPetForm from "../popup/EditPetForm.jsx";
+import { getPetFromUser } from "../api/getPetFromUser";
 
 export default function ProfilePage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     document.title = "Your Profile";
+    const login = localStorage.getItem("isLoggedIn");
+
+    if (login) {
+      setIsLoggedIn(true);
+
+      const getPetUser = async () => {
+        const data = await getPetFromUser();
+        setPets(() => data.data);
+
+      };
+      getPetUser();
+    } else {
+      setIsLoggedIn(false);
+    }
   }, []);
 
   const [requestPopup, setRequestPopup] = useState(false);
@@ -19,88 +36,7 @@ export default function ProfilePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const petsPerPage = 10;
 
-  const [pets, setPets] = useState([
-    {
-      name: "Jaki",
-      age: "2 Years old",
-      breed: "Jack Russell",
-      image: "/images/cat1.jpg",
-      type: "cat",
-      requests: [],
-    },
-    {
-      name: "Maki",
-      age: "2 Years old",
-      breed: "Jack Russell",
-      image: "/images/dog2.jpg",
-      type: "dog",
-      requests: [],
-    },
-    {
-      name: "Yoi",
-      age: "2 Years old",
-      breed: "Jack Russell",
-      image: "/images/dog1.jpg",
-      type: "dog",
-      requests: [],
-    },
-    {
-      name: "Ichi",
-      age: "2 Years old",
-      breed: "Jack Russell",
-      image: "/images/cat2.jpg",
-      type: "cat",
-      requests: [],
-    },
-    {
-      name: "Toji",
-      age: "2 Years old",
-      breed: "Jack Russell",
-      image: "/images/cat2.jpg",
-      type: "cat",
-      requests: [],
-    },
-    {
-      name: "Momo",
-      age: "3 Years old",
-      breed: "Poodle",
-      image: "/images/dog2.jpg",
-      type: "dog",
-      requests: [],
-    },
-    {
-      name: "Sora",
-      age: "1 Year old",
-      breed: "Persian",
-      image: "/images/cat1.jpg",
-      type: "cat",
-      requests: [],
-    },
-    {
-      name: "Kuro",
-      age: "4 Years old",
-      breed: "Labrador",
-      image: "/images/dog1.jpg",
-      type: "dog",
-      requests: [],
-    },
-    {
-      name: "Nana",
-      age: "2 Years old",
-      breed: "British Shorthair",
-      image: "/images/cat2.jpg",
-      type: "cat",
-      requests: [],
-    },
-    {
-      name: "Choco",
-      age: "3 Years old",
-      breed: "Beagle",
-      image: "/images/dog2.jpg",
-      type: "dog",
-      requests: [],
-    },
-  ]);
+  const [pets, setPets] = useState([]);
 
   const totalPages = Math.ceil(pets.length / petsPerPage);
   const startIndex = (currentPage - 1) * petsPerPage;
@@ -165,7 +101,7 @@ export default function ProfilePage() {
                 }`}
               >
                 <img
-                  src={pet.image}
+                  src={`http://localhost:3000/${pet.pictureUrl}`}
                   alt={pet.name}
                   className="w-full h-48 object-cover rounded-lg"
                 />
