@@ -35,24 +35,6 @@ export default function PetPage() {
   const petsPerPage = 20;
   const [pets, setPets] = useState([]);
 
-  const mockPetData = {
-    name: "Milo",
-    phone: "0812345678",
-    address: "Bangkok",
-    type: "dog",
-    gender: "male",
-    color: "brown",
-    date: new Date("2022-01-01"),
-    ageYear: "2",
-    ageMonth: "3",
-    breed: "Shiba", 
-    vaccine: ["Rabies", "Parvo", "", ""],
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFUAfyVe3Easiycyh3isP9wDQTYuSmGPsPQvLIJdEYvQ_DsFq5Ez2Nh_QjiS3oZ3B8ZPfK9cZQyIStmQMV1lDPLw",
-    imageVaccine:
-      "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg",
-  };
-
   const filteredPets =
     filter === "All" ? pets : pets.filter((pet) => pet.type === filter);
   const totalPages = Math.ceil(filteredPets.length / petsPerPage);

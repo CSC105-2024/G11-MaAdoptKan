@@ -71,7 +71,7 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
             </p>
             <img
               src={
-                `http://localhost:3000/${pet.vaccineUrl}` ||
+                `http://localhost:3000/${pet.vacineUrl}` ||
                 "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg"
               }
               alt="vaccine"

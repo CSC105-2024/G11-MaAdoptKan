@@ -8,6 +8,6 @@ userRouter.post("/create", userController.createUser);
 userRouter.post("/login", userController.loginUser);
 userRouter.get("/get", authMiddleware, userController.getUser);
 userRouter.get("/getAll", userController.getAllUser);
-userRouter.get("/pets", userController.getAllPetFromUser);
+userRouter.get("/pets", authMiddleware, userController.getAllPetFromUser);
 
 export { userRouter };

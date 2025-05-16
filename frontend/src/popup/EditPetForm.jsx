@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import { RadioButton } from "primereact/radiobutton";
 import { Calendar } from "primereact/calendar";
 import { z } from "zod";
+import { editPet } from './../api/editPet';
 
 // Zod Schema
 const petFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  phone: z.string().min(1, "Phone number is required"),
+  phoneNumber: z.string().min(1, "Phone number is required"),
   address: z.string().min(1, "Address is required"),
   type: z.enum(["cat", "dog"], "Type is required"),
   gender: z.enum(["male", "female"], "Gender is required"),
   color: z.string().optional(),
-  date: z.date().optional(),
-  ageYear: z.string().optional(),
-  ageMonth: z.string().optional(),
+  date: z.date().nullable().optional(),
+  ageYear: z.number().optional(),
+  ageMonth: z.number().optional(),
   breed: z.string().optional(),
   vaccine: z.array(z.string()).optional(),
 });
@@ -21,7 +22,7 @@ const petFormSchema = z.object({
 export default function EditPetForm({ trigger, setTrigger, petData }) {
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    phoneNumber: "",
     address: "",
     type: "",
     gender: "",
@@ -52,11 +53,13 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
       setFormData({
         ...formData,
         ...petData,
+        id: petData.id,
+        image: `http://localhost:3000/${petData.pictureUrl}` || "",
+        imageVaccine: `http://localhost:3000/${petData.vacineUrl}` || "",
         vaccine: petData.vaccine?.length ? petData.vaccine : ["", "", "", ""],
         date: petData.date ? new Date(petData.date) : null,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [petData]);
 
   const handleInputChange = (key, value) => {
@@ -69,8 +72,11 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
     setFormData((prev) => ({ ...prev, vaccine: updated }));
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     const result = petFormSchema.safeParse(formData);
+    const pictureFile = document.getElementById("upload-photo-1").files[0];
+    const vaccineFile = document.getElementById("upload-photo-2").files[0];
+
     if (!result.success) {
       const firstError =
         result.error.issues[0]?.message || "Please fill required fields";
@@ -79,8 +85,38 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
     } else {
       setError("");
       setSuccess(true);
-      // ส่งข้อมูลไปอัพเดตหลังบ้านได้ที่นี่
       setTimeout(() => setTrigger(false), 1500);
+    }
+
+    const realFormData = new FormData();
+    realFormData.append("pictureFile", pictureFile);
+    realFormData.append("vaccineFile", vaccineFile);
+    realFormData.append(
+      "json",
+      JSON.stringify({
+        id: petData.id,
+        name: formData.name,
+        phoneNumber: formData.phone,
+        address: formData.address,
+        type: formData.type,
+        gender: formData.gender,
+        color: formData.color,
+        date: formData.date,
+        ageYear: formData.ageYear,
+        ageMonth: formData.ageMonth,
+        breed: formData.breed,
+        vaccine: formData.vaccine,
+        pictureUrl: formData.image,
+        vaccineUrl: formData.imageVaccine,
+      })
+    );
+
+    const res = await editPet(realFormData);
+    if (res.success) {
+      location.reload();
+      setStatus("Pet update!!");
+    } else {
+      alert("Error editing a pet! Try Again!");
     }
   };
 
@@ -262,8 +298,10 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
               <p className="flex text-regular font-medium">Phone Number</p>
               <input
                 type="text"
-                value={formData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
+                value={formData.phoneNumber}
+                onChange={(e) =>
+                  handleInputChange("phoneNumber", e.target.value)
+                }
                 className="w-full rounded-lg border border-gray-300 px-3 py-2"
               />
             </div>
@@ -534,7 +572,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
               <p className="text-regular flex mb-2 font-medium">Phone Number</p>
               <input
                 type="text"
-                value={formData.phone}
+                value={formData.phoneNumber}
                 onChange={(e) => handleInputChange("phone", e.target.value)}
                 className="flex rounded-[8px] w-full mb-2 shadow-lg border-1 border-gray-200"
               />
