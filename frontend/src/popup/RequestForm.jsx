@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RadioButton } from "primereact/radiobutton";
+import{ getUser } from "./../api/getUser.js";
 import { z } from "zod";
 
 const petFormSchema = z.object({
@@ -19,13 +20,29 @@ export default function RequestForm({ trigger, setTrigger, petData }) {
     address: "",
   });
 
-  const mockUser = {
-    firstName: "John",
-    lastName: "Sonner",
-    email: "user@gmail.com",
-    phoneNum: "099-536-8563",
-  };
-  
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNum: "",
+  })
+  const getUserData = async (id) => {
+    const res = await getUser(id);
+    if (res.success) {
+      setUser({
+        firstName: res.data.firstName,
+        lastName: res.data.lastName,
+        email: res.data.email,
+        phoneNum: res.data.tel,
+      });
+    } else {
+      console.log("Error fetching user data");
+    }
+  }
+    useEffect(() => {
+      getUserData(localStorage.getItem("userId"));
+    })
+
   const handleInputChange = (key, value) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
@@ -42,7 +59,8 @@ export default function RequestForm({ trigger, setTrigger, petData }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const handleUpload = () => {
-    const result = petFormSchema.safeParse(formData);
+    const result = petFormSchema.safeParse(formData)
+    console.log(formData)
     if (!result.success) {
       const firstError =
         result.error.issues[0]?.message || "Please fill required fields";
@@ -102,11 +120,11 @@ export default function RequestForm({ trigger, setTrigger, petData }) {
           <div className="flex flex-col gap-4">
             <div>
               <label className="font-semibold">First Name</label>
-              <p className="mt-1">{mockUser.firstName}</p>
+              <p className="mt-1">{user.firstName}</p>
             </div>
             <div>
               <label className="font-semibold">Email</label>
-              <p className="mt-1">{mockUser.email}</p>
+              <p className="mt-1">{user.email}</p>
             </div>
             <div>
               <label className="font-semibold mb-1">House Environment</label>
@@ -173,11 +191,11 @@ export default function RequestForm({ trigger, setTrigger, petData }) {
           <div className="flex flex-col gap-4">
             <div>
               <label className="font-semibold">Last Name</label>
-              <p className="mt-1">{mockUser.lastName}</p>
+              <p className="mt-1">{user.lastName}</p>
             </div>
             <div>
               <label className="font-semibold">Phone Number</label>
-              <p className="mt-1">{mockUser.phoneNum}</p>
+              <p className="mt-1">{user.phoneNum}</p>
             </div>
             <div>
               <label className="font-semibold mb-1">Financial</label>

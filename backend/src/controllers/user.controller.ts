@@ -181,7 +181,7 @@ const loginUser = async (c: Context) => {
     return c.json(
       {
         success: false,
-        data: null,
+        data: user.id,
         msg: "Login Successful",
       },
       200
