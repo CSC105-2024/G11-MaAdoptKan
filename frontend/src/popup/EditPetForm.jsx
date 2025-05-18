@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RadioButton } from "primereact/radiobutton";
 import { Calendar } from "primereact/calendar";
 import { z } from "zod";
-import { editPet } from './../api/editPet';
+import { editPet } from "./../api/editPet";
 
 // Zod Schema
 const petFormSchema = z.object({
@@ -55,7 +55,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
         ...petData,
         id: petData.id,
         image: `http://localhost:3000/${petData.pictureUrl}` || "",
-        imageVaccine: `http://localhost:3000/${petData.vacineUrl}` || "",
+        imageVaccine:  petData.vacineUrl ? `http://localhost:3000/${petData.vacineUrl}`: "",
         vaccine: petData.vaccine?.length ? petData.vaccine : ["", "", "", ""],
         date: petData.date ? new Date(petData.date) : null,
       });
@@ -76,6 +76,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
     const result = petFormSchema.safeParse(formData);
     const pictureFile = document.getElementById("upload-photo-1").files[0];
     const vaccineFile = document.getElementById("upload-photo-2").files[0];
+    console.log(pictureFile, vaccineFile);
 
     if (!result.success) {
       const firstError =
@@ -96,7 +97,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
       JSON.stringify({
         id: petData.id,
         name: formData.name,
-        phoneNumber: formData.phone,
+        phoneNumber: formData.phoneNumber,
         address: formData.address,
         type: formData.type,
         gender: formData.gender,
@@ -344,7 +345,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
                   Upload
                 </label>
               </div>
-              {formData.imageVaccine ? (
+              {formData.imageVaccine !== "" ? (
                 <img
                   src={formData.imageVaccine}
                   alt="preview"
@@ -616,7 +617,7 @@ export default function EditPetForm({ trigger, setTrigger, petData }) {
                   Upload
                 </label>
               </div>
-              {formData.imageVaccine ? (
+              {formData.imageVaccine !== "" ? (
                 <img
                   src={formData.imageVaccine}
                   alt="preview"

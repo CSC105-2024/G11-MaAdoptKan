@@ -5,6 +5,7 @@ import TrashIcon from "../../public/images/Delete.png";
 import RequestDetailPopup from "../popup/RequestDetail.jsx";
 import EditPetForm from "../popup/EditPetForm.jsx";
 import { getPetFromUser } from "../api/getPetFromUser";
+import { deletePet } from "../api/deletePet.js";
 
 export default function ProfilePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,6 +23,7 @@ export default function ProfilePage() {
 
       };
       getPetUser();
+
     } else {
       setIsLoggedIn(false);
     }
@@ -72,11 +74,20 @@ export default function ProfilePage() {
     setRequestPopup(true);
   };
 
-  const handleDelete = (indexToDelete) => {
+  const handleDelete = async (indexToDelete) => {
     setPets((prevPets) =>
       prevPets.filter((_, index) => index !== indexToDelete)
     );
+    const res = await deletePet(indexToDelete);
+    if (res.success) {
+      location.reload();
+      setStatus("Pet deleted!!");
+    } else {
+      alert("Error deleting a pet! Try Again!");
+    }
   };
+
+  console.log(pets);
 
   return (
     <>
@@ -145,7 +156,7 @@ export default function ProfilePage() {
                           />
                         </button>
                         <button
-                          onClick={() => handleDelete(index)}
+                          onClick={() => handleDelete(pet.id)}
                           className="text-primaryO hover:text-orange-600"
                         >
                           <img
