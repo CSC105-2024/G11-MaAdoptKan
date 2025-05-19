@@ -11,7 +11,7 @@ export default function PetPage() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getPetData();
+      const data = await getPetData(10000);
       setPets(() => data.data);
     }
 

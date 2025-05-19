@@ -100,8 +100,14 @@ const getPet = async (id: number) => {
   return pet;
 };
 
-const getAllPet = async () => {
-  const pet = await db.pet.findMany({});
+const getAllPet = async (count: number) => {
+  const pet = await db.pet.findMany({
+    ...(
+      count === 8 && {
+        take: 8
+      }
+    )
+  });
   return pet;
 };
 

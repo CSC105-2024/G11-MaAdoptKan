@@ -109,9 +109,6 @@ const createPet = async (c: Context) => {
 };
 
 const editPet = async (c: Context) => {
-  // Not finish still have the problems
-  //FormData didnt sent id to backend
-  //Need help from Julian pls
 
   console.log(true);
   try {
@@ -126,7 +123,7 @@ const editPet = async (c: Context) => {
     const current = new Date(Date.now());
 
     //Save new files (if provided), or fallback to old URLs
-    let vaccineUrl = body.vaccineUrl || "";
+    let vaccineUrl = (body.vaccineUrl as string).split("http://localhost:3000/")[1] || "";
     if (vaccineFile && typeof vaccineFile !== "string") {
       vaccineUrl = await saveFile(
         vaccineFile,
@@ -134,13 +131,15 @@ const editPet = async (c: Context) => {
       );
     }
 
-    let pictureUrl = body.pictureUrl || "";
+    let pictureUrl = (body.pictureUrl as string).split("http://localhost:3000/")[1] || "";
     if (pictureFile && typeof pictureFile !== "string") {
       pictureUrl = await saveFile(
         pictureFile,
         `${userId}-${current.getMilliseconds()}-${pictureFile.name}`
       );
     }
+
+    console.log((body.vaccineUrl as string).split("http://localhost:3000/"), (body.pictureUrl as string).split("http://localhost:3000/"));
 
     if (
       !body.id ||
@@ -224,7 +223,8 @@ const getPet = async (c: Context) => {
 
 const getAllPet = async (c: Context) => {
   try {
-    const allPet = await petModel.getAllPet();
+    const count = c.req.query("count");
+    const allPet = await petModel.getAllPet(Number(count));
     return c.json(allPet, 200);
   } catch (e) {
     return c.json(
@@ -297,6 +297,7 @@ const getAllRequestFromPet = async (c: Context) => {
     );
   }
 };
+
 
 export {
   createPet,

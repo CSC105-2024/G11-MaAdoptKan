@@ -69,14 +69,19 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
             <p className="text-left text-regular font-medium mb-1">
               Vaccine Record
             </p>
-            <img
-              src={
-                `http://localhost:3000/${pet.vacineUrl}` ||
-                "https://i.etsystatic.com/29156076/r/il/e1a1fe/5483373649/il_fullxfull.5483373649_rn1v.jpg"
-              }
-              alt="vaccine"
-              className="w-[150px] h-[150px] rounded-[8px] mb-2"
-            />
+
+            {pet.vacineUrl !== "" ? (
+              <img
+                src={`http://localhost:3000/${pet.vacineUrl}`}
+                alt="preview"
+                className="w-[150px] h-[150px] rounded-[8px] mb-2"
+              />
+            ) : (
+              <div className="w-full h-[50px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                No image uploaded
+              </div>
+            )}
+
             {pet.vaccine?.length > 0 ? (
               pet.vaccine.map((v, i) => (
                 <p key={i} className="text-left text-primaryO capitalize">
@@ -204,11 +209,17 @@ export default function PetInformation({ trigger, setTrigger, pet }) {
               <p className="flex text-regular font-medium mb-1">
                 Vaccine Record
               </p>
+              {pet.vacineUrl !== "" ? (
               <img
                 src={`http://localhost:3000/${pet.vacineUrl}`}
-                //alt={pet.name}
-                className="w-[150px] h-[150px] rounded-[8px] "
+                alt="preview"
+                className="w-[150px] h-[150px] rounded-[8px] mb-2"
               />
+            ) : (
+              <div className="w-full h-[50px] rounded-[8px] bg-gray-200 flex items-center justify-center text-gray-500">
+                No image uploaded
+              </div>
+            )}
               {pet.vaccine?.length > 0 ? (
                 pet.vaccine.map((v, i) => (
                   <p key={i} className="flex text-primaryO capitalize">

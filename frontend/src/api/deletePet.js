@@ -1,13 +1,12 @@
 import { axiosInstance } from "../axios";
 
-export const getPetData = async (count) => {
+export const deletePet = async (petId) => {
     try {
-        const res = await axiosInstance.get(`/pet/getAll?count=${count}`);
-        console.log(res);
+        const res = await axiosInstance.delete(`/pet/delete?petId=${petId}`);
         return {
             success: true,
             data: res.data,
-        }
+        };
     } catch (e) {
         console.log(e);
         return {
