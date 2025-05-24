@@ -19,8 +19,8 @@ enum Type {
 }
 
 enum HouseEn {
-  house
-  condo
+  House
+  Condominium
 }
 
 enum Financial {
@@ -38,7 +38,7 @@ enum Pickup {
 }
 
 model Pet {
-  id          Int       @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String
   type        Type
   gender      Gender
@@ -52,9 +52,9 @@ model Pet {
   address     String
   vacineUrl   String?
   userId      Int
-  User        User      @relation(fields: [userId], references: [id])
+  User        User          @relation(fields: [userId], references: [id])
   Vaccine     Vaccine[]
-  RequestForm     RequestForm[]
+  RequestForm RequestForm[]
 }
 
 model Vaccine {
@@ -65,26 +65,27 @@ model Vaccine {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  password  String
-  firstName String
-  lastName  String
-  tel       String
-  Pet       Pet[]
-  RequestForm   RequestForm[]
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  password    String
+  firstName   String
+  lastName    String
+  tel         String
+  Pet         Pet[]
+  RequestForm RequestForm[]
 }
 
 model RequestForm {
-  id Int @id @default(autoincrement())
-  houseEn HouseEn
-  financial Financial
-  pickup Pickup
+  id             Int       @id @default(autoincrement())
+  houseEn        HouseEn
+  financial      Financial
+  pickup         Pickup
+  houseImg       String    @default("")
   addressRequest String
 
   userId Int
   User   User @relation(fields: [userId], references: [id])
 
-  petId Int 
+  petId Int
   Pet   Pet @relation(fields: [petId], references: [id])
 }

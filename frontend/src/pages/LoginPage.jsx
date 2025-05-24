@@ -33,6 +33,8 @@ const LoginPage = () => {
     const res = await userLogin(data);
     if (res.success) {
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userId", (res.data.data));
+      console.log(localStorage.getItem("userId"))
       setLoginSuccess(true);
       setTimeout(() => {
         navigate("/");

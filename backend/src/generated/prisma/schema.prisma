@@ -19,8 +19,8 @@ enum Type {
 }
 
 enum HouseEn {
-  house
-  condo
+  House
+  Condominium
 }
 
 enum Financial {
@@ -80,11 +80,12 @@ model RequestForm {
   houseEn        HouseEn
   financial      Financial
   pickup         Pickup
+  houseImg       String    @default("")
   addressRequest String
 
   userId Int
   User   User @relation(fields: [userId], references: [id])
 
-  petId Int @unique
+  petId Int
   Pet   Pet @relation(fields: [petId], references: [id])
 }
