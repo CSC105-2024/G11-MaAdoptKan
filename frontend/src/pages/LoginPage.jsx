@@ -40,7 +40,7 @@ const LoginPage = () => {
         navigate("/");
       }, 1500);
     } else {
-      alert("Error loggin in. Try again!");x
+      alert("Error loggin in. Try again!");
     }
   };
 

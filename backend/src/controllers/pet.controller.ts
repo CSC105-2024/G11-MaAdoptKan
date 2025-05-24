@@ -27,7 +27,7 @@ type editPetBody = createPetBody & {
 };
 
 // File saving logic
-const saveFile = async (file: File, fileName: string): Promise<string> => {
+export const saveFile = async (file: File, fileName: string): Promise<string> => {
   const buffer = await file.arrayBuffer(); // convert to buffer
   const savePath = path.join(process.cwd(), "files", fileName); // adjust as needed
   await writeFile(savePath, Buffer.from(buffer));
