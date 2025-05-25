@@ -151,6 +151,7 @@ exports.Prisma.RequestFormScalarFieldEnum = {
   houseEn: 'houseEn',
   financial: 'financial',
   pickup: 'pickup',
+  houseImg: 'houseImg',
   addressRequest: 'addressRequest',
   userId: 'userId',
   petId: 'petId'
@@ -176,8 +177,8 @@ exports.Gender = exports.$Enums.Gender = {
 };
 
 exports.HouseEn = exports.$Enums.HouseEn = {
-  house: 'house',
-  condo: 'condo'
+  House: 'House',
+  Condominium: 'Condominium'
 };
 
 exports.Financial = exports.$Enums.Financial = {

@@ -10,7 +10,7 @@ export const db = new PrismaClient();
 
 app.use(cors({
   // CORS will only allow requests coming from this origin.
-  origin: ['http://localhost:5173'], 
+  origin: ['http://localhost:5173'],
   credentials: true,
 }));
 

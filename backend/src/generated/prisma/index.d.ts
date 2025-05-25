@@ -55,8 +55,8 @@ export type Type = (typeof Type)[keyof typeof Type]
 
 
 export const HouseEn: {
-  house: 'house',
-  condo: 'condo'
+  House: 'House',
+  Condominium: 'Condominium'
 };
 
 export type HouseEn = (typeof HouseEn)[keyof typeof HouseEn]
@@ -4807,6 +4807,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn | null
     financial: $Enums.Financial | null
     pickup: $Enums.Pickup | null
+    houseImg: string | null
     addressRequest: string | null
     userId: number | null
     petId: number | null
@@ -4817,6 +4818,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn | null
     financial: $Enums.Financial | null
     pickup: $Enums.Pickup | null
+    houseImg: string | null
     addressRequest: string | null
     userId: number | null
     petId: number | null
@@ -4827,6 +4829,7 @@ export namespace Prisma {
     houseEn: number
     financial: number
     pickup: number
+    houseImg: number
     addressRequest: number
     userId: number
     petId: number
@@ -4851,6 +4854,7 @@ export namespace Prisma {
     houseEn?: true
     financial?: true
     pickup?: true
+    houseImg?: true
     addressRequest?: true
     userId?: true
     petId?: true
@@ -4861,6 +4865,7 @@ export namespace Prisma {
     houseEn?: true
     financial?: true
     pickup?: true
+    houseImg?: true
     addressRequest?: true
     userId?: true
     petId?: true
@@ -4871,6 +4876,7 @@ export namespace Prisma {
     houseEn?: true
     financial?: true
     pickup?: true
+    houseImg?: true
     addressRequest?: true
     userId?: true
     petId?: true
@@ -4968,6 +4974,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg: string
     addressRequest: string
     userId: number
     petId: number
@@ -4997,6 +5004,7 @@ export namespace Prisma {
     houseEn?: boolean
     financial?: boolean
     pickup?: boolean
+    houseImg?: boolean
     addressRequest?: boolean
     userId?: boolean
     petId?: boolean
@@ -5009,6 +5017,7 @@ export namespace Prisma {
     houseEn?: boolean
     financial?: boolean
     pickup?: boolean
+    houseImg?: boolean
     addressRequest?: boolean
     userId?: boolean
     petId?: boolean
@@ -5021,6 +5030,7 @@ export namespace Prisma {
     houseEn?: boolean
     financial?: boolean
     pickup?: boolean
+    houseImg?: boolean
     addressRequest?: boolean
     userId?: boolean
     petId?: boolean
@@ -5033,12 +5043,13 @@ export namespace Prisma {
     houseEn?: boolean
     financial?: boolean
     pickup?: boolean
+    houseImg?: boolean
     addressRequest?: boolean
     userId?: boolean
     petId?: boolean
   }
 
-  export type RequestFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "houseEn" | "financial" | "pickup" | "addressRequest" | "userId" | "petId", ExtArgs["result"]["requestForm"]>
+  export type RequestFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "houseEn" | "financial" | "pickup" | "houseImg" | "addressRequest" | "userId" | "petId", ExtArgs["result"]["requestForm"]>
   export type RequestFormInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
     Pet?: boolean | PetDefaultArgs<ExtArgs>
@@ -5063,6 +5074,7 @@ export namespace Prisma {
       houseEn: $Enums.HouseEn
       financial: $Enums.Financial
       pickup: $Enums.Pickup
+      houseImg: string
       addressRequest: string
       userId: number
       petId: number
@@ -5495,6 +5507,7 @@ export namespace Prisma {
     readonly houseEn: FieldRef<"RequestForm", 'HouseEn'>
     readonly financial: FieldRef<"RequestForm", 'Financial'>
     readonly pickup: FieldRef<"RequestForm", 'Pickup'>
+    readonly houseImg: FieldRef<"RequestForm", 'String'>
     readonly addressRequest: FieldRef<"RequestForm", 'String'>
     readonly userId: FieldRef<"RequestForm", 'Int'>
     readonly petId: FieldRef<"RequestForm", 'Int'>
@@ -5967,6 +5980,7 @@ export namespace Prisma {
     houseEn: 'houseEn',
     financial: 'financial',
     pickup: 'pickup',
+    houseImg: 'houseImg',
     addressRequest: 'addressRequest',
     userId: 'userId',
     petId: 'petId'
@@ -6290,6 +6304,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFilter<"RequestForm"> | $Enums.HouseEn
     financial?: EnumFinancialFilter<"RequestForm"> | $Enums.Financial
     pickup?: EnumPickupFilter<"RequestForm"> | $Enums.Pickup
+    houseImg?: StringFilter<"RequestForm"> | string
     addressRequest?: StringFilter<"RequestForm"> | string
     userId?: IntFilter<"RequestForm"> | number
     petId?: IntFilter<"RequestForm"> | number
@@ -6302,6 +6317,7 @@ export namespace Prisma {
     houseEn?: SortOrder
     financial?: SortOrder
     pickup?: SortOrder
+    houseImg?: SortOrder
     addressRequest?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
@@ -6317,6 +6333,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFilter<"RequestForm"> | $Enums.HouseEn
     financial?: EnumFinancialFilter<"RequestForm"> | $Enums.Financial
     pickup?: EnumPickupFilter<"RequestForm"> | $Enums.Pickup
+    houseImg?: StringFilter<"RequestForm"> | string
     addressRequest?: StringFilter<"RequestForm"> | string
     userId?: IntFilter<"RequestForm"> | number
     petId?: IntFilter<"RequestForm"> | number
@@ -6329,6 +6346,7 @@ export namespace Prisma {
     houseEn?: SortOrder
     financial?: SortOrder
     pickup?: SortOrder
+    houseImg?: SortOrder
     addressRequest?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
@@ -6347,6 +6365,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnWithAggregatesFilter<"RequestForm"> | $Enums.HouseEn
     financial?: EnumFinancialWithAggregatesFilter<"RequestForm"> | $Enums.Financial
     pickup?: EnumPickupWithAggregatesFilter<"RequestForm"> | $Enums.Pickup
+    houseImg?: StringWithAggregatesFilter<"RequestForm"> | string
     addressRequest?: StringWithAggregatesFilter<"RequestForm"> | string
     userId?: IntWithAggregatesFilter<"RequestForm"> | number
     petId?: IntWithAggregatesFilter<"RequestForm"> | number
@@ -6585,6 +6604,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     User: UserCreateNestedOneWithoutRequestFormInput
     Pet: PetCreateNestedOneWithoutRequestFormInput
@@ -6595,6 +6615,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     userId: number
     petId: number
@@ -6604,6 +6625,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     User?: UserUpdateOneRequiredWithoutRequestFormNestedInput
     Pet?: PetUpdateOneRequiredWithoutRequestFormNestedInput
@@ -6614,6 +6636,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     petId?: IntFieldUpdateOperationsInput | number
@@ -6624,6 +6647,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     userId: number
     petId: number
@@ -6633,6 +6657,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
   }
 
@@ -6641,6 +6666,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     petId?: IntFieldUpdateOperationsInput | number
@@ -7020,6 +7046,7 @@ export namespace Prisma {
     houseEn?: SortOrder
     financial?: SortOrder
     pickup?: SortOrder
+    houseImg?: SortOrder
     addressRequest?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
@@ -7036,6 +7063,7 @@ export namespace Prisma {
     houseEn?: SortOrder
     financial?: SortOrder
     pickup?: SortOrder
+    houseImg?: SortOrder
     addressRequest?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
@@ -7046,6 +7074,7 @@ export namespace Prisma {
     houseEn?: SortOrder
     financial?: SortOrder
     pickup?: SortOrder
+    houseImg?: SortOrder
     addressRequest?: SortOrder
     userId?: SortOrder
     petId?: SortOrder
@@ -7653,6 +7682,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     User: UserCreateNestedOneWithoutRequestFormInput
   }
@@ -7662,6 +7692,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     userId: number
   }
@@ -7754,6 +7785,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFilter<"RequestForm"> | $Enums.HouseEn
     financial?: EnumFinancialFilter<"RequestForm"> | $Enums.Financial
     pickup?: EnumPickupFilter<"RequestForm"> | $Enums.Pickup
+    houseImg?: StringFilter<"RequestForm"> | string
     addressRequest?: StringFilter<"RequestForm"> | string
     userId?: IntFilter<"RequestForm"> | number
     petId?: IntFilter<"RequestForm"> | number
@@ -7893,6 +7925,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     Pet: PetCreateNestedOneWithoutRequestFormInput
   }
@@ -7902,6 +7935,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     petId: number
   }
@@ -8117,6 +8151,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     userId: number
   }
@@ -8139,6 +8174,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     User?: UserUpdateOneRequiredWithoutRequestFormNestedInput
   }
@@ -8148,6 +8184,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
@@ -8157,6 +8194,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
@@ -8182,6 +8220,7 @@ export namespace Prisma {
     houseEn: $Enums.HouseEn
     financial: $Enums.Financial
     pickup: $Enums.Pickup
+    houseImg?: string
     addressRequest: string
     petId: number
   }
@@ -8241,6 +8280,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     Pet?: PetUpdateOneRequiredWithoutRequestFormNestedInput
   }
@@ -8250,6 +8290,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     petId?: IntFieldUpdateOperationsInput | number
   }
@@ -8259,6 +8300,7 @@ export namespace Prisma {
     houseEn?: EnumHouseEnFieldUpdateOperationsInput | $Enums.HouseEn
     financial?: EnumFinancialFieldUpdateOperationsInput | $Enums.Financial
     pickup?: EnumPickupFieldUpdateOperationsInput | $Enums.Pickup
+    houseImg?: StringFieldUpdateOperationsInput | string
     addressRequest?: StringFieldUpdateOperationsInput | string
     petId?: IntFieldUpdateOperationsInput | number
   }
