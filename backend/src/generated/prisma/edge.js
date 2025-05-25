@@ -184,7 +184,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Nitro\\Desktop\\G11-MaAdoptKan\\backend\\src\\generated\\prisma",
+      "value": "C:\\Users\\nateb\\Desktop\\G11-MaAdoptKan\\backend\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -198,7 +198,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Nitro\\Desktop\\G11-MaAdoptKan\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\nateb\\Desktop\\G11-MaAdoptKan\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -212,12 +212,11 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "file:./dev.db"
       }
     }
   },
