@@ -1,5 +1,5 @@
 :pushpin: Ma Adopt Kan
-Provide a brief description of your project here. Include what problem it solves or what it does.
+Ma Adopt Kan, the adoption pets website, is designed to help people adopt pets easily. The website will allow users to post pets for adoption and request to adopt a pet. The website is easy to use and helps connect caregivers with people looking to adopt pets in need of a home. The website will have many features, such as post management, adopting confirmation system, and login. All of these will help users to adopt easily without using other platforms that are hard to use.
 
 :rocket: Getting Started
 Clone the repository: bash git clone https://github.com/your-username/your-repo-name.git cd your-repo-name
