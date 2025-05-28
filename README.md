@@ -117,9 +117,3 @@ _Ma Adopt Kan, the adoption pets website, is designed to help people adopt pets 
 
 5. The server will be running on [http://localhost:3000](http://localhost:3000)
 
-
-Create a .env file and configure the following variables: PORT=3000 MONGO_URI=your_mongodb_connection_string
-
-Start the development server:npm run dev
-
-The server will be running on http://localhost:3000
