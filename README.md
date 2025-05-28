@@ -83,11 +83,11 @@ _Ma Adopt Kan, the adoption pets website, is designed to help people adopt pets 
 
 | Method |            Endpoint            |               Description                    |
 |--------|--------------------------------|----------------------------------------------|
-| GET    | `/pet/create`                  | Create new pet.                              |
-| GET    | `/pet/edit`                    | Edit a pet                                   |
+| POST   | `/pet/create`                  | Create new pet.                              |
+| PATCH  | `/pet/edit`                    | Edit a pet                                   |
 | GET    | `/pet/get?petId={petId}`       | Get pet by using pet ID.                     |
 | GET    | `/pet/getAll?count={count}     | Get all pets by counting to display.         |
-| GET    | `/pet/delete?petId={petId}`    | Delete pet by using pet ID.                  |
+| DELETE | `/pet/delete?petId={petId}`    | Delete pet by using pet ID.                  |
 
 
 ### :bulb: Getting Started - Node.js Server
